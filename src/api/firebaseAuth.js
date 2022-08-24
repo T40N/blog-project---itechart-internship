@@ -5,6 +5,7 @@ import {
     signOut,
     onAuthStateChanged
 } from "firebase/auth";
+import { insertUser } from './firestoreResources';
 
 export const isUserLoggedIn = async() => {
     return new Promise((resolve, reject) => {
@@ -15,9 +16,10 @@ export const isUserLoggedIn = async() => {
     });
 }
 
-export const registerAttempt = async (email, password) => {
+export const registerAttempt = async ({ name, surname, email, password }) => {
     try {
         const { user } = await createUserWithEmailAndPassword(auth, email, password);
+        await insertUser(user.uid, name, surname, email, password);
         return user.uid;
     } catch (err) {
         alert(err.message);

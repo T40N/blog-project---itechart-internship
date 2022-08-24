@@ -2,27 +2,27 @@
 
 Użytkownik:
 
-- uID: firebaseID hash
-- Name: string
-- Surname: string
+- u_id: firebaseID hash
+- name: string
+- surname: string
 - email: string
-- Bio: string
-- Type: number (base: 1, author: 2, admin: 3)
-- Date_of_Register: date
-- Posts:
+- bio: string
+- type: number (base: 1, author: 2, admin: 3)
+- date_of_register: date
+- posts:
   - postID: firebaseID hash
 
 Post:
 
-- postID: firebaseID hash
-- uID: firebaseID hash
-- Title: string
-- Content: string
-- Date_of_creation : date
-- Comments:
-  - uID: firebaseID hash
-  - Content: string
-  - Date: date
+- post_id: firebaseID hash
+- u_id: firebaseID hash
+- title: string
+- content: string
+- date_of_creation : date
+- comments:
+  - u_id: firebaseID hash
+  - content: string
+  - date: date
 
 Figma:
 https://www.figma.com/file/hr8C5iW4KiOs3hJVSF3UOv/Blog-Monochromatic-Design?node-id=88%3A209

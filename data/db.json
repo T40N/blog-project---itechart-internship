@@ -9,7 +9,7 @@
     {
       "title": "hfddsa",
       "body": "gfdgdsa",
-      "author": "mario",
+      "author": "mario the plumer",
       "id": 2
     },
     {
@@ -21,7 +21,7 @@
     {
       "title": "fdsf",
       "body": "fsfsf",
-      "author": "Pablo",
+      "author": "Pablo Carrera",
       "id": 4
     },
     {
@@ -33,6 +33,23 @@
       "title": "sfd",
       "body": "dsad",
       "id": 6
+    },
+    {
+      "title": "das",
+      "body": "dsadasdasdasd",
+      "id": 7
+    }
+  ],
+  "authors": [
+    {
+      "name": "Pablo",
+      "surname": "Carrera",
+      "avatarSrc": "picture.jpg"
+    },
+    {
+      "name": "mario",
+      "surname": "the plumer",
+      "avatarSrc": "picture2.jpg"
     }
   ]
 }

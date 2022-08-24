@@ -1,16 +1,22 @@
 import styled from "styled-components";
 
 const Button = styled.button`
-  height: ${({ height }) => (height ? height : "1.2rem")};
+  height: ${({ height }) => (height ? height : "2.2rem")};
   width: ${({ width }) => (width ? width : "100%")};
   border: none;
-  border-radius: 15px;
-  background-color: ${({ theme }) => theme.colors.mono100};
-  color: ${({ theme }) => theme.colors.mono400};
-  box-shadow: ${({ theme }) => theme.shadows.shadowLight};
+  border-radius: ${({ borderRadius }) =>
+    borderRadius ? borderRadius : "10px"};
+  background-color: transparent;
+  box-shadow: none;
+  color: inherit;
+  cursor: pointer;
+  transition: box-shadow ease 500ms, color ease 500ms,
+    background-color ease 500ms;
 
-  &::hover {
+  &:hover {
     color: ${({ theme }) => theme.colors.mono500};
+    background-color: ${({ theme }) => theme.colors.mono100};
+    box-shadow: ${({ theme }) => theme.shadows.shadowLight};
   }
 `;
 

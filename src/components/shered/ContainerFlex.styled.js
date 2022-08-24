@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 const ContainerFlex = styled.div`
   display: flex;
@@ -7,7 +7,8 @@ const ContainerFlex = styled.div`
   flex-direction: ${({ direction }) => (direction ? direction : "row")};
   justify-content: ${({ justify }) => (justify ? justify : "flex-start")};
   align-items: ${({ align }) => (align ? align : "flex-start")};
-  background-color: ${({ bgColor }) => (bgColor ? bgColor : "inherit")};
+  background-color: ${({ bgColor, theme }) =>
+    bgColor ? bgColor : theme.colors.mono100};
   box-shadow: ${({ theme, shadow }) =>
     shadow ? theme.shadows.shadowLight : "none"};
 `;

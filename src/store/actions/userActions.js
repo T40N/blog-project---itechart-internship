@@ -4,9 +4,8 @@ export const logIn = ({ email, password }) => {
   return async (dispatch) => {
     const userId = await loginAttempt({ email, password });
 
-    const { uID, bio, type, date_of_register, posts } = await getUserFirebase(
-      userId
-    );
+    const { uID, bio, type, date_of_register, posts, name, surname } =
+      await getUserFirebase(userId);
 
     dispatch(
       setUser({

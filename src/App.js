@@ -4,6 +4,7 @@ import Navbar from "./pages/navbar";
 import PostsView from "./pages/postsViewPage";
 import GlobalStyle from "./GlobalStyle.styled";
 import BlogDetails from "./pages/BlogDetails";
+import AuthorPage from "./pages/AuthorPage";
 
 const App = () => {
   return (
@@ -21,6 +22,9 @@ const App = () => {
             </Route>
             <Route path="/blogs/:id">
               <BlogDetails />
+            </Route>
+            <Route path="/:author">
+              <AuthorPage />
             </Route>
           </Switch>
         </div>

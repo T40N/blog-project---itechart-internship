@@ -18,12 +18,10 @@ const PostsList = ( {blogs, title, index}) => {
             <h2>{title}</h2>
             {blogsOnPage.map((blog) => (
                 <div className='blog-preview' key={blog.id}>
-                    <div>
-                        <h2>{blog.title}</h2>
-                        <h3>Written by {blog.author}</h3>
-                        <p>{shorten(blog.body, 300)+'.'}</p>
-                        <Link to={`/blogs/${blog.id}`}>Read more</Link>
-                    </div>
+                    <h2>{blog.title}</h2>
+                    <h3>Written by {blog.author}</h3>
+                    <p>{shorten(blog.body, 300)+'.'}</p>
+                    <Link to={`/blogs/${blog.id}`}>Read more</Link>
                 </div>
             ))}
         </div>

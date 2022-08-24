@@ -1,4 +1,4 @@
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 import useFetch from './useFetch';
 
 const BlogDetails = () => {
@@ -25,7 +25,7 @@ const handleGoBack = () =>{
             { blog && (
                 <article>
                     <h2>{blog.title}</h2>
-                    <p> Written by {blog.author}</p>
+                    <p> Written by <Link to ={`/${blog.author}`}>{blog.author}</Link></p>
                     <div>{blog.body}</div>
                     <button onClick={handleGoBack}>Go back</button>
                     <button onClick={handleClick}>delete</button>

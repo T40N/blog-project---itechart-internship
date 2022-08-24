@@ -7,9 +7,19 @@ const Input = styled.input`
   border-radius: 15px;
   background-color: ${({ theme }) => theme.colors.mono100};
   font-size: ${({ fontSize }) => (fontSize ? fontSize : "inherit")};
+  box-shadow: ${({ theme }) => theme.shadows.shadowLight};
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.mono400};
+  }
+
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.colors.mono400};
+  }
+
+  &:focus,
+  &:active {
+    border: 1px solid ${({ theme }) => theme.colors.mono500};
   }
 `;
 

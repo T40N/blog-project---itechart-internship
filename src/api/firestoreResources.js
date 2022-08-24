@@ -13,10 +13,8 @@ export const insertUser = async (uID, name, surname, email, password) => {
             date_of_register: serverTimestamp(),
             posts: []
         });
-
     } catch (err) {
-        alert(err.message);
-        return undefined;
+        throw err;
     }
 }
 
@@ -26,7 +24,6 @@ export const getUserInfo = async (uID) => {
         const user = (await getDoc(userRef)).data();
         return user;
     } catch (err) {
-        alert(err.message);
-        return undefined;
+        throw err;
     }
 }

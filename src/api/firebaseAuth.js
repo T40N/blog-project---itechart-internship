@@ -22,8 +22,7 @@ export const registerAttempt = async ({ name, surname, email, password }) => {
         await insertUser(user.uid, name, surname, email, password);
         return user.uid;
     } catch (err) {
-        alert(err.message);
-        return undefined;
+        throw err;
     }
 }
 
@@ -32,17 +31,14 @@ export const loginAttempt = async (email, password) => {
         const { user } = await signInWithEmailAndPassword(auth, email, password);
         return user.uid;
     } catch (err) {
-        alert(err.message);
-        return undefined;
+        throw err;
     }
 }
 
 export const logoutAttempt = async () => {
     try {
         await signOut(auth);
-        return true;
     } catch(err) {
-        alert(err.message);
-        return false;
+        throw err;
     }
 }

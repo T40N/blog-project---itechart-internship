@@ -1,12 +1,14 @@
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { register } from "../store/actions/userActions";
+import { logIn, register } from "../store/actions/userActions";
 
 const Test = () => {
   const nameRef = useRef();
   const surnameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
+  const emailloginRef = useRef();
+  const passwordloginRef = useRef();
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -22,6 +24,16 @@ const Test = () => {
     dispatch(register(newUser));
   };
 
+  const onLoginHandler = () => {
+    const loginObj = {
+      email: emailloginRef.current.value,
+      register: emailloginRef.current.value,
+    };
+
+    dispatch(logIn(loginObj));
+  };
+
+  console.log(user);
   return (
     <div>
       <input ref={nameRef} />
@@ -30,6 +42,10 @@ const Test = () => {
       <input ref={passwordRef} />
       <button onClick={onRegisterHandler}>register</button>
       <h1>{user.dateOfRegister}</h1>
+      <input ref={emailloginRef} />
+      <input ref={passwordloginRef} />
+      <button onClick={onLoginHandler}>Login</button>
+      <h1>{user.name}</h1>
     </div>
   );
 };

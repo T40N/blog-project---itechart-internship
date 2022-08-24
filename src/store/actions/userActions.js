@@ -13,14 +13,14 @@ export const logIn = ({ email, password }) => {
       const userId = await loginAttempt({ email, password });
 
       try {
-        const { uID, bio, type, date_of_register, posts, name, surname } =
+        const { bio, type, date_of_register, posts, name, surname } =
           await getUserInfo(userId);
 
-        const dateOfRegisterObject = date_of_register.toDate();
+        const dateOfRegisterObject = formatDate(date_of_register.toDate());
 
         dispatch(
           setUser({
-            uID,
+            uID: userId,
             name,
             surname,
             email,
@@ -47,7 +47,7 @@ export const register = ({ name, surname, password, email }) => {
       const userId = await registerAttempt({ name, surname, password, email });
 
       try {
-        const { uID, bio, type, date_of_register, posts } = await getUserInfo(
+        const { bio, type, date_of_register, posts } = await getUserInfo(
           userId
         );
 
@@ -56,7 +56,7 @@ export const register = ({ name, surname, password, email }) => {
         console.log(dateOfRegisterObject);
         dispatch(
           setUser({
-            uID,
+            uID: userId,
             name,
             surname,
             email,

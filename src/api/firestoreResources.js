@@ -1,11 +1,9 @@
 import { db } from './firebase';
-import { collection, getDocs, addDoc, serverTimestamp, getDoc, doc  } from "firebase/firestore";
+import { collection, getDocs, addDoc, serverTimestamp, getDoc, doc, setDoc } from "firebase/firestore";
 
-export const insertUser = async (name, surname, email, password) => {
+export const insertUser = async (uID, name, surname, email, password) => {
     try {
-        const usersCollection = collection(db, "users");
-
-        const { id } = await addDoc(usersCollection, {
+        await setDoc(doc(db, "users", uID), {
             name,
             surname,
             email,
@@ -15,12 +13,8 @@ export const insertUser = async (name, surname, email, password) => {
             date_of_register: serverTimestamp(),
             posts: []
         });
-
-        return id;
-
-    } catch(err) {
-        alert(err.message);
-        return undefined;
+    } catch (err) {
+        throw err;
     }
 }
 
@@ -28,14 +22,8 @@ export const getUserInfo = async (uID) => {
     try {
         const userRef = doc(db, "users", uID);
         const user = (await getDoc(userRef)).data();
-
         return user;
-    } catch(err) {
-        alert(err.message);
-        return undefined;
+    } catch (err) {
+        throw err;
     }
-}
-
-export const insertPost = async () => {
-    
 }

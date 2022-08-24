@@ -15,7 +15,7 @@ Użytkownik:
 Post:
 
 - post_id: firebaseID hash
-- uID: firebaseID hash
+- u_id: firebaseID hash
 - title: string
 - content: string
 - date_of_creation : date

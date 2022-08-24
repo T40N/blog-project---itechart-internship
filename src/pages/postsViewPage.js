@@ -9,17 +9,15 @@ const Options = (blogs) => {
             for (let i = 1; i <= length; i++) {
                 options.push(<option value={i}>{i}</option>);
             }
-            console.log(options);
         }
         return options;
     }
 
 const PostsView = () => {
-    const {data: blogs, isPending, error} = useFetch('http://localhost:8000/blogs')
+    const {data: blogs, isPending, error} = useFetch('http://localhost:8000/blogs');
     const [index, setIndex] = useState("1");
 
     const options = Options(blogs);
-    console.log(options);
     
     return ( 
         <div className="posts-view">

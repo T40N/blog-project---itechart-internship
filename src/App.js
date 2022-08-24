@@ -1,13 +1,15 @@
-<<<<<<< HEAD
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AddingPost from "./pages/addingPostPage";
-import Navbar from './pages/navbar';
+import Navbar from "./pages/navbar";
 import PostsView from "./pages/postsViewPage";
+import GlobalStyle from "./GlobalStyle.styled";
+import BlogDetails from "./pages/BlogDetails";
 
 const App = () => {
   return (
     <Router>
       <div className="App">
+        <GlobalStyle />
         <div className="content">
           <Navbar />
           <Switch>
@@ -17,22 +19,14 @@ const App = () => {
             <Route path="/addingPost">
               <AddingPost />
             </Route>
+            <Route path="/blogs/:id">
+              <BlogDetails />
+            </Route>
           </Switch>
         </div>
       </div>
     </Router>
   );
-}
-=======
-import GlobalStyle from "./GlobalStyle.styled";
-
-const App = () => {
-  return (
-    <div className="App">
-      <GlobalStyle />
-    </div>
-  );
 };
->>>>>>> fec4356849869956daab6503cd4347576a665602
 
 export default App;

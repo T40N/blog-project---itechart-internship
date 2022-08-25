@@ -2,12 +2,12 @@ import { ThemeProvider } from "styled-components";
 
 const theme = {
   colors: {
-    primary: "#FFFFFF",
-    secondary: "#F8F8F8",
-    tertiary: "#E8E8E8",
-    fontPrim: "#000000",
-    fontSec: "#717171",
-    iconPrim : "#1C1B1F"
+    MONO100: "#FFFFFF",
+    MONO200: "#F8F8F8",
+    MONO300: "#E8E8E8",
+    MONO400: "#717171",
+    MONO500: "#000000",
+    MONO600 : "#1C1B1F"
   },
   shadows: {
     shadowLight: "2px 2px 10px rgba(0, 0, 0, 0.12);",
@@ -29,8 +29,8 @@ const theme = {
       icon: 'Material Icons',
     },
     sizes: {
-      xxs: '.75px',
-      xs: '.875x',
+      xxs: '.75rem',
+      xs: '.875rem',
       s: '1.1rem',
       m: '1.3rem',
       l: '1.5rem',

@@ -11,8 +11,6 @@
     border-radius: 40px;
 }
 
-
-
 .blog-list{
     display: flex;
     flex-direction: column;
@@ -22,21 +20,23 @@
 .blog-preview  h2{
     font-size: 2rem;
     margin-top: 1rem;
-    margin-left: 1rem;
+    margin-inline: 2rem;
 }
+
 .blog-preview h3 {
     font-size: 1.5rem;
-    margin-left: 1rem;
+    margin-inline: 2rem;
 }
+
 .blog-preview p{
     font-size: 1rem;
     font-weight: 300;
     color: #717171;
-    margin-left: 1rem;
+    margin-inline: 2rem;
 }
 
 .blog-preview a:link{
     text-decoration: none;
-    margin-left: 1rem;
+    margin-inline: 2rem;
     padding-bottom: 1rem;
 }

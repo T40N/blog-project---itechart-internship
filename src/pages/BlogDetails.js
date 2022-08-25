@@ -24,6 +24,7 @@ const handleGoBack = () =>{
             {error && <div>error</div>}
             { blog && (
                 <article>
+                    <img src="PostAvatar.svg"/>
                     <h2>{blog.title}</h2>
                     <p> Written by <Link to ={`/${blog.author}`}>{blog.author}</Link></p>
                     <div>{blog.body}</div>

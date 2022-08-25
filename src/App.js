@@ -5,6 +5,7 @@ import PostsView from "./pages/postsViewPage";
 import GlobalStyle from "./GlobalStyle.styled";
 import BlogDetails from "./pages/BlogDetails";
 import AuthorPage from "./pages/AuthorPage";
+import PostSnippet from "./components/PostSnippet";
 
 const App = () => {
   return (

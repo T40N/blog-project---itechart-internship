@@ -2,12 +2,12 @@ import { ThemeProvider } from "styled-components";
 
 const theme = {
   colors: {
-    MONO100: "#FFFFFF",
-    MONO200: "#F8F8F8",
-    MONO300: "#E8E8E8",
-    MONO400: "#717171",
-    MONO500: "#000000",
-    MONO600 : "#1C1B1F"
+    mono100: "#FFFFFF",
+    mono200: "#F8F8F8",
+    mono300: "#E8E8E8",
+    mono400: "#717171",
+    mono500: "#000000",
+    mono600 : "#1C1B1F"
   },
   shadows: {
     shadowLight: "2px 2px 10px rgba(0, 0, 0, 0.12);",

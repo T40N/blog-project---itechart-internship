@@ -1,39 +1,71 @@
-import { addPost, removePost, editPost } from "../slices/postsSlice";
+import { getPosts, insertPost } from "../../api/firestoreResources";
+import { getAllPosts, removePost, editPost } from "../slices/postsSlice";
+import { formatDate } from "../../helpers";
 
-export const newPost = ({ userId, title, content }) => {
+export const postsGet = () => {
   return async (dispatch) => {
-    const postID = await addPostFirebase({ userId, title, content });
-
-    const post = await getPostFirebase(postID);
+    const posts = (await getPosts()).map((post) => {
+      return {
+        id: post.post_id,
+        userId: post.u_id,
+        title: post.title,
+        content: post.content,
+        dateOfCreation: formatDate(post.date_of_creation.toDate()),
+      };
+    });
 
     dispatch(
-      addPost({
-        post,
+      getAllPosts({
+        posts,
       })
     );
   };
 };
 
-export const removePost = (postId) => {
+export const newPost = ({ uID, title, content }) => {
   return async (dispatch) => {
-    await removePostFirebase(postId);
+    await insertPost({ uID, title, content });
+
+    const posts = (await getPosts()).map((post) => {
+      return {
+        id: post.post_id,
+        userId: post.u_id,
+        title: post.title,
+        content: post.content,
+        dateOfCreation: formatDate(post.date_of_creation.toDate()),
+      };
+    });
 
     dispatch(
-      removePost({
-        postId,
+      getAllPosts({
+        posts,
       })
     );
   };
 };
 
-export const editPost = ({ postId, title, content }) => {
-  await editPostFirebase({ postId, title, content })
+// export const deletePost = (postId) => {
+//   return async (dispatch) => {
+//     await removePostFirebase(postId);
 
-  const editedPost = getPostFirebase(postId);
+//     dispatch(
+//       removePost({
+//         postId,
+//       })
+//     );
+//   };
+// };
 
-  dispatch(
-    editPost({
-      post: editedPost
-    })
-  )
-};
+// export const postEdit = ({ postId, title, content }) => {
+//   return async (dispatch) => {
+//     await editPostFirebase({ postId, title, content });
+
+//     const editedPost = getPostFirebase(postId);
+
+//     dispatch(
+//       editPost({
+//         post: editedPost,
+//       })
+//     );
+//   };
+// };

@@ -1,6 +1,13 @@
 import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { newPost } from "./store/actions/postsActions";
+import { register, logIn } from "./store/actions/userActions";
 
 const App = () => {
+  const dispatch = useDispatch();
+  const userState = useSelector((store) => store.user);
+  const postsState = useSelector((store) => store.posts);
+
   const nameRef = useRef();
   const surnameRef = useRef();
   const emailRef = useRef();
@@ -8,6 +15,39 @@ const App = () => {
 
   const emailloginRef = useRef();
   const passwordloginRef = useRef();
+
+  const titleRef = useRef();
+  const contentRef = useRef();
+
+  const onRegisterHandler = () => {
+    const user = {
+      name: nameRef.current.value,
+      surname: surnameRef.current.value,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
+
+    dispatch(register(user));
+  };
+
+  const onLoginHandler = () => {
+    const user = {
+      email: emailloginRef.current.value,
+      password: passwordloginRef.current.value,
+    };
+
+    dispatch(logIn(user));
+  };
+
+  const addPostHandler = () => {
+    const post = {
+      uID: userState.id,
+      title: titleRef.current.value,
+      content: contentRef.current.value,
+    };
+
+    dispatch(newPost(post));
+  };
 
   return (
     <div className="App">
@@ -26,8 +66,12 @@ const App = () => {
       <div>
         <input placeholder="title" ref={titleRef}></input>
         <input placeholder="content" ref={contentRef} />
-        <button onClick={addPostHanlder}>Add Post</button>
+        <button onClick={addPostHandler}>Add Post</button>
       </div>
+      <p>{userState.id}</p>
+      {postsState.map((post) => {
+        return <h1 key={post.id}>{post.title}</h1>;
+      })}
     </div>
   );
 };

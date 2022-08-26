@@ -1,15 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  posts: [],
-};
+const initialState = [];
 
 const postsSlice = createSlice({
   name: "posts",
   initialState: initialState,
   reducers: {
-    addPost(state, action) {
-      state.posts.push(action.payload.post);
+    getAllPosts(state, action) {
+      state = action.payload.posts;
+      return state;
     },
     removePost(state, action) {
       const filteredPosts = state.posts.filter(
@@ -28,5 +27,5 @@ const postsSlice = createSlice({
   },
 });
 
-export const { addPost, removePost, editPost } = postsSlice.actions;
+export const { getAllPosts, removePost, editPost } = postsSlice.actions;
 export default postsSlice;

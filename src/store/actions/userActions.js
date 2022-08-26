@@ -1,11 +1,69 @@
 import { setUser, removeUser } from "../slices/userSlice";
-import { getUserInfo } from "../../api/firestoreResources";
+import { editUser, getUserInfo } from "../../api/firestoreResources";
 import {
   registerAttempt,
   loginAttempt,
   logoutAttempt,
 } from "../../api/firebaseAuth";
 import { formatDate } from "../../helpers";
+
+export const getUser = (uID) => {
+  return async (dispatch) => {
+    try {
+      const { bio, type, date_of_register, posts, name, surname } =
+        await getUserInfo(uID);
+
+      const dateOfRegisterObject = formatDate(date_of_register.toDate());
+
+      dispatch(
+        setUser({
+          uID: userId,
+          name,
+          surname,
+          email,
+          bio,
+          type: +type,
+          date_of_register: dateOfRegisterObject,
+          posts,
+        })
+      );
+    } catch (err) {
+      throw err;
+    }
+  };
+};
+
+export const userEdit = ({ uID, ...props }) => {
+  return async (dispatch) => {
+    try {
+      await editUser({ uID, ...props });
+
+      try {
+        const { bio, type, date_of_register, posts, name, surname } =
+          await getUserInfo(uID);
+
+        const dateOfRegisterObject = formatDate(date_of_register.toDate());
+
+        dispatch(
+          setUser({
+            uID: userId,
+            name,
+            surname,
+            email,
+            bio,
+            type: +type,
+            date_of_register: dateOfRegisterObject,
+            posts,
+          })
+        );
+      } catch (err) {
+        throw err;
+      }
+    } catch (err) {
+      throw err;
+    }
+  };
+};
 
 export const logIn = ({ email, password }) => {
   return async (dispatch) => {

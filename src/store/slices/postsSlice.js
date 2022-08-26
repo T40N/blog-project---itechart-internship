@@ -15,17 +15,11 @@ const postsSlice = createSlice({
         (post) => action.payload.postId !== post.id
       );
 
-      state.posts = filteredPosts;
-    },
-    editPost(state, action) {
-      const indexOfPostToEdit = state.posts
-        .map((post) => post.id)
-        .indexOf(action.payload.post.id);
-
-      state.posts[indexOfPostToEdit] = action.payload.post;
+      state = filteredPosts;
+      return state;
     },
   },
 });
 
-export const { getAllPosts, removePost, editPost } = postsSlice.actions;
+export const { getAllPosts, removePost } = postsSlice.actions;
 export default postsSlice;

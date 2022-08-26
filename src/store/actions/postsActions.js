@@ -1,24 +1,28 @@
-import { getPosts, insertPost } from "../../api/firestoreResources";
+import { getPosts, insertPost, deletePost } from "../../api/firestoreResources";
 import { getAllPosts, removePost, editPost } from "../slices/postsSlice";
 import { formatDate } from "../../helpers";
 
 export const postsGet = () => {
   return async (dispatch) => {
-    const posts = (await getPosts()).map((post) => {
-      return {
-        id: post.post_id,
-        userId: post.u_id,
-        title: post.title,
-        content: post.content,
-        dateOfCreation: formatDate(post.date_of_creation.toDate()),
-      };
-    });
+    try {
+      const posts = (await getPosts()).map((post) => {
+        return {
+          id: post.post_id,
+          userId: post.u_id,
+          title: post.title,
+          content: post.content,
+          dateOfCreation: formatDate(post.date_of_creation.toDate()),
+        };
+      });
 
-    dispatch(
-      getAllPosts({
-        posts,
-      })
-    );
+      dispatch(
+        getAllPosts({
+          posts,
+        })
+      );
+    } catch (err) {
+      throw err;
+    }
   };
 };
 
@@ -44,28 +48,48 @@ export const newPost = ({ uID, title, content }) => {
   };
 };
 
-// export const deletePost = (postId) => {
-//   return async (dispatch) => {
-//     await removePostFirebase(postId);
+export const postDelete = (postId) => {
+  return async (dispatch) => {
+    try {
+      await deletePost(postId);
 
-//     dispatch(
-//       removePost({
-//         postId,
-//       })
-//     );
-//   };
-// };
+      dispatch(
+        removePost({
+          postId,
+        })
+      );
+    } catch (err) {
+      throw err;
+    }
+  };
+};
 
-// export const postEdit = ({ postId, title, content }) => {
-//   return async (dispatch) => {
-//     await editPostFirebase({ postId, title, content });
+export const postEdit = ({ postId, ...props }) => {
+  return async (dispatch) => {
+    try {
+      await editPost({ postId, ...props });
 
-//     const editedPost = getPostFirebase(postId);
+      try {
+        const posts = (await getPosts()).map((post) => {
+          return {
+            id: post.post_id,
+            userId: post.u_id,
+            title: post.title,
+            content: post.content,
+            dateOfCreation: formatDate(post.date_of_creation.toDate()),
+          };
+        });
 
-//     dispatch(
-//       editPost({
-//         post: editedPost,
-//       })
-//     );
-//   };
-// };
+        dispatch(
+          getAllPosts({
+            posts,
+          })
+        );
+      } catch (err) {
+        throw err;
+      }
+    } catch (err) {
+      throw err;
+    }
+  };
+};

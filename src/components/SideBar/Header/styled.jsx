@@ -8,9 +8,10 @@ export const Container = styled.header`
 
 export const ProfileInfoContainer = styled.div`
   width: 100%;
-  height: 80%;
   display: flex;
   gap: 1rem;
+  padding: 1rem;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   align-items: center;

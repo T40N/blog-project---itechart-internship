@@ -18,7 +18,7 @@ const DATA = [
   },
   {
     title: "dsa",
-    body: "dsaddsaaaaddsafaaaaasdaaaaaaaaaaadsaaaaaaa Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum arcu vitae elementum curabitur vitae. Habitant morbi tristique senectus et netus et. Enim diam vulputate ut pharetra. Aliquam purus sit amet luctus venenatis. Non consectetur a erat nam. Vel facilisis volutpat est velit egestas. Nunc id cursus metus aliquam. Lorem ipsum dolor sit amet. Sem et tortor consequat id porta nibh venenatis cras. Id porta nibh venenatis cras sed felis eget velit.",
+    body: "dsaddsa aaa ddsafaa aaasdaaa aaaaa aaadsa aaaaaa Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum arcu vitae elementum curabitur vitae. Habitant morbi tristique senectus et netus et. Enim diam vulputate ut pharetra. Aliquam purus sit amet luctus venenatis. Non consectetur a erat nam. Vel facilisis volutpat est velit egestas. Nunc id cursus metus aliquam. Lorem ipsum dolor sit amet. Sem et tortor consequat id porta nibh venenatis cras. Id porta nibh venenatis cras sed felis eget velit.",
     author: "mario",
     id: 3,
   },
@@ -50,7 +50,7 @@ const DATA = [
   },
   {
     title: "dsdasd",
-    body: "dsadasdsaddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd sadddddddddddddddd dsaaaaaaaaa dwwwwwadw da",
+    body: "dsadasds adddddddddddd dddddddd ddddddddddddddddd dddddddddddddddddddddddddddddddddddddddd sadddddddddddddddd dsaaaaaaaaa dwwwwwadw da",
     id: 9,
   },
   {

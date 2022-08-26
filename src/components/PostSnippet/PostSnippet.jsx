@@ -1,6 +1,5 @@
-import { Container, Author, Snippet, LinkStyled } from "./styled";
-import { Link } from "react-router-dom";
-import useFetch from "../../pages/useFetch";
+import { Container, Author, Snippet, LinkStyled, TitleBox } from "./styled";
+import Avatar from "../shared/Avatar.styled";
 
 function shorten(str, maxLen, separator = ".") {
   if (str.length <= maxLen) return str;
@@ -13,14 +12,18 @@ export default function Post({ blog }) {
   return (
     <Container key={blog.id}>
       <Author>
+        <Avatar />
         <h2>{blog.author}</h2>
       </Author>
       <Snippet>
-        <h2>{blog.title}</h2>
-        <p>{blog.date}</p>
+        <TitleBox>
+          <h2>{blog.title}</h2>
+          <p>{blog.date}03.06.1953</p>
+        </TitleBox>
         <p>{shorten(blog.body, 300) + "."}</p>
         <LinkStyled to={`/blogs/${blog.id}`}>
-          Read more <span>arrow_forward</span>
+          <p>Read more </p>
+          <span>arrow_forward</span>
         </LinkStyled>
       </Snippet>
     </Container>

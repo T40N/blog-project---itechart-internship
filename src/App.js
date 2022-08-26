@@ -6,6 +6,7 @@ import PostsView from "./components/PostsViewPage";
 import GlobalStyle from "./GlobalStyle.styled";
 import BlogDetails from "./pages/BlogDetails";
 import AuthorPage from "./pages/AuthorPage";
+import ReadPost from "./components/ReadPost";
 
 const App = () => {
   return (
@@ -17,7 +18,7 @@ const App = () => {
           <Routes>
             <Route exact path="/" element={<PostsView />} />
             <Route path="/addingPost" element={<AddingPost />} />
-            <Route path="/blogs/:id" element={ <BlogDetails />} />
+            <Route path="/blogs/:id" element={ <ReadPost />} />
             <Route path="/:author" element={<AuthorPage />} />
           </Routes>
         </div>

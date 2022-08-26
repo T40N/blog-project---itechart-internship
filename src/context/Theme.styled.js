@@ -36,6 +36,12 @@ const theme = {
       l: '1.5rem',//24px
       xl: '2rem',
     },
+
+    weight:{
+      s:'300',
+      m:'500',
+      l:'700'
+    }
   },
 
 };

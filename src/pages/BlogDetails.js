@@ -14,12 +14,12 @@ const BlogDetails = () => {
     fetch("http://localhost:8000/blogs/" + blog.id, {
       method: "DELETE",
     }).then(() => {
-      history.push("/");
+      history(-1);
     });
   };
 
   const handleGoBack = () => {
-    history.push("/");
+    history(-1);
   };
 
   return (

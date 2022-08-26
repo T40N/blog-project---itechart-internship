@@ -2,16 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
   name: "user",
-  initialState: {
-    id: "",
-    name: "",
-    surname: "",
-    email: "",
-    bio: "",
-    type: null,
-    dateOfRegister: null,
-    posts: [],
-  },
+  initialState: null,
   reducers: {
     setUser(state, action) {
       return {
@@ -26,16 +17,7 @@ const userSlice = createSlice({
       };
     },
     removeUser(state, action) {
-      return {
-        id: "",
-        name: "",
-        surname: "",
-        email: "",
-        bio: "",
-        type: null,
-        dateOfRegister: null,
-        posts: [],
-      };
+      return null;
     },
   },
 });

@@ -1,3 +1,4 @@
+// <<<<<<< HEAD
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AddingPost from "./pages/addingPostPage";
 import Navbar from "./pages/navbar";
@@ -31,6 +32,13 @@ const App = () => {
         </div>
       </div>
     </Router>
+// =======
+
+// const App = () => {
+//   return (
+//     <div className="App">
+//     </div>
+// >>>>>>> cd49c33a277a69cf4a5112dd97245d9bb14ebd05
   );
 };
 

@@ -2,16 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
   name: "user",
-  initialState: {
-    id: "",
-    name: "",
-    surname: "",
-    email: "",
-    bio: "",
-    type: null,
-    dateOfRegister: null,
-    posts: [],
-  },
+  initialState: null,
   reducers: {
     setUser(state, action) {
       return {
@@ -23,19 +14,11 @@ const userSlice = createSlice({
         type: action.payload.type,
         dateOfRegister: action.payload.date,
         posts: action.payload.posts,
+        profilePicture: action.payload.profilePicture,
       };
     },
     removeUser(state, action) {
-      return {
-        id: "",
-        name: "",
-        surname: "",
-        email: "",
-        bio: "",
-        type: null,
-        dateOfRegister: null,
-        posts: [],
-      };
+      return null;
     },
   },
 });

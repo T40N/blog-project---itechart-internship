@@ -1,3 +1,4 @@
+import SideBar from "./components/SideBar";
 import { Theme } from "./context";
 import GlobalStyle from "./GlobalStyle.styled";
 
@@ -6,6 +7,7 @@ const App = () => {
     <div className="App">
       <Theme>
         <GlobalStyle />
+        <SideBar />
       </Theme>
     </div>
   );

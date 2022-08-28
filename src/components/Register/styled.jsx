@@ -39,3 +39,9 @@ export const Label = styled.label`
   font-size: ${({ theme }) => theme.font.sizes.m};
   padding-left: 1.2rem;
 `;
+
+export const ErrorMsg = styled.p`
+  color: ${({ theme }) => theme.colors.mono500};
+  font-size: ${({ theme }) => theme.font.s};
+  margin-top: 1rem;
+`;

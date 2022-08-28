@@ -5,27 +5,25 @@ import {
   ButtonContainer,
   ErrorMsg,
 } from "./styled";
-import { Button, Input } from "../shared";
+import { Input, Button } from "../shared";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { register } from "../../store/actions/userActions";
 import { isEmailValid } from "../../helpers";
+import { logIn } from "../../store/actions/userActions";
 
-const Register = () => {
+const Login = () => {
   const dispatch = useDispatch();
 
-  const [err, setErr] = useState("");
-  const [registerState, setRegisterState] = useState({
-    name: "",
-    surname: "",
+  const [loginState, setLoginState] = useState({
     email: "",
     password: "",
   });
+  const [err, setErr] = useState("");
 
   const onChangeHandler = (e) => {
     const value = e.target.value;
-    setRegisterState({
-      ...registerState,
+    setLoginState({
+      ...loginState,
       [e.target.name]: value,
     });
   };
@@ -33,20 +31,8 @@ const Register = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    const name = registerState.name.trim();
-    const surname = registerState.surname.trim();
-    const email = registerState.email.trim();
-    const password = registerState.password.trim();
-
-    if (name === "") {
-      setErr("Name is required.");
-      return;
-    }
-
-    if (surname === "") {
-      setErr("Surname is required.");
-      return;
-    }
+    const email = loginState.email.trim();
+    const password = loginState.password.trim();
 
     if (!isEmailValid(email)) {
       setErr("Email is not valid.");
@@ -61,17 +47,13 @@ const Register = () => {
     }
 
     const user = {
-      name,
-      surname,
       email,
       password,
     };
 
-    dispatch(register(user));
+    dispatch(logIn(user));
 
-    setRegisterState({
-      name: "",
-      surname: "",
+    setLoginState({
       email: "",
       password: "",
     });
@@ -81,42 +63,22 @@ const Register = () => {
     <Form onSubmit={onSubmitHandler}>
       {err && <ErrorMsg>{err}</ErrorMsg>}
       <InputContainer>
-        <Label htmlFor="name">Name</Label>
-        <Input
-          placeholder="|"
-          type="text"
-          name="name"
-          value={registerState.name}
-          onChange={onChangeHandler}
-        />
-      </InputContainer>
-      <InputContainer>
-        <Label htmlFor="surname">Surname</Label>
-        <Input
-          placeholder="|"
-          type="text"
-          name="surname"
-          value={registerState.surname}
-          onChange={onChangeHandler}
-        />
-      </InputContainer>
-      <InputContainer>
         <Label htmlFor="email">Email</Label>
         <Input
           placeholder="|"
           type="email"
           name="email"
-          value={registerState.email}
+          value={loginState.email}
           onChange={onChangeHandler}
         />
       </InputContainer>
       <InputContainer>
-        <Label htmlFor="email">Password</Label>
+        <Label htmlFor="password">Password</Label>
         <Input
           placeholder="|"
           type="password"
           name="password"
-          value={registerState.password}
+          value={loginState.email}
           onChange={onChangeHandler}
         />
       </InputContainer>
@@ -127,4 +89,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

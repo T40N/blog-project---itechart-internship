@@ -1,8 +1,8 @@
-import { Icon } from "../../shared";
+import { Icon, ListButtonLinkless } from "../../shared";
 import { Container } from "./styled";
 import { ListButton } from "../styled";
 
-const Footer = () => {
+const Footer = ({ user }) => {
   return (
     <Container>
       <ListButton to="/issues">
@@ -10,10 +10,19 @@ const Footer = () => {
         <h2>Issues</h2>
       </ListButton>
 
-      <ListButton to="/logout">
-        <Icon>logout</Icon>
-        <h2>Logout</h2>
-      </ListButton>
+      {user.type > 0 &&
+        <ListButtonLinkless>
+          <Icon>logout</Icon>
+          <h2>Logout</h2>
+        </ListButtonLinkless>
+      }
+
+      {/* {user.type === 0 &&
+        <ListButton to="/login">
+          <Icon>login</Icon>
+          <h2>Sign in</h2>
+        </ListButton>
+      } */}
     </Container>
   )
 };

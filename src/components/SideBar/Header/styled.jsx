@@ -50,6 +50,7 @@ export const Switch = styled.div`
     solid 
     ${({ active, theme }) => active ? theme.colors.mono500 : theme.colors.mono400};
   cursor: pointer;
+  user-select: none;
 
   h1 {
     font-size: ${({ theme }) => theme.font.sizes.s};
@@ -63,13 +64,4 @@ export const Switch = styled.div`
       color: ${({ theme }) => theme.colors.mono500};
     }
   }
-  /* ${({ active, theme }) => 
-    !active && `
-    &:hover {
-      h1 {
-        color: ${theme.colors.mono500};
-      }
-    }
-  `} */
-  
 `;

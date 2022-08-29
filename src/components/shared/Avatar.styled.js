@@ -3,7 +3,8 @@ import styled from "styled-components";
 const Avatar = styled.div`
   aspect-ratio: 1/1;
   position: relative;
-  background-image: url('https://firebasestorage.googleapis.com/v0/b/test-project-96eaa.appspot.com/o/avatars%2Fdefault.png?alt=media&token=adaa2a76-3cb1-44f3-9c0b-93c888758536');
+  /* background-image: url('https://firebasestorage.googleapis.com/v0/b/test-project-96eaa.appspot.com/o/avatars%2Fdefault.png?alt=media&token=adaa2a76-3cb1-44f3-9c0b-93c888758536'); */
+  background-image: ${({ link }) => `url(${link})`};
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

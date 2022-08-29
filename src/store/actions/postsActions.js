@@ -7,7 +7,7 @@ export const postsGet = () => {
     try {
       const posts = (await getPosts()).map((post) => {
         return {
-          id: post.post_id,
+          id: post.id,
           userId: post.u_id,
           title: post.title,
           content: post.content,
@@ -32,7 +32,7 @@ export const newPost = ({ uID, title, content }) => {
 
     const posts = (await getPosts()).map((post) => {
       return {
-        id: post.post_id,
+        id: post.id,
         userId: post.u_id,
         title: post.title,
         content: post.content,
@@ -72,7 +72,7 @@ export const postEdit = ({ postId, ...props }) => {
       try {
         const posts = (await getPosts()).map((post) => {
           return {
-            id: post.post_id,
+            id: post.id,
             userId: post.u_id,
             title: post.title,
             content: post.content,

@@ -4,6 +4,7 @@ import {
   Label,
   ButtonContainer,
   ErrorMsg,
+  RegisterLink,
 } from "./styled";
 import { Input, Button } from "../shared";
 import { useState } from "react";
@@ -18,13 +19,20 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const [err, setErr] = useState("");
+  const [err, setErr] = useState({
+    email: false,
+    password: false,
+  });
 
   const onChangeHandler = (e) => {
     const value = e.target.value;
     setLoginState({
       ...loginState,
       [e.target.name]: value,
+    });
+    setErr({
+      ...err,
+      [e.target.name]: false,
     });
   };
 
@@ -35,14 +43,18 @@ const Login = () => {
     const password = loginState.password.trim();
 
     if (!isEmailValid(email)) {
-      setErr("Email is not valid.");
+      setErr({
+        ...err,
+        email: true,
+      });
       return;
     }
 
     if (password.length < 6) {
-      setErr(
-        "Password should have at least 6 characters, one number and one special character."
-      );
+      setErr({
+        ...err,
+        password: true,
+      });
       return;
     }
 
@@ -61,7 +73,6 @@ const Login = () => {
 
   return (
     <Form onSubmit={onSubmitHandler}>
-      {err && <ErrorMsg>{err}</ErrorMsg>}
       <InputContainer>
         <Label htmlFor="email">Email</Label>
         <Input
@@ -71,6 +82,7 @@ const Login = () => {
           value={loginState.email}
           onChange={onChangeHandler}
         />
+        <ErrorMsg error={err.email}>Email is not valid.</ErrorMsg>
       </InputContainer>
       <InputContainer>
         <Label htmlFor="password">Password</Label>
@@ -78,13 +90,19 @@ const Login = () => {
           placeholder="|"
           type="password"
           name="password"
-          value={loginState.email}
+          value={loginState.password}
           onChange={onChangeHandler}
         />
+        <ErrorMsg error={err.password}>
+          Password should have at least 6 characters.
+        </ErrorMsg>
       </InputContainer>
       <ButtonContainer>
         <Button onClick={onSubmitHandler}>Login</Button>
       </ButtonContainer>
+      <RegisterLink to="/register">
+        Don't have account yet? Register!
+      </RegisterLink>
     </Form>
   );
 };

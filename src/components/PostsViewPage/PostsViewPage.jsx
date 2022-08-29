@@ -72,11 +72,15 @@ const Options = (blogs) => {
 };
 
 export default function PostsView() {
+  // const posts = useSelector((state) => state.posts);
+  // const dispatch = useDispatch();
   const [blogs, setBlogs] = useState(DATA);
   const [index, setIndex] = useState(1);
 
   let blogsOnPage;
   let options;
+
+  // dispatch(newPost(post));
 
   if (blogs) {
     console.log("jeje");

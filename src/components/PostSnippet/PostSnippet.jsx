@@ -1,5 +1,8 @@
 import { Container, Author, Snippet, LinkStyled, TitleBox } from "./styled";
 import Avatar from "../shared/Avatar.styled";
+import { getUserInfo } from "../../api/firestoreResources";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function shorten(str, maxLen, separator = ".") {
   if (str.length <= maxLen) return str;
@@ -7,20 +10,26 @@ function shorten(str, maxLen, separator = ".") {
 }
 
 export default function Post({ blog }) {
-  console.log(blog);
+  const authorId = blog.userId;
+
+  const [authorInfo, setAuthorInfo] = useState(null);
+  useEffect(() => {
+    getUserInfo(authorId).then((info) => setAuthorInfo(info));
+  }, []);
 
   return (
     <Container key={blog.id}>
       <Author>
+        <Link></Link>
         <Avatar />
-        <h2>{blog.author}</h2>
+        {authorInfo && <h2>{authorInfo.name + " " + authorInfo.surname}</h2>}
       </Author>
       <Snippet>
         <TitleBox>
           <h2>{blog.title}</h2>
-          <p>{blog.date}03.06.1953</p>
+          <p>{blog.dateOfCreation}</p>
         </TitleBox>
-        <p>{shorten(blog.body, 300) + "."}</p>
+        <p>{shorten(blog.content, 300) + "."}</p>
         <LinkStyled to={`/blogs/${blog.id}`}>
           <p>Read more </p>
           <span>arrow_forward</span>

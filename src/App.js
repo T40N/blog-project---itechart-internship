@@ -1,12 +1,11 @@
 // <<<<<<< HEAD
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AddingPost from "./pages/addingPostPage";
 import Navbar from "./pages/navbar";
 import PostsView from "./components/PostsViewPage";
 import GlobalStyle from "./GlobalStyle.styled";
-import BlogDetails from "./pages/BlogDetails";
-import AuthorPage from "./pages/AuthorPage";
-import ReadPost from "./components/ReadPost";
+import AuthorPage from "./components/AuthorPage/AuthorPage";
+import ReadPost from "./components/ReadPost/ReadPost";
+import AddPost from "./components/AddPostPage/AddPost";
 
 const App = () => {
   return (
@@ -17,9 +16,9 @@ const App = () => {
           <Navbar />
           <Routes>
             <Route exact path="/" element={<PostsView />} />
-            <Route path="/addingPost" element={<AddingPost />} />
+            <Route path="/addingPost" element={<AddPost />} />
             <Route path="/blogs/:id" element={ <ReadPost />} />
-            <Route path="/:author" element={<AuthorPage />} />
+            <Route path="/author/:id" element={<AuthorPage />} />
           </Routes>
         </div>
       </div>

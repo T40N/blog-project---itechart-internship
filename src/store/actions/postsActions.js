@@ -1,5 +1,10 @@
-import { getPosts, insertPost, deletePost } from "../../api/firestoreResources";
-import { getAllPosts, removePost, editPost } from "../slices/postsSlice";
+import {
+  getPosts,
+  insertPost,
+  deletePost,
+  editPost,
+} from "../../api/firestoreResources";
+import { getAllPosts, removePost } from "../slices/postsSlice";
 import { formatDate } from "../../helpers";
 
 export const postsGet = () => {
@@ -7,7 +12,7 @@ export const postsGet = () => {
     try {
       const posts = (await getPosts()).map((post) => {
         return {
-          id: post.post_id,
+          id: post.id,
           userId: post.u_id,
           title: post.title,
           content: post.content,

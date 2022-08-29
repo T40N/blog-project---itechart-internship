@@ -1,5 +1,5 @@
 import { setUser, removeUser } from "../slices/userSlice";
-import { getUserInfo } from "../../api/firestoreResources";
+import { editUser, getUserInfo } from "../../api/firestoreResources";
 import {
   registerAttempt,
   loginAttempt,
@@ -7,14 +7,97 @@ import {
 } from "../../api/firebaseAuth";
 import { formatDate } from "../../helpers";
 
+export const getUser = (uID) => {
+  return async (dispatch) => {
+    try {
+      const {
+        bio,
+        type,
+        date_of_register,
+        posts,
+        name,
+        surname,
+        email,
+        profile_picture,
+      } = await getUserInfo(uID);
+
+      const dateOfRegisterObject = formatDate(date_of_register.toDate());
+
+      dispatch(
+        setUser({
+          uID,
+          name,
+          surname,
+          email,
+          bio,
+          type: +type,
+          date_of_register: dateOfRegisterObject,
+          posts,
+          profilePicture: profile_picture,
+        })
+      );
+    } catch (err) {
+      throw err;
+    }
+  };
+};
+
+export const userEdit = ({ uID, ...props }) => {
+  return async (dispatch) => {
+    try {
+      await editUser({ uID, ...props });
+
+      try {
+        const {
+          bio,
+          type,
+          date_of_register,
+          posts,
+          name,
+          surname,
+          email,
+          profile_picture,
+        } = await getUserInfo(uID);
+
+        const dateOfRegisterObject = formatDate(date_of_register.toDate());
+
+        dispatch(
+          setUser({
+            uID,
+            name,
+            surname,
+            email,
+            bio,
+            type: +type,
+            date_of_register: dateOfRegisterObject,
+            posts,
+            profilePicture: profile_picture,
+          })
+        );
+      } catch (err) {
+        throw err;
+      }
+    } catch (err) {
+      throw err;
+    }
+  };
+};
+
 export const logIn = ({ email, password }) => {
   return async (dispatch) => {
     try {
       const userId = await loginAttempt({ email, password });
 
       try {
-        const { bio, type, date_of_register, posts, name, surname } =
-          await getUserInfo(userId);
+        const {
+          bio,
+          type,
+          date_of_register,
+          posts,
+          name,
+          surname,
+          profile_picture,
+        } = await getUserInfo(userId);
 
         const dateOfRegisterObject = formatDate(date_of_register.toDate());
 
@@ -28,6 +111,7 @@ export const logIn = ({ email, password }) => {
             type: +type,
             date_of_register: dateOfRegisterObject,
             posts,
+            profilePicture: profile_picture,
           })
         );
       } catch (err) {
@@ -47,9 +131,8 @@ export const register = ({ name, surname, password, email }) => {
       const userId = await registerAttempt({ name, surname, password, email });
 
       try {
-        const { bio, type, date_of_register, posts } = await getUserInfo(
-          userId
-        );
+        const { bio, type, date_of_register, posts, profile_picture } =
+          await getUserInfo(userId);
 
         const dateOfRegisterObject = formatDate(date_of_register.toDate());
 
@@ -64,6 +147,7 @@ export const register = ({ name, surname, password, email }) => {
             type: +type,
             date_of_register: dateOfRegisterObject,
             posts,
+            profilePicture: profile_picture,
           })
         );
       } catch (err) {

@@ -1,10 +1,10 @@
-import { Icon, ListButton } from "../../shared";
+// import { Icon, ListButton } from "../../shared";
 import { Container } from "./styled";
 
 const Footer = () => {
   return (
     <Container>
-      <ListButton>
+      {/* <ListButton>
         <Icon>help</Icon>
         <h2>Issues</h2>
       </ListButton>
@@ -12,7 +12,7 @@ const Footer = () => {
       <ListButton>
         <Icon>logout</Icon>
         <h2>Logout</h2>
-      </ListButton>
+      </ListButton> */}
     </Container>
   )
 };

@@ -14,6 +14,7 @@ const userSlice = createSlice({
         type: action.payload.type,
         dateOfRegister: action.payload.date,
         posts: action.payload.posts,
+        profilePicture: action.payload.profilePicture,
       };
     },
     removeUser(state, action) {

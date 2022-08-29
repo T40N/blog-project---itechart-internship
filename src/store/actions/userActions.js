@@ -17,6 +17,7 @@ export const getUser = (uID) => {
         posts,
         name,
         surname,
+        email,
         profile_picture,
       } = await getUserInfo(uID);
 
@@ -24,7 +25,7 @@ export const getUser = (uID) => {
 
       dispatch(
         setUser({
-          uID: userId,
+          uID,
           name,
           surname,
           email,
@@ -54,6 +55,7 @@ export const userEdit = ({ uID, ...props }) => {
           posts,
           name,
           surname,
+          email,
           profile_picture,
         } = await getUserInfo(uID);
 
@@ -61,7 +63,7 @@ export const userEdit = ({ uID, ...props }) => {
 
         dispatch(
           setUser({
-            uID: userId,
+            uID,
             name,
             surname,
             email,

@@ -1,8 +1,7 @@
-import { Container, Author, Snippet, LinkStyled, TitleBox } from "./styled";
+import { Container, Snippet, LinkStyled, TitleBox, AuthorLink } from "./styled";
 import Avatar from "../shared/Avatar.styled";
 import { getUserInfo } from "../../api/firestoreResources";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 function shorten(str, maxLen, separator = ".") {
   if (str.length <= maxLen) return str;
@@ -19,10 +18,10 @@ export default function Post({ blog }) {
 
   return (
     <Container key={blog.id}>
-      <Author>
+      <AuthorLink to={`/author/${authorId}`}>
         <Avatar />
         {authorInfo && <h2>{authorInfo.name + " " + authorInfo.surname}</h2>}
-      </Author>
+      </AuthorLink>
       <Snippet>
         <TitleBox>
           <h2>{blog.title}</h2>

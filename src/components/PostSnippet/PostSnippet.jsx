@@ -20,7 +20,6 @@ export default function Post({ blog }) {
   return (
     <Container key={blog.id}>
       <Author>
-        <Link></Link>
         <Avatar />
         {authorInfo && <h2>{authorInfo.name + " " + authorInfo.surname}</h2>}
       </Author>

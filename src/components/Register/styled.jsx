@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Form = styled.form`
   max-width: 37rem;
   min-height: 44rem;
   width: 80%;
-  height: 80%;
-  gap: 3rem;
+  height: 90%;
+  gap: 0.2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,7 +42,19 @@ export const Label = styled.label`
 `;
 
 export const ErrorMsg = styled.p`
-  color: ${({ theme }) => theme.colors.mono500};
-  font-size: ${({ theme }) => theme.font.s};
+  color: #d27676;
+  align-self: center;
+  font-size: ${({ theme }) => theme.font.xs};
   margin-top: 1rem;
+  visibility: ${({ error }) => (error ? "visible" : "hidden")};
+  text-align: center;
+  max-width: 80%;
+`;
+
+export const LoginLink = styled(Link)`
+  text-decoration: none;
+  font-size: ${({ theme }) => theme.font.sizes.s};
+  width: 40%;
+  align-self: center;
+  text-align: center;
 `;

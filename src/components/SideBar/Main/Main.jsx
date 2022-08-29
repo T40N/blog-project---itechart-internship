@@ -1,24 +1,24 @@
 import { Icon } from "../../shared";
-import { Container, ListButton } from "./styled";
+import { Container } from "./styled";
+import { ListButton } from "../styled";
 
 const Main = ({ blogTabOpen }) => {
-  console.log(window.location.pathname);
   return (
     <>
     {
       blogTabOpen &&
       <Container>
-      <ListButton to="/login">
+      <ListButton to="/">
         <Icon>notes</Icon>
         <h2>All posts</h2>
       </ListButton>
 
-      <ListButton to="/register">
+      <ListButton to="/myPosts">
         <Icon>short_text</Icon>
         <h2>My posts</h2>
       </ListButton>
 
-      <ListButton to="/xd">
+      <ListButton to="/addPost">
         <Icon>add</Icon>
         <h2>Add post</h2>
       </ListButton>
@@ -28,20 +28,20 @@ const Main = ({ blogTabOpen }) => {
     {
       !blogTabOpen &&
       <Container>
-      {/* <ListButton to="/changePersonals">
-        <Icon>notes</Icon>
+      <ListButton to="/changePersonals">
+        <Icon>account_circle</Icon>
         <h2>Change personals</h2>
       </ListButton>
 
       <ListButton to="/changePassword">
-        <Icon></Icon>
+        <Icon>lock</Icon>
         <h2>Change password</h2>
       </ListButton>
 
       <ListButton to="/deleteAccount">
-        <Icon></Icon>
+        <Icon>delete</Icon>
         <h2>Delete account</h2>
-      </ListButton> */}
+      </ListButton>
     </Container>
     }
     </>

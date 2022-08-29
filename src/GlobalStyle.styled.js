@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
 #root {
 	display: grid;
-    grid-template: auto / minmax(min-content,max-content) auto;
+	grid-template: auto / minmax(min-content,max-content) auto;
 }
 
 html, body, div, span, applet, object, iframe,

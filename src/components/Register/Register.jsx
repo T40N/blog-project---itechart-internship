@@ -4,6 +4,7 @@ import {
   Label,
   ButtonContainer,
   ErrorMsg,
+  LoginLink,
 } from "./styled";
 import { Button, Input } from "../shared";
 import { useState } from "react";
@@ -14,7 +15,6 @@ import { isEmailValid } from "../../helpers";
 const Register = () => {
   const dispatch = useDispatch();
 
-  const [err, setErr] = useState("");
   const [registerState, setRegisterState] = useState({
     name: "",
     surname: "",
@@ -22,11 +22,22 @@ const Register = () => {
     password: "",
   });
 
+  const [err, setErr] = useState({
+    name: false,
+    surname: false,
+    email: false,
+    password: false,
+  });
+
   const onChangeHandler = (e) => {
     const value = e.target.value;
     setRegisterState({
       ...registerState,
       [e.target.name]: value,
+    });
+    setErr({
+      ...err,
+      [e.target.name]: false,
     });
   };
 
@@ -39,24 +50,34 @@ const Register = () => {
     const password = registerState.password.trim();
 
     if (name === "") {
-      setErr("Name is required.");
+      setErr({
+        ...err,
+        name: true,
+      });
       return;
     }
 
     if (surname === "") {
-      setErr("Surname is required.");
+      setErr({
+        ...err,
+        surname: true,
+      });
       return;
     }
 
     if (!isEmailValid(email)) {
-      setErr("Email is not valid.");
+      setErr({
+        ...err,
+        email: true,
+      });
       return;
     }
 
     if (password.length < 6) {
-      setErr(
-        "Password should have at least 6 characters, one number and one special character."
-      );
+      setErr({
+        ...err,
+        password: true,
+      });
       return;
     }
 
@@ -79,7 +100,6 @@ const Register = () => {
 
   return (
     <Form onSubmit={onSubmitHandler}>
-      {err && <ErrorMsg>{err}</ErrorMsg>}
       <InputContainer>
         <Label htmlFor="name">Name</Label>
         <Input
@@ -89,6 +109,7 @@ const Register = () => {
           value={registerState.name}
           onChange={onChangeHandler}
         />
+        <ErrorMsg error={err.name}>Name is required.</ErrorMsg>
       </InputContainer>
       <InputContainer>
         <Label htmlFor="surname">Surname</Label>
@@ -99,6 +120,7 @@ const Register = () => {
           value={registerState.surname}
           onChange={onChangeHandler}
         />
+        <ErrorMsg error={err.surname}>Surname is required.</ErrorMsg>
       </InputContainer>
       <InputContainer>
         <Label htmlFor="email">Email</Label>
@@ -109,6 +131,7 @@ const Register = () => {
           value={registerState.email}
           onChange={onChangeHandler}
         />
+        <ErrorMsg error={err.email}>Email is not valid.</ErrorMsg>
       </InputContainer>
       <InputContainer>
         <Label htmlFor="email">Password</Label>
@@ -119,10 +142,14 @@ const Register = () => {
           value={registerState.password}
           onChange={onChangeHandler}
         />
+        <ErrorMsg error={err.password}>
+          Password should have at least 6 characters.
+        </ErrorMsg>
       </InputContainer>
       <ButtonContainer>
-        <Button onClick={onSubmitHandler}>Login</Button>
+        <Button onClick={onSubmitHandler}>Sign up</Button>
       </ButtonContainer>
+      <LoginLink to="/login">Allready have a account? Login!</LoginLink>
     </Form>
   );
 };

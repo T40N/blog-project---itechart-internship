@@ -18,13 +18,11 @@ export const Container = styled.aside`
     display: none;
   }
 
-  @media (max-width: 390px) {
-    width: 100vw;
-    position: absolute;
-  }
 
   @media (max-width: 1024px) {
     display: ${({ openMenu }) => openMenu ? 'grid' : 'none'};
+    width: 100vw;
+    position: absolute;
   }
 `;
 

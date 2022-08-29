@@ -1,7 +1,7 @@
 import { Container, ProfileInfoContainer, SnipetInfoContainer, TabSwitchContainer, Switch, SnippetContainer } from "./styled";
 import { Avatar, ListButtonLinkless, Icon } from "../../shared";
 
-const Header = ({ blogTabOpen, setBlogTabOpen, setMenuOpen, menuOpen, user, isSnippet }) => {
+const Header = ({ blogTabOpen, setBlogTabOpen, setOpenMenu, user, isSnippet }) => {
   const displayUserType = () => {
     switch (user.type) {
       case 0:
@@ -48,7 +48,7 @@ const Header = ({ blogTabOpen, setBlogTabOpen, setMenuOpen, menuOpen, user, isSn
 
       {isSnippet &&
         <SnippetContainer>
-          <ListButtonLinkless onClick={() => setMenuOpen(!menuOpen) }>
+          <ListButtonLinkless onClick={() => setOpenMenu(true) }>
             <Icon>menu</Icon>
           </ListButtonLinkless>
 

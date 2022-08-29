@@ -19,7 +19,7 @@ const SideBar = ({ user }) => {
       </Container>
 
       <MobileSnippet openMenu={openMenu}>
-        <Header blogTabOpen={blogTabOpen} setBlogTabOpen={setBlogTabOpen} user={user} isSnippet={true}/>
+        <Header blogTabOpen={blogTabOpen} setBlogTabOpen={setBlogTabOpen} user={user} isSnippet={true} setOpenMenu={setOpenMenu}/>
         <Main blogTabOpen={blogTabOpen} user={user} isSnippet={true}/>
         <Footer user={user} isSnippet={true}/>
       </MobileSnippet>

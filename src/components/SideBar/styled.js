@@ -1,24 +1,48 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { Icon } from "../shared";
 
 export const Container = styled.aside`
   position: sticky;
   top: 0;
   left: 0;
-  /* width: 20%; */
   width: fit-content;
-  /* padding: 1rem; */
   height: 100vh;
   display: grid;
   grid-template: 2fr 5fr auto / auto;
   background-color: ${({ theme }) => theme.colors.mono200};
   color: ${({ theme }) => theme.colors.mono400};
   box-shadow: ${({ theme }) => theme.shadows.shadowLight};
+
+  @media (max-width: 1024px) and (min-width: 390px) {
+    display: none;
+  }
+
+  @media (max-width: 390px) {
+    width: 100vw;
+    position: absolute;
+  }
+
+  @media (max-width: 1024px) {
+    display: ${({ openMenu }) => openMenu ? 'grid' : 'none'};
+  }
 `;
 
-export const FooterStyled = styled.footer`
-  /* height: 20%; */
-  /* width: 100%; */
+export const MobileSnippet = styled.div`
+  display: none;
+  top: 0;
+  left: 0;
+  width: fit-content;
+  position: sticky;
+  height: 100vh;
+  grid-template: 2fr 5fr auto / auto;
+  background-color: ${({ theme }) => theme.colors.mono200};
+  color: ${({ theme }) => theme.colors.mono400};
+  box-shadow: ${({ theme }) => theme.shadows.shadowLight};
+
+  @media (max-width: 1024px) and (min-width: 390px) {
+    display: ${({ openMenu }) => openMenu ? 'none' : 'grid'};
+  }
 `;
 
 export const ListButton = styled(NavLink)`
@@ -27,7 +51,7 @@ export const ListButton = styled(NavLink)`
     background-color: transparent;
     border-radius: ${({ theme }) => theme.borderRadius.xs};
     width: 100%;
-    padding: 1rem 1rem 1rem 2rem;
+    padding: 1rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -47,4 +71,21 @@ export const ListButton = styled(NavLink)`
         color: ${({ theme }) => theme.colors.mono500};
         font-weight: bolder;
     }
+`;
+
+export const Hamburger = styled(Icon)`
+  z-index: 2;
+  display: none;
+  top: 0;
+  right: 0;
+  position: fixed;
+  background-color: ${({ theme }) => theme.colors.mono300};
+  border-radius: 0 0 0 50%;
+  padding: 0.5rem;
+  user-select: none;
+  cursor: pointer;
+
+  @media (max-width: 1024px) {
+    display: block;
+  }
 `;

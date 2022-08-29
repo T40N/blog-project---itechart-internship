@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.header`
-  padding: 1rem 2rem 0 2rem;
+  padding: 1rem;
   border-bottom: 1px solid ${({ theme }) => theme.colors.mono300};
   display: grid;
   grid-template: 3fr 1fr / auto;
@@ -64,4 +64,15 @@ export const Switch = styled.div`
       color: ${({ theme }) => theme.colors.mono500};
     }
   }
+
+  /* @media (max-width: 1024px) and (min-width: 390px) {
+    display: none;
+  } */
 `;
+
+export const SnippetContainer = styled.header`
+  grid-row: span 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`

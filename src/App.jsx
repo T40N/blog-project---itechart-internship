@@ -3,7 +3,7 @@ import SideBar from "./components/SideBar";
 import { RegisterPage, LoginPage } from "./pages";
 
 const dummyJSON = {
-  type: 3,
+  type: 0,
   profile_picture: 'https://firebasestorage.googleapis.com/v0/b/test-project-96eaa.appspot.com/o/avatars%2Favatar.bmp?alt=media&token=7316e231-173a-4e64-ae14-ff6f13d09bdd',
 }
 

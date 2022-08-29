@@ -6,7 +6,7 @@ export const ListButtonLinkless = styled.button`
     background-color: transparent;
     border-radius: ${({ theme }) => theme.borderRadius.xs};
     width: 100%;
-    padding: 1rem 1rem 1rem 2rem;
+    padding: 1rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;

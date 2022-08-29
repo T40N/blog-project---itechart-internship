@@ -1,9 +1,9 @@
-import { Container, ProfileInfoContainer, SnipetInfoContainer, TabSwitchContainer, Switch } from "./styled";
-import { Avatar } from "../../shared";
+import { Container, ProfileInfoContainer, SnipetInfoContainer, TabSwitchContainer, Switch, SnippetContainer } from "./styled";
+import { Avatar, ListButtonLinkless, Icon } from "../../shared";
 
-const Header = ({ blogTabOpen, callback, user }) => {
+const Header = ({ blogTabOpen, setBlogTabOpen, setMenuOpen, menuOpen, user, isSnippet }) => {
   const displayUserType = () => {
-    switch(user.type) {
+    switch (user.type) {
       case 0:
         return 'Guest';
 
@@ -23,22 +23,41 @@ const Header = ({ blogTabOpen, callback, user }) => {
 
   return (
     <Container>
-      <ProfileInfoContainer>
-        <Avatar isInSidebar={ true } link={user.profile_picture}/>
-        <SnipetInfoContainer>
-          <h1>John Doe</h1>
-          <p>{ displayUserType() }</p>
-        </SnipetInfoContainer>
-      </ProfileInfoContainer>
+      {!isSnippet &&
+        <>
+          <ProfileInfoContainer>
+            <Avatar isInSidebar={true} link={user.profile_picture} />
+            <SnipetInfoContainer>
+              <h1>John Doe</h1>
+              <p>{displayUserType()}</p>
+            </SnipetInfoContainer>
 
-      <TabSwitchContainer>
-        <Switch active={ blogTabOpen } onClick={ () => callback(!blogTabOpen) }>
-          <h1>Blog</h1>
-        </Switch>
-        <Switch active={ !blogTabOpen } onClick={ () => callback(!blogTabOpen) }>
-          <h1>Account</h1>
-        </Switch>
-      </TabSwitchContainer>
+          </ProfileInfoContainer>
+
+          <TabSwitchContainer>
+            <Switch active={blogTabOpen} onClick={() => setBlogTabOpen(!blogTabOpen)}>
+              <h1>Blog</h1>
+            </Switch>
+            <Switch active={!blogTabOpen} onClick={() => setBlogTabOpen(!blogTabOpen)}>
+              <h1>Account</h1>
+            </Switch>
+          </TabSwitchContainer>
+
+        </>
+      }
+
+      {isSnippet &&
+        <SnippetContainer>
+          <ListButtonLinkless onClick={() => setMenuOpen(!menuOpen) }>
+            <Icon>menu</Icon>
+          </ListButtonLinkless>
+
+          <ListButtonLinkless onClick={() => setBlogTabOpen(!blogTabOpen)}>
+            <Icon>view_carousel</Icon>
+          </ListButtonLinkless>
+        </SnippetContainer>
+
+      }
     </Container>
   );
 };

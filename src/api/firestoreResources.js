@@ -112,6 +112,17 @@ export const getPosts = async () => {
   }
 };
 
+export const getPost = async(pID) => {
+    try {
+        const postRef = doc(db, 'posts', pID);
+        
+        const post = (await getDoc(postRef)).data();
+        return post;
+    } catch(err) {
+        throw err;
+    }
+}
+
 export const subPosts = async (callback) => {
   const postsRef = collection(db, "posts");
   const firestoreQuery = query(postsRef, orderBy("date_of_creation", "desc"));

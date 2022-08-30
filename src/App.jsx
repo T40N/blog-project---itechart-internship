@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SideBar from "./components/SideBar";
 import ErrorHandler from "./components/ErrorHandler";
 import LoaderSpinner from "./components/LoaderSpinner/LoaderSpinner";
 import { RegisterPage, LoginPage } from "./pages";
@@ -25,6 +26,7 @@ const App = () => {
       {handlers.isLoading && <LoaderSpinner />}
       {handlers.isError && <ErrorHandler />}
       <BrowserRouter>
+      <SideBar user={{type, profilePicture}} />
         <Routes>
           <Route
             path="/login"

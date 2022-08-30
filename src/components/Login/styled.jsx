@@ -2,10 +2,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Form = styled.form`
+  padding: 4rem 0;
   max-width: 37rem;
-  min-height: 44rem;
   width: 80%;
-  height: 80%;
   gap: 1.6rem;
   display: flex;
   flex-direction: column;

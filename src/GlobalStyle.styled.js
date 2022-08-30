@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
 	grid-template: auto / minmax(min-content,max-content) auto;
 }
 
-  html, body, div, span, applet, object, iframe,
+html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -23,8 +23,9 @@ time, mark, audio, video, button {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
+	font-size: 16px;
 	font-family: 'Poppins', sans-serif;
+    font-weight: normal;
 	vertical-align: baseline;
 }
 article, aside, details, figcaption, figure, 
@@ -48,6 +49,9 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+a {
+	text-decoration: none;
 }
 `;
 

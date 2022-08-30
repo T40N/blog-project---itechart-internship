@@ -16,7 +16,6 @@ export default function AddPost() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const user = useSelector((state) => state.user);
-  const handlers = useSelector((state) => state.handlers);
   console.log(user);
   const navigate = useNavigate();
 

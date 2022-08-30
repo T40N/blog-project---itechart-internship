@@ -9,7 +9,6 @@ import {
   TitleContainer,
   TitleIcon,
 } from "./styled";
-import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux/es/exports";
 import { getUserInfo } from "../../api/firestoreResources";

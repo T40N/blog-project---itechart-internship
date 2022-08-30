@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SideBar from "./components/SideBar";
 import ErrorHandler from "./components/ErrorHandler";
 import LoaderSpinner from "./components/LoaderSpinner/LoaderSpinner";
-import { RegisterPage, LoginPage, AuthorViewPage, ReadPostViewPage, AddPostPage, PostsViewPage } from "./pages";
+import { RegisterPage, LoginPage, AuthorViewPage, ReadPostViewPage, AddPostPage, PostsViewPage, MyPostsViewPage } from "./pages";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { useEffect } from "react";
 import { getUser } from "./store/actions/userActions";
@@ -38,6 +38,8 @@ const App = () => {
             <Route path="/addPost" element={<AddPostPage />} />
             <Route path="/blogs/:id" element={ <ReadPostViewPage />} />
             <Route path="/author/:id" element={<AuthorViewPage />} />
+            <Route path="/myPosts" element={<MyPostsViewPage />} />
+
           <Route
             path="/login"
             element={

@@ -22,7 +22,6 @@ export const Container = styled.aside`
   @media (max-width: 1024px) {
     display: ${({ openMenu }) => openMenu ? 'grid' : 'none'};
     width: 100vw;
-    position: absolute;
   }
 `;
 

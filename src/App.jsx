@@ -1,21 +1,52 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SideBar from "./components/SideBar";
+import ErrorHandler from "./components/ErrorHandler";
+import LoaderSpinner from "./components/LoaderSpinner/LoaderSpinner";
 import { RegisterPage, LoginPage } from "./pages";
-
-const dummyJSON = {
-  type: 0,
-  profile_picture: 'https://firebasestorage.googleapis.com/v0/b/test-project-96eaa.appspot.com/o/avatars%2Favatar.bmp?alt=media&token=7316e231-173a-4e64-ae14-ff6f13d09bdd',
-}
+import { useDispatch, useSelector } from "react-redux/es/exports";
+import { useEffect } from "react";
+import { getUser } from "./store/actions/userActions";
+import { isUserLoggedIn } from "./api/firebaseAuth";
+import GuardedRoute from "./components/GuardedRoute/GuardedRoute";
 
 const App = () => {
+  const handlers = useSelector((state) => state.handlers);
+  const { type, profilePicture } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    isUserLoggedIn().then((res) => {
+      if (res) {
+        dispatch(getUser(res));
+      }
+    });
+  }, []);
+
   return (
-    <BrowserRouter>
-      <SideBar user={dummyJSON}/>
-      <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      {handlers.isLoading && <LoaderSpinner />}
+      {handlers.isError && <ErrorHandler />}
+      <BrowserRouter>
+      <SideBar user={{type, profilePicture}} />
+        <Routes>
+          <Route
+            path="/login"
+            element={
+              <GuardedRoute auth={type === 0}>
+                <LoginPage />
+              </GuardedRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <GuardedRoute auth={type === 0}>
+                <RegisterPage />
+              </GuardedRoute>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 };
 

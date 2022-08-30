@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { TopBox,Container, TitleBox, ContentBox, TextButton,} from "../AddPostPage/styled";
+import {
+  TopBox,
+  Container,
+  TitleBox,
+  ContentBox,
+  TextButton,
+} from "../AddPostPage/styled";
 import Input from "../shared/Input.styled";
 import { newPost } from "../../store/actions/postsActions";
 import { useNavigate } from "react-router-dom";
@@ -9,8 +15,8 @@ export default function AddPost() {
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const user = useSelector(state => state.user)
-  const handlers = useSelector(state => state.handlers)
+  const user = useSelector((state) => state.user);
+  const handlers = useSelector((state) => state.handlers);
   console.log(user);
   const navigate = useNavigate();
 
@@ -19,14 +25,12 @@ export default function AddPost() {
     if (title === "" && content === "") {
       alert("please add text");
     } else {
-      dispatch(newPost({ uID: user.uID, title, content }));
+      dispatch(newPost({ uID: user.uID, title, content }))
+        .then((res) => {
+          navigate("/");
+        });
       setContent("");
       setTitle("");
-
-      // if(handlers.isLoading === false && handlers.isError === false){
-      //   navigate("/")
-      // }
-      
     }
   };
 

@@ -7,6 +7,27 @@ import {
 import { formatDate } from "../../helpers";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+export const searchPosts = createAsyncThunk(
+  "posts/searchPosts",
+  async (searchValue) => {
+    if (searchValue === "") {
+      console.log("1");
+      const posts = (await getPosts()).map((post) => {
+        return {
+          id: post.id,
+          userId: post.u_id,
+          title: post.title,
+          content: post.content,
+          dateOfCreation: formatDate(post.date_of_creation.toDate()),
+        };
+      });
+      return posts;
+    }
+
+    return { searchValue };
+  }
+);
+
 export const postsGet = createAsyncThunk("posts/postsGet", async () => {
   const posts = (await getPosts()).map((post) => {
     return {
@@ -17,8 +38,7 @@ export const postsGet = createAsyncThunk("posts/postsGet", async () => {
       dateOfCreation: formatDate(post.date_of_creation.toDate()),
     };
   });
-  console.log(posts);
-  return(posts)
+  return posts;
 });
 
 export const newPost = createAsyncThunk(
@@ -26,10 +46,10 @@ export const newPost = createAsyncThunk(
   async ({ uID, title, content }) => {
     try {
       await insertPost({ uID, title, content });
-      console.log("thunk")
+      console.log("thunk");
       return {};
-    }catch(err){
-      console.log(err)
+    } catch (err) {
+      console.log(err);
     }
   }
 );

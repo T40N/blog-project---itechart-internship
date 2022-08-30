@@ -10,6 +10,7 @@ function shorten(str, maxLen, separator = ".") {
 
 export default function Post({ blog }) {
   const authorId = blog.userId;
+  
 
   const [authorInfo, setAuthorInfo] = useState(null);
   useEffect(() => {
@@ -19,7 +20,7 @@ export default function Post({ blog }) {
   return (
     <Container key={blog.id}>
       <AuthorLink to={`/author/${authorId}`}>
-        <Avatar />
+        <Avatar link={authorInfo ? authorInfo.profile_picture : ""}/>
         {authorInfo && <h2>{authorInfo.name + " " + authorInfo.surname}</h2>}
       </AuthorLink>
       <Snippet>

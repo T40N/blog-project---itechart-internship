@@ -19,6 +19,7 @@ const Options = (blogs) => {
 
 export default function PostsView() {
   const blogs = useSelector((state) => state.posts);
+  console.log(blogs)
   const dispatch = useDispatch();
   const [index, setIndex] = useState(1);
 

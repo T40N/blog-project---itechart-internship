@@ -10,17 +10,18 @@ const postsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(postsGet.fulfilled, (state, action) => {
-        return action.payload.posts;
+        console.log(action.payload)
+        return action.payload;
       })
       .addCase(postDelete.fulfilled, (state, action) => {
-        const filteredPosts = state.posts.filter(
+        const filteredPosts = state.filter(
           (post) => action.payload.postId !== post.id
         );
 
         return filteredPosts;
       })
       .addCase(postEdit.fulfilled, (state, action) => {
-        return action.payload.posts;
+        return action.payload;
       });
   },
 });

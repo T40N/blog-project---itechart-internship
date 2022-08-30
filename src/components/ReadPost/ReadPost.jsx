@@ -1,7 +1,7 @@
 import { Theme } from "../../context";
 import { useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import useFetch from "../../pages/useFetch";
+// import useFetch from "../../pages/useFetch";
 import { Page } from "./styled";
 
 const DATA = [

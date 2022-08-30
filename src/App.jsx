@@ -2,17 +2,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SideBar from "./components/SideBar";
 import ErrorHandler from "./components/ErrorHandler";
 import LoaderSpinner from "./components/LoaderSpinner/LoaderSpinner";
-import { RegisterPage, LoginPage } from "./pages";
+import { RegisterPage, LoginPage, ReadPostViewPage, AuthorViewPage, AddPostPage, PostsViewPage } from "./pages";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { useEffect } from "react";
 import { getUser } from "./store/actions/userActions";
 import { isUserLoggedIn } from "./api/firebaseAuth";
 import GuardedRoute from "./components/GuardedRoute/GuardedRoute";
 import { reset } from "./store/slices/handlerSlice";
-// import AuthorPage from "./pages/AuthorPage";
-// import ReadPost from "./components/ReadPost";
-// import PostsView from "./components/PostsViewPage";
-// import AddingPost from "./pages/addingPostPage";
+
 
 const App = () => {
   const handlers = useSelector((state) => state.handlers);
@@ -36,10 +33,10 @@ const App = () => {
       <BrowserRouter>
       <SideBar user={{type, profile_picture: profilePicture}} />
         <Routes>
-        {/* <Route exact path="/" element={<PostsView />} />
-            <Route path="/addingPost" element={<AddingPost />} />
-            <Route path="/blogs/:id" element={ <ReadPost />} />
-            <Route path="/:author" element={<AuthorPage />} /> */}
+        <Route exact path="/" element={<PostsViewPage />} />
+            <Route path="/addPost" element={<AddPostPage />} />
+            <Route path="/blogs/:id" element={ <ReadPostViewPage />} />
+            <Route path="/:author" element={<AuthorViewPage />} />
           <Route
             path="/login"
             element={

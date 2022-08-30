@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { postDelete, postEdit, postsGet } from "../actions/postsActions";
+import { postDelete, postEdit, postsGet, newPost } from "../actions/postsActions";
 import {
   getUser,
   logIn,
@@ -26,6 +26,24 @@ const handlerSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+    //  .addCase(newPost.pending, () => {
+    //   return {
+    //     isLoading: true,
+    //     isError: false,
+    //   };
+    //  })
+    //  .addCase(newPost.rejected, () => {
+    //   return {
+    //     isLoading: false,
+    //     isError: true,
+    //   };
+    //  })
+    //  .addCase(newPost.fulfilled, () => {
+    //   return {
+    //     isLoading: false,
+    //     isError: false,
+    //   };
+    //  })
       .addCase(postsGet.pending, () => {
         return {
           isLoading: true,

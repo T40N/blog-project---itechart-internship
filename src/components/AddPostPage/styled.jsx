@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    width: auto;
-    height: auto;
+    width: 90%;
+    height: 90%;
     margin: 2rem;
     background-color: ${({ theme }) => theme.colors.mono200};
     border-radius: ${({ theme }) => theme.borderRadius.l};

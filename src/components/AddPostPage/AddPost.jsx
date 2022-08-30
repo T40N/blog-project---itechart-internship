@@ -3,24 +3,30 @@ import { TopBox,Container, TitleBox, ContentBox, TextButton,} from "../AddPostPa
 import Input from "../shared/Input.styled";
 import { newPost } from "../../store/actions/postsActions";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function AddPost() {
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const uID = "CZyq03sg74YXQIURstSpnFvn0aH2";
-  const history = useNavigate();
+  const user = useSelector(state => state.user)
+  const handlers = useSelector(state => state.handlers)
+  console.log(user);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (title === "" && content === "") {
       alert("please add text");
     } else {
-      dispatch(newPost({ uID, title, content }));
+      dispatch(newPost({ uID: user.uID, title, content }));
       setContent("");
       setTitle("");
-        history(-1);
+
+      // if(handlers.isLoading === false && handlers.isError === false){
+      //   navigate("/")
+      // }
+      
     }
   };
 

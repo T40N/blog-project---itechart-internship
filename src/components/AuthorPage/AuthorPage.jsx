@@ -1,19 +1,19 @@
-import { useParams } from "react-router-dom";
-import { auth } from "../../api/firebase";
-import { getUser } from "../../store/actions/userActions";
-
+// import { useParams } from "react-router-dom";
+// import { auth } from "../../api/firebase";
+// import { getUser } from "../../store/actions/userActions";
+// import { Avatar,  } from "../shared";
 
 export default function AuthorPage(){
 
-    const { id } = useParams();
+    // const { id } = useParams();
 
-    const author = getUser(id);
-    const posts = author.posts;
+    // const author = getUser(id);
+    // const posts = author.posts;
     
 
     return(
         <>
-        <AuthorContainer>
+        {/* <AuthorContainer>
             <Avatar />
             <BaseInfo>
                 <h3>{author.name} {author.surname}</h3>
@@ -28,7 +28,7 @@ export default function AuthorPage(){
         </AuthorContainer>
         <PostsContainer>
             {postsTitles}
-        </PostsContainer>
+        </PostsContainer> */}
         </>
     )
 }

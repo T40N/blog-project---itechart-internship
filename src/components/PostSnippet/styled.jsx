@@ -10,6 +10,7 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.mono200};
   border-radius: ${({ theme }) => theme.borderRadius.l};
   box-shadow: ${({ theme }) => theme.shadows.shadowLight};
+  gap: 1rem;
 
   /* @media (max-width: 1024px){
       grid-template-columns: 30% 70%;

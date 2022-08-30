@@ -26,7 +26,7 @@ const App = () => {
       {handlers.isLoading && <LoaderSpinner />}
       {handlers.isError && <ErrorHandler />}
       <BrowserRouter>
-      <SideBar user={{type, profilePicture}} />
+      <SideBar user={{type, profile_picture: profilePicture}} />
         <Routes>
           <Route
             path="/login"

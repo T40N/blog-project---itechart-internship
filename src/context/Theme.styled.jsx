@@ -30,12 +30,18 @@ const theme = {
     },
     sizes: {
       xxs: '.75rem',
-      xs: '.875rem',
+      xs: '.9rem',//15px
       s: '1.1rem',
-      m: '1.3rem',
-      l: '1.5rem',
+      m: '1.3rem', //21px
+      l: '1.5rem',//24px
       xl: '2rem',
     },
+
+    weight:{
+      s:'300',
+      m:'500',
+      l:'700'
+    }
   },
 
 };

@@ -1,4 +1,6 @@
 import { createGlobalStyle } from "styled-components";
+import './index.css';
+
 
 const GlobalStyle = createGlobalStyle`
 #root {

@@ -28,6 +28,10 @@ const App = () => {
       <BrowserRouter>
       <SideBar user={{type, profile_picture: profilePicture}} />
         <Routes>
+        <Route exact path="/" element={<PostsView />} />
+            <Route path="/addingPost" element={<AddingPost />} />
+            <Route path="/blogs/:id" element={ <ReadPost />} />
+            <Route path="/:author" element={<AuthorPage />} />
           <Route
             path="/login"
             element={

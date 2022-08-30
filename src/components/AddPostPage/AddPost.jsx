@@ -25,10 +25,11 @@ export default function AddPost() {
     if (title === "" && content === "") {
       alert("please add text");
     } else {
-      dispatch(newPost({ uID: user.uID, title, content }))
-        .then((res) => {
+      dispatch(newPost({ uID: user.uID, title, content })).then((res) => {
+        dispatch(postsGet()).then((res) => {
           navigate("/");
         });
+      });
       setContent("");
       setTitle("");
     }

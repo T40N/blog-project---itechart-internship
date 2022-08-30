@@ -1,4 +1,3 @@
-import { setUser, removeUser } from "../slices/userSlice";
 import { editUser, getUserInfo } from "../../api/firestoreResources";
 import {
   registerAttempt,
@@ -6,170 +5,122 @@ import {
   logoutAttempt,
 } from "../../api/firebaseAuth";
 import { formatDate } from "../../helpers";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getUser = (uID) => {
-  return async (dispatch) => {
-    try {
-      const {
-        bio,
-        type,
-        date_of_register,
-        posts,
-        name,
-        surname,
-        email,
-        profile_picture,
-      } = await getUserInfo(uID);
+export const getUser = createAsyncThunk("user/getUser", async (uID) => {
+  const {
+    bio,
+    type,
+    date_of_register,
+    posts,
+    name,
+    surname,
+    email,
+    profile_picture,
+  } = await getUserInfo(uID);
+  const dateOfRegisterObject = formatDate(date_of_register.toDate());
 
-      const dateOfRegisterObject = formatDate(date_of_register.toDate());
-
-      dispatch(
-        setUser({
-          uID,
-          name,
-          surname,
-          email,
-          bio,
-          type: +type,
-          date_of_register: dateOfRegisterObject,
-          posts,
-          profilePicture: profile_picture,
-        })
-      );
-    } catch (err) {
-      throw err;
-    }
+  return {
+    uID,
+    name,
+    surname,
+    email,
+    bio,
+    type: +type,
+    date_of_register: dateOfRegisterObject,
+    posts,
+    profilePicture: profile_picture,
   };
-};
+});
 
-export const userEdit = ({ uID, ...props }) => {
-  return async (dispatch) => {
-    try {
-      await editUser({ uID, ...props });
+export const userEdit = createAsyncThunk(
+  "user/userEdit",
+  async ({ uID, ...props }) => {
+    await editUser({ uID, ...props });
 
-      try {
-        const {
-          bio,
-          type,
-          date_of_register,
-          posts,
-          name,
-          surname,
-          email,
-          profile_picture,
-        } = await getUserInfo(uID);
+    const {
+      bio,
+      type,
+      date_of_register,
+      posts,
+      name,
+      surname,
+      email,
+      profile_picture,
+    } = await getUserInfo(uID);
 
-        const dateOfRegisterObject = formatDate(date_of_register.toDate());
+    const dateOfRegisterObject = formatDate(date_of_register.toDate());
 
-        dispatch(
-          setUser({
-            uID,
-            name,
-            surname,
-            email,
-            bio,
-            type: +type,
-            date_of_register: dateOfRegisterObject,
-            posts,
-            profilePicture: profile_picture,
-          })
-        );
-      } catch (err) {
-        throw err;
-      }
-    } catch (err) {
-      throw err;
-    }
-  };
-};
+    return {
+      uID,
+      name,
+      surname,
+      email,
+      bio,
+      type: +type,
+      date_of_register: dateOfRegisterObject,
+      posts,
+      profilePicture: profile_picture,
+    };
+  }
+);
 
-export const logIn = ({ email, password }) => {
-  return async (dispatch) => {
-    try {
-      const userId = await loginAttempt({ email, password });
+export const logIn = createAsyncThunk(
+  "user/logIn",
+  async ({ email, password }) => {
+    const userId = await loginAttempt({ email, password });
+    const {
+      bio,
+      type,
+      date_of_register,
+      posts,
+      name,
+      surname,
+      profile_picture,
+    } = await getUserInfo(userId);
 
-      try {
-        const {
-          bio,
-          type,
-          date_of_register,
-          posts,
-          name,
-          surname,
-          profile_picture,
-        } = await getUserInfo(userId);
+    const dateOfRegisterObject = formatDate(date_of_register.toDate());
 
-        const dateOfRegisterObject = formatDate(date_of_register.toDate());
+    return {
+      uID: userId,
+      name,
+      surname,
+      email,
+      bio,
+      type: +type,
+      date_of_register: dateOfRegisterObject,
+      posts,
+      profilePicture: profile_picture,
+    };
+  }
+);
 
-        dispatch(
-          setUser({
-            uID: userId,
-            name,
-            surname,
-            email,
-            bio,
-            type: +type,
-            date_of_register: dateOfRegisterObject,
-            posts,
-            profilePicture: profile_picture,
-          })
-        );
-      } catch (err) {
-        console.log(err);
-        throw err;
-      }
-    } catch (err) {
-      console.log(err);
-      throw err;
-    }
-  };
-};
+export const register = createAsyncThunk(
+  "user/register",
+  async ({ name, surname, password, email }) => {
+    const userId = await registerAttempt({ name, surname, password, email });
 
-export const register = ({ name, surname, password, email }) => {
-  return async (dispatch) => {
-    try {
-      const userId = await registerAttempt({ name, surname, password, email });
+    const { bio, type, date_of_register, posts, profile_picture } =
+      await getUserInfo(userId);
 
-      try {
-        const { bio, type, date_of_register, posts, profile_picture } =
-          await getUserInfo(userId);
+    const dateOfRegisterObject = formatDate(date_of_register.toDate());
 
-        const dateOfRegisterObject = formatDate(date_of_register.toDate());
+    return {
+      uID: userId,
+      name,
+      surname,
+      email,
+      bio,
+      type: +type,
+      date_of_register: dateOfRegisterObject,
+      posts,
+      profilePicture: profile_picture,
+    };
+  }
+);
 
-        console.log(dateOfRegisterObject);
-        dispatch(
-          setUser({
-            uID: userId,
-            name,
-            surname,
-            email,
-            bio,
-            type: +type,
-            date_of_register: dateOfRegisterObject,
-            posts,
-            profilePicture: profile_picture,
-          })
-        );
-      } catch (err) {
-        console.log(err);
-        throw err;
-      }
-    } catch (err) {
-      console.log(err);
-      throw err;
-    }
-  };
-};
+export const logOut = createAsyncThunk("user/logOut", async () => {
+  await logoutAttempt();
 
-export const logOut = () => {
-  return async (dispatch) => {
-    try {
-      await logoutAttempt();
-
-      dispatch(removeUser());
-    } catch (err) {
-      console.log(err);
-      throw err;
-    }
-  };
-};
+  return {};
+});

@@ -16,19 +16,6 @@ export const Container = styled.div`
   } */
 `;
 
-export const Author = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  text-align: center;
-  align-items: center;
-  grid-area: author;
-  color: ${({ theme }) => theme.colors.mono500};
-  font-size: ${({ theme }) => theme.font.sizes.m};
-  gap: 1rem;
-`;
-
 export const TitleBox = styled.div`
   display: flex;
   flex-direction: row;
@@ -109,5 +96,19 @@ export const LinkStyled = styled(Link)`
     color: ${({ theme }) => theme.colors.mono400};
   }
 `;
+
+export const AuthorLink = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  align-items: center;
+  grid-area: author;
+  color: ${({ theme }) => theme.colors.mono500};
+  font-size: ${({ theme }) => theme.font.sizes.m};
+  gap: 1rem;
+  text-decoration: none;
+`
 
 

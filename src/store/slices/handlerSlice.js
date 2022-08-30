@@ -31,6 +31,12 @@ const handlerSlice = createSlice({
           isError: true,
         };
       })
+      .addCase(postsGet.fulfilled, () => {
+        return {
+          isLoading: false,
+          isError: false,
+        };
+      })
       .addCase(postDelete.pending, () => {
         return {
           isLoading: true,
@@ -41,6 +47,12 @@ const handlerSlice = createSlice({
         return {
           isLoading: false,
           isError: true,
+        };
+      })
+      .addCase(postDelete.fulfilled, () => {
+        return {
+          isLoading: false,
+          isError: false,
         };
       })
       .addCase(postEdit.pending, () => {
@@ -55,6 +67,12 @@ const handlerSlice = createSlice({
           isError: true,
         };
       })
+      .addCase(postEdit.fulfilled, () => {
+        return {
+          isLoading: false,
+          isError: false,
+        };
+      })
       .addCase(getUser.pending, () => {
         return {
           isLoading: true,
@@ -65,6 +83,12 @@ const handlerSlice = createSlice({
         return {
           isLoading: false,
           isError: true,
+        };
+      })
+      .addCase(getUser.fulfilled, () => {
+        return {
+          isLoading: false,
+          isError: false,
         };
       })
       .addCase(userEdit.pending, () => {
@@ -79,6 +103,12 @@ const handlerSlice = createSlice({
           isError: true,
         };
       })
+      .addCase(userEdit.fulfilled, () => {
+        return {
+          isLoading: false,
+          isError: false,
+        };
+      })
       .addCase(logIn.pending, () => {
         return {
           isLoading: true,
@@ -89,6 +119,12 @@ const handlerSlice = createSlice({
         return {
           isLoading: false,
           isError: true,
+        };
+      })
+      .addCase(logIn.fulfilled, () => {
+        return {
+          isLoading: false,
+          isError: false,
         };
       })
       .addCase(register.pending, () => {
@@ -103,6 +139,12 @@ const handlerSlice = createSlice({
           isError: true,
         };
       })
+      .addCase(register.fulfilled, () => {
+        return {
+          isLoading: false,
+          isError: false,
+        };
+      })
       .addCase(logOut.pending, () => {
         return {
           isLoading: true,
@@ -113,6 +155,12 @@ const handlerSlice = createSlice({
         return {
           isLoading: false,
           isError: true,
+        };
+      })
+      .addCase(logOut.fulfilled, () => {
+        return {
+          isLoading: false,
+          isError: false,
         };
       });
   },

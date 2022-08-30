@@ -1,7 +1,5 @@
-import postsSlice from "./slices/postsSlice";
-import userSlice from "./slices/userSlice";
+import { postsSlice, userSlice, handlerSlice } from "./slices";
 import { configureStore } from "@reduxjs/toolkit";
-import handlerSlice from "./slices/handlerSlice";
 
 const store = configureStore({
   reducer: {

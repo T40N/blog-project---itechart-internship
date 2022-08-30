@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { postDelete, postEdit, postsGet } from "../actions/postsActions";
+import {
+  postDelete,
+  postEdit,
+  postsGet,
+  searchPosts,
+} from "../actions/postsActions";
 
 const initialState = [];
 
@@ -10,7 +15,7 @@ const postsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(postsGet.fulfilled, (state, action) => {
-        console.log(action.payload)
+        console.log(action.payload);
         return action.payload;
       })
       .addCase(postDelete.fulfilled, (state, action) => {
@@ -22,6 +27,24 @@ const postsSlice = createSlice({
       })
       .addCase(postEdit.fulfilled, (state, action) => {
         return action.payload;
+      })
+      .addCase(searchPosts.fulfilled, (state, action) => {
+        if (!action.payload.searchValue) {
+          return action.payload;
+        }
+
+        const filteredPosts = state.filter((post) => {
+          return (
+            post.title
+              .toLowerCase()
+              .includes(action.payload.searchValue.toLowerCase()) ||
+            post.content
+              .toLowerCase()
+              .includes(action.payload.searchValue.toLowerCase())
+          );
+        });
+
+        return filteredPosts;
       });
   },
 });

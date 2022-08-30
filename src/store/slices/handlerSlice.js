@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { postDelete, postEdit, postsGet, newPost } from "../actions/postsActions";
+import {
+  postDelete,
+  postEdit,
+  postsGet,
+  searchPosts,
+} from "../actions/postsActions";
 import {
   getUser,
   logIn,
@@ -7,6 +12,49 @@ import {
   register,
   userEdit,
 } from "../actions/userActions";
+
+const extraReducersBuilder = (asyncThunk, builder) => {
+  for (const key in asyncThunk) {
+    switch (key) {
+      case "fulfilled":
+        builder.addCase(asyncThunk[key], () => {
+          return {
+            isLoading: false,
+            isError: false,
+          };
+        });
+        break;
+      case "rejected":
+        builder.addCase(asyncThunk[key], () => {
+          return {
+            isLoading: false,
+            isError: true,
+          };
+        });
+        break;
+      case "pending":
+        builder.addCase(asyncThunk[key], () => {
+          return {
+            isLoading: true,
+            isError: false,
+          };
+        });
+        break;
+    }
+  }
+};
+
+const arrayOfThunks = [
+  postDelete,
+  postEdit,
+  postsGet,
+  getUser,
+  logIn,
+  logOut,
+  register,
+  userEdit,
+  searchPosts,
+];
 
 const initialState = {
   isLoading: true,
@@ -17,179 +65,19 @@ const handlerSlice = createSlice({
   name: "handlers",
   initialState,
   reducers: {
-    reset(state, action){
-      return  {
+    reset(state, action) {
+      return {
         isLoading: false,
         isError: false,
-      }
-    }
+      };
+    },
   },
   extraReducers: (builder) => {
-    builder
-    //  .addCase(newPost.pending, () => {
-    //   return {
-    //     isLoading: true,
-    //     isError: false,
-    //   };
-    //  })
-    //  .addCase(newPost.rejected, () => {
-    //   return {
-    //     isLoading: false,
-    //     isError: true,
-    //   };
-    //  })
-    //  .addCase(newPost.fulfilled, () => {
-    //   return {
-    //     isLoading: false,
-    //     isError: false,
-    //   };
-    //  })
-      .addCase(postsGet.pending, () => {
-        return {
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(postsGet.rejected, () => {
-        return {
-          isLoading: false,
-          isError: true,
-        };
-      })
-      .addCase(postsGet.fulfilled, () => {
-        return {
-          isLoading: false,
-          isError: false,
-        };
-      })
-      .addCase(postDelete.pending, () => {
-        return {
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(postDelete.rejected, () => {
-        return {
-          isLoading: false,
-          isError: true,
-        };
-      })
-      .addCase(postDelete.fulfilled, () => {
-        return {
-          isLoading: false,
-          isError: false,
-        };
-      })
-      .addCase(postEdit.pending, () => {
-        return {
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(postEdit.rejected, () => {
-        return {
-          isLoading: false,
-          isError: true,
-        };
-      })
-      .addCase(postEdit.fulfilled, () => {
-        return {
-          isLoading: false,
-          isError: false,
-        };
-      })
-      .addCase(getUser.pending, () => {
-        return {
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(getUser.rejected, () => {
-        return {
-          isLoading: false,
-          isError: true,
-        };
-      })
-      .addCase(getUser.fulfilled, () => {
-        return {
-          isLoading: false,
-          isError: false,
-        };
-      })
-      .addCase(userEdit.pending, () => {
-        return {
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(userEdit.rejected, () => {
-        return {
-          isLoading: false,
-          isError: true,
-        };
-      })
-      .addCase(userEdit.fulfilled, () => {
-        return {
-          isLoading: false,
-          isError: false,
-        };
-      })
-      .addCase(logIn.pending, () => {
-        return {
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(logIn.rejected, () => {
-        return {
-          isLoading: false,
-          isError: true,
-        };
-      })
-      .addCase(logIn.fulfilled, () => {
-        return {
-          isLoading: false,
-          isError: false,
-        };
-      })
-      .addCase(register.pending, () => {
-        return {
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(register.rejected, () => {
-        return {
-          isLoading: false,
-          isError: true,
-        };
-      })
-      .addCase(register.fulfilled, () => {
-        return {
-          isLoading: false,
-          isError: false,
-        };
-      })
-      .addCase(logOut.pending, () => {
-        return {
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(logOut.rejected, () => {
-        return {
-          isLoading: false,
-          isError: true,
-        };
-      })
-      .addCase(logOut.fulfilled, () => {
-        return {
-          isLoading: false,
-          isError: false,
-        };
-      });
+    arrayOfThunks.forEach((thunk) => {
+      extraReducersBuilder(thunk, builder);
+    });
   },
 });
 
-export const {reset} = handlerSlice.actions;
+export const { reset } = handlerSlice.actions;
 export default handlerSlice;

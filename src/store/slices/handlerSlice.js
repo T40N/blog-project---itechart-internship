@@ -9,14 +9,21 @@ import {
 } from "../actions/userActions";
 
 const initialState = {
-  isLoading: false,
+  isLoading: true,
   isError: false,
 };
 
 const handlerSlice = createSlice({
   name: "handlers",
   initialState,
-  reducers: {},
+  reducers: {
+    reset(state, action){
+      return  {
+        isLoading: false,
+        isError: false,
+      }
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(postsGet.pending, () => {
@@ -166,4 +173,5 @@ const handlerSlice = createSlice({
   },
 });
 
+export const {reset} = handlerSlice.actions;
 export default handlerSlice;

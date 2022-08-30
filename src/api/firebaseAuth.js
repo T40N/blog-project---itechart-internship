@@ -11,7 +11,11 @@ export const isUserLoggedIn = async () => {
   return new Promise((resolve) => {
     let unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       unsubscribe();
-      resolve(currentUser.uid);
+      if(!currentUser){
+        resolve(false)
+      }else{
+        resolve(currentUser.uid);
+      }
     });
   });
 };

@@ -1,7 +1,10 @@
 import { Container, ProfileInfoContainer, SnipetInfoContainer, TabSwitchContainer, Switch, SnippetContainer } from "./styled";
 import { Avatar, ListButtonLinkless, Icon } from "../../shared";
+import { useSelector } from "react-redux";
 
-const Header = ({ blogTabOpen, setBlogTabOpen, setOpenMenu, user, isSnippet }) => {
+const Header = ({ blogTabOpen, setBlogTabOpen, setOpenMenu, isSnippet }) => {
+  const user = useSelector(state => state.user);
+
   const displayUserType = () => {
     switch (user.type) {
       case 0:
@@ -26,9 +29,9 @@ const Header = ({ blogTabOpen, setBlogTabOpen, setOpenMenu, user, isSnippet }) =
       {!isSnippet &&
         <>
           <ProfileInfoContainer>
-            <Avatar isInSidebar={true} link={user.profile_picture} />
+            <Avatar isInSidebar={true} link={user.profilePicture} />
             <SnipetInfoContainer>
-              <h1>John Doe</h1>
+              {user.name ? <h1>{user.name} {user.surname}</h1> : <h1>Anonymous</h1>}
               <p>{displayUserType()}</p>
             </SnipetInfoContainer>
 

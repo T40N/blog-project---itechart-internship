@@ -1,8 +1,16 @@
 import { Icon, ListButtonLinkless } from "../../shared";
 import { Container } from "./styled";
 import { ListButton } from "../styled";
+import { useDispatch } from "react-redux";
+import { logOut } from "../../../store/actions/userActions";
 
 const Footer = ({ user, isSnippet }) => {
+  const dispatch = useDispatch()
+
+  const onLogoutHandler = () => {
+    dispatch(logOut());
+  }
+
   return (
     <Container>
       <ListButton to="/issues">
@@ -11,18 +19,11 @@ const Footer = ({ user, isSnippet }) => {
       </ListButton>
 
       {user.type > 0 &&
-        <ListButtonLinkless>
+        <ListButtonLinkless onClick={onLogoutHandler}>
           <Icon>logout</Icon>
           { !isSnippet && <h2>Logout</h2> }
         </ListButtonLinkless>
       }
-
-      {/* {user.type === 0 &&
-        <ListButton to="/login">
-          <Icon>login</Icon>
-          <h2>Sign in</h2>
-        </ListButton>
-      } */}
     </Container>
   )
 };

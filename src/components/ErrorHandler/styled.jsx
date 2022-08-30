@@ -8,6 +8,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 3;
 `;
 
 export const ErrorDisplay = styled.div`

@@ -8,15 +8,23 @@ import { useEffect } from "react";
 import { getUser } from "./store/actions/userActions";
 import { isUserLoggedIn } from "./api/firebaseAuth";
 import GuardedRoute from "./components/GuardedRoute/GuardedRoute";
+import { reset } from "./store/slices/handlerSlice";
+// import AuthorPage from "./pages/AuthorPage";
+// import ReadPost from "./components/ReadPost";
+// import PostsView from "./components/PostsViewPage";
+// import AddingPost from "./pages/addingPostPage";
 
 const App = () => {
   const handlers = useSelector((state) => state.handlers);
   const { type, profilePicture } = useSelector((state) => state.user);
+  console.log(profilePicture)
   const dispatch = useDispatch();
   useEffect(() => {
     isUserLoggedIn().then((res) => {
       if (res) {
         dispatch(getUser(res));
+      }else{
+        dispatch(reset())
       }
     });
   }, []);
@@ -28,10 +36,10 @@ const App = () => {
       <BrowserRouter>
       <SideBar user={{type, profile_picture: profilePicture}} />
         <Routes>
-        <Route exact path="/" element={<PostsView />} />
+        {/* <Route exact path="/" element={<PostsView />} />
             <Route path="/addingPost" element={<AddingPost />} />
             <Route path="/blogs/:id" element={ <ReadPost />} />
-            <Route path="/:author" element={<AuthorPage />} />
+            <Route path="/:author" element={<AuthorPage />} /> */}
           <Route
             path="/login"
             element={

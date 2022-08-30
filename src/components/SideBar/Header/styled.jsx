@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.header`
-  padding: 1rem;
+  padding: 1rem 1rem 0 1rem;
   border-bottom: 1px solid ${({ theme }) => theme.colors.mono300};
   display: grid;
   grid-template: 3fr 1fr / auto;
@@ -13,7 +13,7 @@ export const ProfileInfoContainer = styled.div`
   gap: 2rem;
   padding: 1rem;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 `;
 

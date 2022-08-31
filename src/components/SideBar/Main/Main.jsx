@@ -1,10 +1,23 @@
 import { Icon, ListButtonLinkless } from "../../shared";
 import { Container } from "./styled";
 import { ListButton } from "../styled";
+import { useState } from "react";
+import DeleteModal from "../../DeleteModal/DeleteModal";
 
 const Main = ({ blogTabOpen, user, isSnippet }) => {
+  const [deleteModalShow, setDeleteModalShow] = useState(false);
+
+  const onDeleteButtonClickHandler = () => {
+    setDeleteModalShow(true);
+  };
+
+  const onCloseHandler = () => {
+    setDeleteModalShow(false);
+  };
+
   return (
     <>
+      {deleteModalShow && <DeleteModal onClose={onCloseHandler} />}
       {blogTabOpen && (
         <Container>
           <ListButton to="/">
@@ -56,7 +69,7 @@ const Main = ({ blogTabOpen, user, isSnippet }) => {
                 {!isSnippet && <h2>Change password</h2>}
               </ListButton>
 
-              <ListButtonLinkless>
+              <ListButtonLinkless onClick={onDeleteButtonClickHandler}>
                 <Icon>delete</Icon>
                 {!isSnippet && <h2>Delete account</h2>}
               </ListButtonLinkless>

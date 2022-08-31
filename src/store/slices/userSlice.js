@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  deleteUser,
   getUser,
   logIn,
   logOut,
@@ -30,6 +31,13 @@ const userSlice = createSlice({
         return action.payload;
       })
       .addCase(logOut.fulfilled, () => {
+        return {
+          type: 0,
+          profilePicture:
+            "https://firebasestorage.googleapis.com/v0/b/test-project-96eaa.appspot.com/o/avatars%2Fdefault.png?alt=media&token=adaa2a76-3cb1-44f3-9c0b-93c888758536",
+        };
+      })
+      .addCase(deleteUser.fulfilled, () => {
         return {
           type: 0,
           profilePicture:

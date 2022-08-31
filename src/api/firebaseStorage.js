@@ -7,8 +7,7 @@ export const uploadAvatar = async ({ uID, file }) => {
         const path = `avatars/${file.name}`;
         const storageRef = ref(storage, path)
         await uploadBytesResumable(storageRef, file);
-        let avatar_link = await getDownloadURL(ref(storage, path));
-        await editUser({ uID, avatar_link });
+        return await getDownloadURL(ref(storage, path));
     } catch (err) {
         throw err;
     }

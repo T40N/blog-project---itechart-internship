@@ -11,7 +11,6 @@ export const searchPosts = createAsyncThunk(
   "posts/searchPosts",
   async (searchValue) => {
     if (searchValue === "") {
-      console.log("1");
       const posts = (await getPosts()).map((post) => {
         return {
           id: post.id,

@@ -6,6 +6,7 @@ import {
 } from "../../api/firebaseAuth";
 import { formatDate } from "../../helpers";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { uploadAvatar } from "../../api/firebaseStorage";
 
 export const getUser = createAsyncThunk("user/getUser", async (uID) => {
   const {
@@ -35,8 +36,13 @@ export const getUser = createAsyncThunk("user/getUser", async (uID) => {
 
 export const userEdit = createAsyncThunk(
   "user/userEdit",
-  async ({ uID, ...props }) => {
-    await editUser({ uID, ...props });
+  async ({ uID, avatar, ...props }) => {
+    if (avatar) {
+      const profile_picture = await uploadAvatar({ uID, file: avatar });
+      await editUser({ uID, profile_picture, ...props });
+    } else {
+      await editUser({ uID, ...props });
+    }
 
     const {
       bio,

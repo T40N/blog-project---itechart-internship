@@ -28,10 +28,6 @@ export default function PostsView() {
   let blogsOnPage;
   let options;
 
-  useEffect(() => {
-    dispatch(postsGet());
-  }, []);
-
   if (blogs) {
     const arrayStart = 3 * index - 3;
     const arrayEnd = 3 * index;

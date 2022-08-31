@@ -6,15 +6,14 @@ const Main = ({ blogTabOpen, user, isSnippet, setOpenMenu }) => {
 
   return (
     <>
-      {
-        blogTabOpen &&
+      {blogTabOpen && (
         <Container>
           <ListButton to="/" onClick={ () => setOpenMenu(false) }>
             <Icon>notes</Icon>
             {!isSnippet && <h2>All posts</h2>}
           </ListButton>
 
-          {user.type > 0 &&
+          {user.type > 0 && (
             <>
               <ListButton to="/myPosts" onClick={ () => setOpenMenu(false) }>
                 <Icon>short_text</Icon>
@@ -26,14 +25,13 @@ const Main = ({ blogTabOpen, user, isSnippet, setOpenMenu }) => {
                 {!isSnippet && <h2>Add post</h2>}
               </ListButton>
             </>
-          }
+          )}
         </Container>
-      }
+      )}
 
-      {
-        !blogTabOpen &&
+      {!blogTabOpen && (
         <Container>
-          {user.type === 0 &&
+          {user.type === 0 && (
             <>
               <ListButton to="/login" onClick={ () => setOpenMenu(false) }>
                 <Icon>login</Icon>
@@ -45,12 +43,13 @@ const Main = ({ blogTabOpen, user, isSnippet, setOpenMenu }) => {
                 {!isSnippet && <h2>Sign up</h2>}
               </ListButton>
             </>
-          }
+          )}
 
-          {user.type > 0 &&
+          {user.type > 0 && (
             <>
-              <ListButton to="/changePersonals" onClick={ () => setOpenMenu(false) }>
+              <ListButton to="/personals" onClick={ () => setOpenMenu(false) }>
                 <Icon>badge</Icon>
+
                 {!isSnippet && <h2>Change personals</h2>}
               </ListButton>
 
@@ -64,19 +63,18 @@ const Main = ({ blogTabOpen, user, isSnippet, setOpenMenu }) => {
                 {!isSnippet && <h2>Delete account</h2>}
               </ListButtonLinkless>
             </>
-          }
+          )}
 
-          {user.type === 3 &&
+          {user.type === 3 && (
             <>
               <ListButton to="/manageUsers" onClick={ () => setOpenMenu(false) }>
                 <Icon>supervised_user_circle</Icon>
                 {!isSnippet && <h2>Manage users</h2>}
               </ListButton>
             </>
-          }
-
+          )}
         </Container>
-      }
+      )}
     </>
   );
 };

@@ -7,7 +7,7 @@ import {
   TextButton,
 } from "../AddPostPage/styled";
 import Input from "../shared/Input.styled";
-import { newPost } from "../../store/actions/postsActions";
+import { newPost, postsGet } from "../../store/actions/postsActions";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -25,10 +25,11 @@ export default function AddPost() {
     if (title === "" && content === "") {
       alert("please add text");
     } else {
-      dispatch(newPost({ uID: user.uID, title, content }))
-        .then((res) => {
+      dispatch(newPost({ uID: user.uID, title, content })).then((res) => {
+        dispatch(postsGet()).then((res) => {
           navigate("/");
         });
+      });
       setContent("");
       setTitle("");
     }

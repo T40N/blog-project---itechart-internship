@@ -11,8 +11,9 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { register } from "../../store/actions/userActions";
 import { isEmailValid } from "../../helpers";
-
+import { useNavigate } from "react-router-dom";
 const Register = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [registerState, setRegisterState] = useState({
@@ -88,7 +89,7 @@ const Register = () => {
       password,
     };
 
-    dispatch(register(user));
+    dispatch(register(user)).then(navigate("/"));
 
     setRegisterState({
       name: "",

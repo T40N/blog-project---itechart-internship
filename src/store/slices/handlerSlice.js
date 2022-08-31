@@ -57,6 +57,20 @@ const handlerSlice = createSlice({
   name: "handlers",
   initialState,
   reducers: {
+    rejected(state, action) {
+      return {
+        isLoading: false,
+        isError: true,
+      };
+    },
+
+    pending(state, action) {
+      return {
+        isLoading: true,
+        isError: false,
+      };
+    },
+
     reset(state, action) {
       return {
         isLoading: false,
@@ -71,5 +85,5 @@ const handlerSlice = createSlice({
   },
 });
 
-export const { reset } = handlerSlice.actions;
+export const { reset, pending, rejected } = handlerSlice.actions;
 export default handlerSlice;

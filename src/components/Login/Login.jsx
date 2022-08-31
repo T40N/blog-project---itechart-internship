@@ -12,6 +12,8 @@ import { useDispatch } from "react-redux";
 import { isEmailValid } from "../../helpers";
 import { logIn } from "../../store/actions/userActions";
 import { useNavigate } from "react-router-dom";
+import { pending, reset } from "../../store/slices/handlerSlice";
+import { unwrapResult } from "@reduxjs/toolkit";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -39,7 +41,7 @@ const Login = () => {
     });
   };
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
 
     const email = loginState.email.trim();
@@ -66,14 +68,21 @@ const Login = () => {
       password,
     };
 
+    dispatch(pending());
     dispatch(logIn(user))
-      .then((res) => navigate("/"))
-      .catch((errLogin) =>
+      .unwrap()
+      .then(() => {
+        dispatch(reset());
+        navigate("/");
+      })
+      .catch(() => {
+        console.log("error");
+        dispatch(reset());
         setErr({
           ...err,
           login: true,
-        })
-      );
+        });
+      });
 
     setLoginState({
       email: "",

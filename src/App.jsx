@@ -9,6 +9,7 @@ import {
   AuthorViewPage,
   AddPostPage,
   PostsViewPage,
+  PersonalsPage,
 } from "./pages";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { useEffect } from "react";
@@ -34,6 +35,8 @@ const App = () => {
     });
   }, []);
 
+  console.log(type);
+
   return (
     <>
       {handlers.isLoading && <LoaderSpinner />}
@@ -58,6 +61,14 @@ const App = () => {
             element={
               <GuardedRoute auth={type === 0}>
                 <RegisterPage />
+              </GuardedRoute>
+            }
+          />
+          <Route
+            path="/personals"
+            element={
+              <GuardedRoute auth={(type) >= 1}>
+                <PersonalsPage />
               </GuardedRoute>
             }
           />

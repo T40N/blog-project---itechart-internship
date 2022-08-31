@@ -63,14 +63,12 @@ const handlerSlice = createSlice({
         isError: true,
       };
     },
-
     pending(state, action) {
       return {
         isLoading: true,
         isError: false,
       };
     },
-
     reset(state, action) {
       return {
         isLoading: false,

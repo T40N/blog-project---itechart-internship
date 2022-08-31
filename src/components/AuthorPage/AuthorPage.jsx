@@ -1,34 +1,77 @@
-// import { useParams } from "react-router-dom";
-// import { auth } from "../../api/firebase";
-// import { getUser } from "../../store/actions/userActions";
-// import { Avatar,  } from "../shared";
+import { useParams } from "react-router-dom";
+import {
+  AuthorContainer,
+  BaseInfo,
+  GridAvatar,
+  Bio,
+  ViewContainer,
+  PostsContainer,
+  TitleContainer,
+  TitleIcon,
+} from "./styled";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux/es/exports";
+import { getUserInfo } from "../../api/firestoreResources";
+import { formatDate } from "../../helpers";
 
-export default function AuthorPage(){
+export default function AuthorPage() {
+  const { id } = useParams();
 
-    // const { id } = useParams();
+  const [author, setAuthor] = useState(null);
+  const [err, setErr] = useState(false);
+  const posts = useSelector((state) => state.posts);
+  const [authorPosts, setAuthorPosts] = useState(null);
+  useEffect(() => {
+    getUserInfo(id)
+      .then((info) => {
+        setAuthor(info);
+        console.log(posts);
+        setAuthorPosts(posts.filter((post) => post.userId === id));
+        console.log(author);
+      })
+      .catch(() => {
+        setErr(true);
+      });
+  }, [posts]);
 
-    // const author = getUser(id);
-    // const posts = author.posts;
-    
+  console.log(authorPosts);
 
-    return(
+
+  return (
+    <ViewContainer>
+      {err && !author && <h1>Author no longer exists</h1>}
+      {author && authorPosts && (
         <>
-        {/* <AuthorContainer>
-            <Avatar />
+          <AuthorContainer>
+            <GridAvatar link={author.profile_picture} />
             <BaseInfo>
-                <h3>{author.name} {author.surname}</h3>
-                <p>Joined at {author.date_of_register}</p>
-                <div></div>
-                <h3>{author.type}</h3>
-                <p>Posts: {author.posts.length}</p>
+              <h3 id="name">
+                {author.name} {author.surname}
+              </h3>
+              <p id="date">
+                Joined at {formatDate(author.date_of_register.toDate())}
+              </p>
+              <div></div>
+              <h3 id="type">{author.type}</h3>
+              <p id="postNumber">Posts: {authorPosts.length}</p>
             </BaseInfo>
             <Bio>
-                <p>{author.bio}</p>
+              <p>{author.bio}</p>
             </Bio>
-        </AuthorContainer>
-        <PostsContainer>
-            {postsTitles}
-        </PostsContainer> */}
+          </AuthorContainer>
+          <PostsContainer>
+            {authorPosts.map((post) => {
+              return (
+                <TitleContainer key={post.id}>
+                  <h2>{post.title}</h2>
+                  <p>{post.dateOfCreation}</p>
+                  <TitleIcon>arrow_forward</TitleIcon>
+                </TitleContainer>
+              );
+            })}
+          </PostsContainer>
         </>
-    )
+      )}
+    </ViewContainer>
+  );
 }

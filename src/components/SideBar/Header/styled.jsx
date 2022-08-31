@@ -18,6 +18,7 @@ export const ProfileInfoContainer = styled.div`
 `;
 
 export const SnipetInfoContainer = styled.div`
+  width: 8vw;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -28,11 +29,19 @@ export const SnipetInfoContainer = styled.div`
   h1 {
     font-size: 1.3rem;
     color: ${({ theme }) => theme.colors.mono500};
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   p {
     font-size: 1.125rem;
     font-style: italic;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
+    max-width: 50vw;
   }
 `;
 
@@ -64,10 +73,6 @@ export const Switch = styled.div`
       color: ${({ theme }) => theme.colors.mono500};
     }
   }
-
-  /* @media (max-width: 1024px) and (min-width: 390px) {
-    display: none;
-  } */
 `;
 
 export const SnippetContainer = styled.header`

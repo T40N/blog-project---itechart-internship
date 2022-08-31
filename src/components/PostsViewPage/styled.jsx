@@ -24,8 +24,14 @@ export const Selection = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  user-select: none;
 
-  div{
+  div, span{
     padding: .5rem;
+  }
+
+  div:hover{
+    font-weight: bolder;
+    cursor: pointer;
   }
 `

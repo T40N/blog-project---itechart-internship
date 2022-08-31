@@ -1,4 +1,8 @@
-import { editUser, getUserInfo } from "../../api/firestoreResources";
+import {
+  deleteUserAccount,
+  editUser,
+  getUserInfo,
+} from "../../api/firestoreResources";
 import {
   registerAttempt,
   loginAttempt,
@@ -7,6 +11,12 @@ import {
 import { formatDate } from "../../helpers";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { uploadAvatar } from "../../api/firebaseStorage";
+
+export const deleteUser = createAsyncThunk("user/deleteUser", async (uID) => {
+  await deleteUserAccount(uID);
+
+  return {};
+});
 
 export const getUser = createAsyncThunk("user/getUser", async (uID) => {
   const {

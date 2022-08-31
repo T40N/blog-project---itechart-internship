@@ -58,6 +58,7 @@ table {
 a {
 	text-decoration: none;
 }
+
 html {
 	@media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
 		font-size: 14px;

@@ -1,0 +1,34 @@
+import styled from "styled-components";
+
+export const Container = styled.div`
+  position: fixed;
+  backdrop-filter: blur(10px);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+`;
+
+export const Content = styled.div`
+  height: 40%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.colors.mono200};
+  border-radius: ${({ theme }) => theme.borderRadius.s};
+  box-shadow: ${({ theme }) => theme.shadows.shadowLight};
+  color: ${({ theme }) => theme.colors.mono500};
+  font-size: ${({ theme }) => theme.font.sizes.m};
+`;
+
+export const ButtonContainer = styled.div`
+  height: 50%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+`;

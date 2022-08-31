@@ -13,7 +13,7 @@ export const Container = styled.div`
   grid-template-rows: repeat(9, minmax(min-content, max-content));
   gap: 1.2rem;
 
-  @media (max-width: 820px) {
+  @media (max-width: 1024px) {
     /* background-color: transparent;
     width: 100%;
     height: 100%;
@@ -41,13 +41,34 @@ export const InfoLabel = styled.label`
   width: min-content;
 `;
 
-export const InfoChangeButton = styled.button`
+export const InfoChange = styled.input`
   grid-column: 3;
   justify-self: flex-start;
+  align-self: center;
   border: none;
   outline: none;
   color: ${({ theme }) => theme.colors.mono400};
   background-color: transparent;
+  font-size: ${({ theme }) => theme.font.sizes.m};
+  &:hover::placeholder,
+  &:focus {
+    color: ${({ theme }) => theme.colors.mono500};
+  }
+
+  &[type="file"] {
+    display: none;
+  }
+`;
+
+export const AvatarInputLabel = styled.label`
+  grid-column: 3;
+  justify-self: flex-start;
+  align-self: center;
+  border: none;
+  outline: none;
+  color: ${({ theme }) => theme.colors.mono400};
+  background-color: transparent;
+  font-size: ${({ theme }) => theme.font.sizes.m};
 
   &:hover,
   &:focus {
@@ -55,10 +76,24 @@ export const InfoChangeButton = styled.button`
   }
 `;
 
-export const Bio = styled.p`
+export const Bio = styled.textarea`
   padding-top: 1.2rem;
   grid-column: 2 / span 2;
   text-align: center;
+  height: 10.5rem;
+  border: none;
+  font-family: ${({ theme }) => theme.font.families.primary};
+  background-color: transparent;
+  resize: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.colors.mono500};
+    outline: none;
+  }
 `;
 
 export const Line = styled.div`
@@ -68,4 +103,19 @@ export const Line = styled.div`
   height: ${({ height }) => height};
   width: 0.25rem;
   background-color: ${({ theme }) => theme.colors.mono300};
+`;
+
+export const SubmitButton = styled.button`
+  grid-column: 2 / span 2;
+  justify-self: center;
+  align-self: center;
+  border: none;
+  outline: none;
+  color: ${({ theme }) => theme.colors.mono400};
+  background-color: transparent;
+  font-size: ${({ theme }) => theme.font.sizes.m};
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.colors.mono500};
+  }
 `;

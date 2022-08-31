@@ -1,12 +1,14 @@
 import { createGlobalStyle } from "styled-components";
-import './index.css';
-
+import "./index.css";
 
 const GlobalStyle = createGlobalStyle`
 #root {
 	display: grid;
 	grid-template: auto / minmax(min-content,max-content) auto;
 }
+*::-webkit-scrollbar {
+    display: none;
+  }
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,

@@ -1,36 +1,125 @@
 import {
   Container,
   PersonalsAvatar,
-  InfoChangeButton,
+  InfoChange,
   InfoLabel,
   Line,
   Bio,
+  AvatarInputLabel,
+  SubmitButton,
 } from "./styled";
-import { useSelector } from "react-redux/es/exports";
+import { useSelector, useDispatch } from "react-redux/es/exports";
+import { Icon } from "../shared";
+import { useState } from "react";
+import { userEdit } from "../../store/actions/userActions";
 
 const Personals = () => {
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  const [userData, setUserData] = useState({
+    avatar: "",
+    name: "",
+    surname: "",
+    bio: user.bio,
+  });
+  const [avatarLabel, setAvatarLabel] = useState("Change avatar");
+
+  const onChangeAvatarHandler = (e) => {
+    setUserData({
+      ...userData,
+      avatar: e.target.files[0],
+    });
+    setAvatarLabel(e.target.files[0].name);
+  };
+
+  const onChangeInputHandler = (e) => {
+    const value = e.target.value;
+
+    setUserData({
+      ...userData,
+      [e.target.name]: value,
+    });
+  };
+
+  const onSubmitHandler = (e) => {
+    let avatar = userData.avatar;
+    let name = userData.name;
+    let surname = userData.surname;
+    let bio = userData.bio;
+
+    if (avatar === "") {
+      avatar = user.profilePicture;
+    }
+
+    if (name === "") {
+      name = user.name;
+    }
+
+    if (surname === "") {
+      surname = user.surname;
+    }
+
+    const userObj = {
+      uID: user.uID,
+      profile_picture: avatar,
+      name,
+      surname,
+      bio,
+    };
+
+    dispatch(userEdit(userObj));
+
+    setUserData({
+      avatar: "",
+      name: "",
+      surname: "",
+      bio: user.bio,
+    });
+  };
+
   return (
     <Container>
       <PersonalsAvatar link={user.profilePicture} />
-      <InfoChangeButton>Change avatar</InfoChangeButton>
+      <AvatarInputLabel htmlFor="file-upload">
+        <InfoChange
+          placeholder="Change avatar"
+          type="file"
+          accept="image/png, image/jpeg"
+          id="file-upload"
+          onChange={onChangeAvatarHandler}
+          name="avatar"
+        ></InfoChange>
+        {avatarLabel}
+      </AvatarInputLabel>
       <Line height="2rem" />
       <InfoLabel>{user.name}</InfoLabel>
-      <InfoChangeButton>Change firstname</InfoChangeButton>
+      <InfoChange
+        placeholder="Change firstname"
+        name="name"
+        value={userData.name}
+        onChange={onChangeInputHandler}
+      ></InfoChange>
       <Line height="4.75rem" />
       <InfoLabel>{user.surname}</InfoLabel>
-      <InfoChangeButton>Change lastname</InfoChangeButton>
+      <InfoChange
+        placeholder="Change lastname"
+        name="surname"
+        value={userData.surname}
+        onChange={onChangeInputHandler}
+      ></InfoChange>
       <Line height="4.75rem" />
       <InfoLabel>Bio</InfoLabel>
-      <InfoChangeButton>Change bio</InfoChangeButton>
-      <Bio>
-        is an American actor and filmmaker. Known for both his comedic and
-        dramatic roles, he is one of the most popular and recognizable film
-        stars worldwide, and is regarded as an American cultural icon.[2]
-        Hanks's films have grossed more than $4.9 billion in North America and
-        more than $9.96 billion worldwide,[3] making him the
-        fourth-highest-grossing actor in North America.[4]
-      </Bio>
+      <AvatarInputLabel htmlFor="bio">Change bio</AvatarInputLabel>
+      <Bio
+        id="bio"
+        value={userData.bio}
+        name="bio"
+        onChange={onChangeInputHandler}
+      ></Bio>
+      <SubmitButton onClick={onSubmitHandler}>
+        Submit changes<Icon>check</Icon>
+      </SubmitButton>
     </Container>
   );
 };

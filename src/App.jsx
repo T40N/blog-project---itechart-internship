@@ -67,7 +67,7 @@ const App = () => {
           <Route
             path="/personals"
             element={
-              <GuardedRoute auth={(type) => 1}>
+              <GuardedRoute auth={(type) >= 1}>
                 <PersonalsPage />
               </GuardedRoute>
             }

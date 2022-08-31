@@ -10,6 +10,7 @@ import {
   AddPostPage,
   PostsViewPage,
   PersonalsPage,
+  PasswordChangePage,
 } from "./pages";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { useEffect } from "react";
@@ -67,8 +68,16 @@ const App = () => {
           <Route
             path="/personals"
             element={
-              <GuardedRoute auth={(type) >= 1}>
+              <GuardedRoute auth={type >= 1}>
                 <PersonalsPage />
+              </GuardedRoute>
+            }
+          />
+          <Route
+            path="/passwordChange"
+            element={
+              <GuardedRoute auth={type >= 1}>
+                <PasswordChangePage />
               </GuardedRoute>
             }
           />

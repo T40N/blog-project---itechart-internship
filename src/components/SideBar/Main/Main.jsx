@@ -51,7 +51,7 @@ const Main = ({ blogTabOpen, user, isSnippet }) => {
                 {!isSnippet && <h2>Change personals</h2>}
               </ListButton>
 
-              <ListButton to="/changePassword">
+              <ListButton to="/passwordChange">
                 <Icon>lock</Icon>
                 {!isSnippet && <h2>Change password</h2>}
               </ListButton>

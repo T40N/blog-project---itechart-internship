@@ -11,7 +11,9 @@ import {
 import { useSelector, useDispatch } from "react-redux/es/exports";
 import { Icon } from "../shared";
 import { useState } from "react";
-import { userEdit } from "../../store/actions/userActions";
+import { getUser, userEdit } from "../../store/actions/userActions";
+import { uploadAvatar } from "../../api/firebaseStorage";
+import { pending } from "../../store/slices/handlerSlice";
 
 const Personals = () => {
   const user = useSelector((state) => state.user);
@@ -30,6 +32,7 @@ const Personals = () => {
       ...userData,
       avatar: e.target.files[0],
     });
+
     setAvatarLabel(e.target.files[0].name);
   };
 
@@ -62,7 +65,7 @@ const Personals = () => {
 
     const userObj = {
       uID: user.uID,
-      profile_picture: avatar,
+      avatar,
       name,
       surname,
       bio,

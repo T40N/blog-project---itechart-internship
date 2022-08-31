@@ -11,8 +11,10 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { isEmailValid } from "../../helpers";
 import { logIn } from "../../store/actions/userActions";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [loginState, setLoginState] = useState({
@@ -20,6 +22,7 @@ const Login = () => {
     password: "",
   });
   const [err, setErr] = useState({
+    login: false,
     email: false,
     password: false,
   });
@@ -63,7 +66,14 @@ const Login = () => {
       password,
     };
 
-    dispatch(logIn(user));
+    dispatch(logIn(user))
+      .then((res) => navigate("/"))
+      .catch((errLogin) =>
+        setErr({
+          ...err,
+          login: true,
+        })
+      );
 
     setLoginState({
       email: "",
@@ -73,6 +83,9 @@ const Login = () => {
 
   return (
     <Form onSubmit={onSubmitHandler}>
+      <ErrorMsg error={err.login}>
+        Can't find account check your credentials
+      </ErrorMsg>
       <InputContainer>
         <Label htmlFor="email">Email</Label>
         <Input

@@ -55,6 +55,24 @@ table {
 a {
 	text-decoration: none;
 }
+html {
+
+@media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
+
+	font-size: 14px;
+
+}
+
+
+
+@media (max-width: ${({ theme }) => theme.breakpoints.small}) {
+
+	font-size: 12px;
+
+}
+
+}
+
 `;
 
 export default GlobalStyle;

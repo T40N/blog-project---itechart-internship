@@ -1,38 +1,35 @@
 import { useSelector } from "react-redux/es/exports";
 import { useState } from "react";
-import { TitleContainer, TitleIcon, PostsContainer } from "./styled";
+import { TitleContainer, TitleIcons, PostsContainer } from "./styled";
 import { useEffect } from "react";
+import { Icon } from "../shared";
 
 export default function MyPostsPage() {
+  const user = useSelector((state) => state.user);
 
-    const user = useSelector((state) => state.user);
+  const posts = useSelector((state) => state.posts);
+  const [userPosts, setUserPosts] = useState(null);
 
-    const posts = useSelector((state) => state.posts);
-    const [userPosts, setUserPosts] = useState([]);
-  
-    console.log(posts);
-  
-    useEffect(() => {
-      setUserPosts(posts.filter((post) => post.userId === user.uID));
-      console.log('hejo')
-    }, []);
-  
-    const PostsTitles = () => {
-      console.log(posts);
-      return userPosts.map((post) => {
+
+  useEffect(() => {
+    setUserPosts(posts.filter((post) => post.userId === user.uID));
+  }, []);
+
+  return (
+    <PostsContainer>
+      {userPosts && userPosts.map((post) => {
         return (
           <TitleContainer key={post.id}>
             <h2>{post.title}</h2>
             <p>{post.dateOfCreation}</p>
-            <TitleIcon>arrow_forward</TitleIcon>
+            <TitleIcons>
+              <Icon>delete</Icon>
+              <Icon>edit</Icon>
+              <Icon>arrow_forward</Icon>
+            </TitleIcons>
           </TitleContainer>
         );
-      });
-    };
-
-    return(
-      <PostsContainer>
-        {PostsTitles}
-      </PostsContainer>
-    )
+      })}
+    </PostsContainer>
+  );
 }

@@ -11,8 +11,17 @@ export const AuthorContainer = styled.div`
     "bio bio";
     gap: 2rem;
     background-color: ${({ theme }) => theme.colors.mono200};
-  border-radius: ${({ theme }) => theme.borderRadius.l};
-  box-shadow: ${({ theme }) => theme.shadows.shadowLight};
+    border-radius: ${({ theme }) => theme.borderRadius.l};
+    box-shadow: ${({ theme }) => theme.shadows.shadowLight};
+
+    @media (max-width: 1250px){
+        &{
+            grid-template-columns: auto auto;
+            grid-template-rows: 8rem min-content;
+            padding-block: 3rem;
+            row-gap: 2rem;
+        }
+    }
 `
 export const BaseInfo = styled.div`
     display: flex;
@@ -35,10 +44,52 @@ export const BaseInfo = styled.div`
         background-color: transparent;
         width: 60%;
     }
+    
+    @media (max-width: ${({ theme }) => theme.breakpoints.medium}){
+        &{
+            display: grid;
+            grid-template-columns: max-content 25% max-content;
+            grid-template-rows: 50% 50%;
+            grid-template-areas: "name space type"
+            "date space postNumber";
+
+            #name{
+                grid-area: name;
+            }
+
+            #date{
+                grid-area: date;
+            }
+
+            #type{
+                grid-area: type;
+            }
+
+            #postNumber{
+                grid-area: postNumber;
+            }
+
+            div{
+                height: auto;
+                width: auto;
+                grid-area: space;
+            }
+
+            @media (max-width: 750px){ 
+                grid-template-columns: min-content 25% max-content;
+            }
+        }
+    }
 `
 export const GridAvatar = styled(Avatar)`
     grid-area: avatar;
     justify-self: center;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.small}){
+        &{
+            transform: scale(0.7);
+        }
+    }
 `
 export const Bio = styled.div`
     grid-area: bio;
@@ -77,6 +128,19 @@ export const TitleContainer = styled.div`
         color:  ${({ theme }) => theme.colors.mono400};
         font-size: ${({ theme }) => theme.font.sizes.xs};
     }
+
+    @media (max-width: 1250px) and (min-width: ${({ theme }) => theme.breakpoints.medium}){
+        &{
+            grid-template-columns: 90% 10%;
+            grid-template-rows: 50% 50%;
+            grid-template-areas: "title go"
+            "date go";
+
+            p{
+                margin-left: 1.1rem;
+            }
+        }
+    }
     
 `
 export const PostsContainer = styled.div`
@@ -93,4 +157,13 @@ export const ViewContainer = styled.div`
     margin-top: 2rem;
     grid-template-columns: 48% 48%;
     column-gap: 4%;
+    margin-bottom: 2rem;
+
+    @media (max-width:  ${({ theme }) => theme.breakpoints.medium}){
+        &{
+            grid-template-columns: 100%;
+            grid-template-rows: min-content auto;
+            row-gap: 2rem;
+        }
+    }
 `

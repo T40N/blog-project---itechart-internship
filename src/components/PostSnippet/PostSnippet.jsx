@@ -1,5 +1,4 @@
-import { Container, Snippet, LinkStyled, TitleBox, AuthorLink } from "./styled";
-import Avatar from "../shared/Avatar.styled";
+import { Container, GridAvatar, Snippet, LinkStyled, TitleBox, AuthorLink } from "./styled";
 import { getUserInfo } from "../../api/firestoreResources";
 import { useEffect, useState } from "react";
 
@@ -10,7 +9,6 @@ function shorten(str, maxLen, separator = ".") {
 
 export default function Post({ blog }) {
   const authorId = blog.userId;
-  
 
   const [authorInfo, setAuthorInfo] = useState(null);
   useEffect(() => {
@@ -20,15 +18,16 @@ export default function Post({ blog }) {
   return (
     <Container key={blog.id}>
       <AuthorLink to={`/author/${authorId}`}>
-        <Avatar link={authorInfo ? authorInfo.profile_picture : ""}/>
+        <GridAvatar link={authorInfo ? authorInfo.profile_picture : ""}/>
         {authorInfo && <h2>{authorInfo.name + " " + authorInfo.surname}</h2>}
+        <p>{blog.dateOfCreation}</p>
       </AuthorLink>
       <Snippet>
         <TitleBox>
           <h2>{blog.title}</h2>
           <p>{blog.dateOfCreation}</p>
         </TitleBox>
-        <p>{shorten(blog.content, 300) + "."}</p>
+        <p>{shorten(blog.content, 200) + "."}</p>
         <LinkStyled to={`/blogs/${blog.id}`}>
           <p>Read more </p>
           <span>arrow_forward</span>

@@ -4,14 +4,18 @@ import {
   Container,
   TitleBox,
   ContentBox,
-  TextButton,
+  TextButton, StyledTextArea, StyledInput
 } from "../AddPostPage/styled";
-import Input from "../shared/Input.styled";
 import { newPost } from "../../store/actions/postsActions";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Icon } from "../shared";
+import { postsGet } from "../../store/actions/postsActions";
 
 export default function AddPost() {
+
+  const [wordCount, setWordCount] = useState(0)
+  
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -21,8 +25,11 @@ export default function AddPost() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (title === "" && content === "") {
-      alert("please add text");
+    if (title === ""){
+      alert('please add title')
+    }else{ if(content.length < 2000) {
+      alert("please add content");
+      return
     } else {
       dispatch(newPost({ uID: user.uID, title, content })).then((res) => {
         dispatch(postsGet()).then((res) => {
@@ -32,35 +39,43 @@ export default function AddPost() {
       setContent("");
       setTitle("");
     }
+  }
   };
+
 
   return (
     <Container>
       <TopBox>
         <TitleBox>
           <h3>Title:</h3>
-          <Input
+          <StyledInput
             type="text"
             required
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            maxLength="23"
           />
         </TitleBox>
         <TextButton onClick={handleSubmit}>
           <h3>add post</h3>
+          <Icon>add</Icon>
         </TextButton>
       </TopBox>
       <ContentBox>
         <h3>Content:</h3>
-        <textarea
+        <StyledTextArea
           required
           value={content}
-          onChange={(e) => setContent(e.target.value)}
+          onChange={(e) => {
+            setContent(e.target.value);
+            setWordCount(e.target.value.split(' ').length)
+            console.log(content.length)
+          }}
           cols="30"
-          rows="10"
-        ></textarea>
+          rows="22"
+        ></StyledTextArea>
         <div>
-          <span>elo</span>
+          <p>word Count: {wordCount}</p>
         </div>
       </ContentBox>
     </Container>

@@ -1,8 +1,19 @@
 import styled from "styled-components";
-import { Icon } from "../shared";
 
-export const TitleIcon = styled(Icon)`
+
+export const TitleIcons = styled.div`
     grid-area: go;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-right: 1rem;
+    justify-content: flex-end;
+
+    @media (max-width:  ${({ theme }) => theme.breakpoints.medium}){
+    &{
+      margin-left: 1.1rem;
+    }
+  }
 `
 
 export const TitleContainer = styled.div`
@@ -10,8 +21,9 @@ export const TitleContainer = styled.div`
     border-radius: ${({ theme }) => theme.borderRadius.m};
     box-shadow: ${({ theme }) => theme.shadows.shadowLight};
     display: grid;
-    grid-template-columns: min-content max-content auto 10%;
-    grid-template-areas: "title date . go";
+    margin-inline: 2rem;
+    grid-template-columns: min-content auto max-content;
+    grid-template-areas: "title date go";
     align-items: center;
   
   h2{
@@ -27,7 +39,24 @@ export const TitleContainer = styled.div`
     color:  ${({ theme }) => theme.colors.mono400};
     font-size: ${({ theme }) => theme.font.sizes.xs};
     }
-    
+
+    @media (max-width:  ${({ theme }) => theme.breakpoints.medium}){
+    &{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1rem;
+      gap: 0.8rem;
+
+      p{
+        margin-left: 1.1rem;
+      }
+
+      h2{
+        margin-bottom: 0;
+      }
+    }
+  }
 `
 export const PostsContainer = styled.div`
     margin: 2rem;

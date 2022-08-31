@@ -17,33 +17,45 @@ const handlerSlice = createSlice({
   name: "handlers",
   initialState,
   reducers: {
-    reset(state, action){
-      return  {
+    rejected(state, action) {
+      return {
+        isLoading: false,
+        isError: true,
+      };
+    },
+    pending(state, action) {
+      return {
+        isLoading: true,
+        isError: false,
+      };
+    },
+    reset(state, action) {
+      return {
         isLoading: false,
         isError: false,
-      }
-    }
+      };
+    },
   },
   extraReducers: (builder) => {
     builder
-    //  .addCase(newPost.pending, () => {
-    //   return {
-    //     isLoading: true,
-    //     isError: false,
-    //   };
-    //  })
-    //  .addCase(newPost.rejected, () => {
-    //   return {
-    //     isLoading: false,
-    //     isError: true,
-    //   };
-    //  })
-    //  .addCase(newPost.fulfilled, () => {
-    //   return {
-    //     isLoading: false,
-    //     isError: false,
-    //   };
-    //  })
+      //  .addCase(newPost.pending, () => {
+      //   return {
+      //     isLoading: true,
+      //     isError: false,
+      //   };
+      //  })
+      //  .addCase(newPost.rejected, () => {
+      //   return {
+      //     isLoading: false,
+      //     isError: true,
+      //   };
+      //  })
+      //  .addCase(newPost.fulfilled, () => {
+      //   return {
+      //     isLoading: false,
+      //     isError: false,
+      //   };
+      //  })
       .addCase(postsGet.pending, () => {
         return {
           isLoading: true,
@@ -191,5 +203,5 @@ const handlerSlice = createSlice({
   },
 });
 
-export const {reset} = handlerSlice.actions;
+export const { reset, pending, rejected } = handlerSlice.actions;
 export default handlerSlice;

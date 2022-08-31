@@ -14,12 +14,12 @@ export const Container = styled.aside`
   color: ${({ theme }) => theme.colors.mono400};
   box-shadow: ${({ theme }) => theme.shadows.shadowLight};
 
-  @media (max-width: 1024px) and (min-width: 390px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.medium }) and (min-width: ${({ theme }) => theme.breakpoints.small }) {
     display: none;
   }
 
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.medium }) {
     display: ${({ openMenu }) => openMenu ? 'grid' : 'none'};
     width: 100vw;
   }
@@ -37,7 +37,7 @@ export const MobileSnippet = styled.div`
   color: ${({ theme }) => theme.colors.mono400};
   box-shadow: ${({ theme }) => theme.shadows.shadowLight};
 
-  @media (max-width: 1024px) and (min-width: 390px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.medium }) and (min-width: ${({ theme }) => theme.breakpoints.small }) {
     display: ${({ openMenu }) => openMenu ? 'none' : 'grid'};
   }
 `;
@@ -82,7 +82,7 @@ export const Hamburger = styled(Icon)`
   user-select: none;
   cursor: pointer;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.medium }) {
     display: block;
   }
 `;

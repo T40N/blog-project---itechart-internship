@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Input from "../shared/Input.styled";
 
 export const Container = styled.div`
     width: 90%;
@@ -28,7 +29,7 @@ export const ContentBox = styled.div`
     flex-direction: column;
     margin-inline: 3rem;
     width: auto;
-    height: 60%;
+    height: auto;
     padding-bottom: 2rem;
 
     h3{
@@ -53,8 +54,9 @@ export const ContentBox = styled.div`
         border-top-right-radius: 0;
         box-shadow: ${({ theme }) => theme.shadows.shadowLight};
         padding: 1rem;
+        margin-bottom: 1rem;
 
-        span{
+        p{
             color: ${({ theme }) => theme.colors.mono400};
         }
     }
@@ -67,10 +69,23 @@ export const TextButton = styled.button`
     background-color: transparent;
     border: transparent;
     color: ${({ theme }) => theme.colors.mono400};
+    display: flex;
     
     &.hover{
         color: ${({ theme }) => theme.colors.mono500};
         font-weight: 600;
         background-color: transparent;
     }
+`
+
+export const StyledTextArea = styled.textarea`
+    padding: 1rem 1.5rem;
+    color: ${({ theme }) => theme.colors.mono400};
+    font-family: ${({ theme }) => theme.font.families.primary};
+    outline: none;
+`
+
+export const StyledInput = styled(Input)`
+    height: 2rem;
+    font-size: ${({ theme }) => theme.font.sizes.s};
 `

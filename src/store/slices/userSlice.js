@@ -26,9 +26,6 @@ const userSlice = createSlice({
       .addCase(logIn.fulfilled, (state, action) => {
         return action.payload;
       })
-      .addCase(logIn.rejected, (state, action) => {
-        return action.payload;
-      })
       .addCase(register.fulfilled, (state, action) => {
         return action.payload;
       })

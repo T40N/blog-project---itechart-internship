@@ -5,14 +5,7 @@ import {
   postsGet,
   searchPosts,
 } from "../actions/postsActions";
-import {
-  getUser,
-  logIn,
-  logOut,
-  register,
-  userEdit,
-  deleteUser,
-} from "../actions/userActions";
+import { getUser, logOut, userEdit } from "../actions/userActions";
 
 const extraReducersBuilder = (asyncThunk, builder) => {
   for (const key in asyncThunk) {
@@ -50,9 +43,7 @@ const arrayOfThunks = [
   postEdit,
   postsGet,
   getUser,
-  logIn,
   logOut,
-  register,
   userEdit,
   searchPosts,
   deleteUser,
@@ -93,5 +84,5 @@ const handlerSlice = createSlice({
   },
 });
 
-export const { reset, rejected, pending } = handlerSlice.actions;
+export const { reset, pending, rejected } = handlerSlice.actions;
 export default handlerSlice;

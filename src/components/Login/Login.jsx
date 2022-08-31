@@ -11,8 +11,12 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { isEmailValid } from "../../helpers";
 import { logIn } from "../../store/actions/userActions";
+import { useNavigate } from "react-router-dom";
+import { pending, reset } from "../../store/slices/handlerSlice";
+import { unwrapResult } from "@reduxjs/toolkit";
 
 const Login = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [loginState, setLoginState] = useState({
@@ -20,6 +24,7 @@ const Login = () => {
     password: "",
   });
   const [err, setErr] = useState({
+    login: false,
     email: false,
     password: false,
   });
@@ -36,7 +41,7 @@ const Login = () => {
     });
   };
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
 
     const email = loginState.email.trim();
@@ -63,7 +68,21 @@ const Login = () => {
       password,
     };
 
-    dispatch(logIn(user));
+    dispatch(pending());
+    dispatch(logIn(user))
+      .unwrap()
+      .then(() => {
+        dispatch(reset());
+        navigate("/");
+      })
+      .catch(() => {
+        console.log("error");
+        dispatch(reset());
+        setErr({
+          ...err,
+          login: true,
+        });
+      });
 
     setLoginState({
       email: "",
@@ -73,6 +92,9 @@ const Login = () => {
 
   return (
     <Form onSubmit={onSubmitHandler}>
+      <ErrorMsg error={err.login}>
+        Can't find account check your credentials
+      </ErrorMsg>
       <InputContainer>
         <Label htmlFor="email">Email</Label>
         <Input

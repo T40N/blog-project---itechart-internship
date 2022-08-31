@@ -11,9 +11,9 @@ export const isUserLoggedIn = async () => {
   return new Promise((resolve) => {
     let unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       unsubscribe();
-      if(!currentUser){
-        resolve(false)
-      }else{
+      if (!currentUser) {
+        resolve(false);
+      } else {
         resolve(currentUser.uid);
       }
     });
@@ -39,6 +39,7 @@ export const loginAttempt = async ({ email, password }) => {
     const { user } = await signInWithEmailAndPassword(auth, email, password);
     return user.uid;
   } catch (err) {
+    console.log("hehe");
     throw err;
   }
 };

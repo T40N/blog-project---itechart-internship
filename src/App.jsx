@@ -10,6 +10,7 @@ import {
   AddPostPage,
   PostsViewPage,
   PersonalsPage,
+  PasswordChangePage,
   PostViewPage,
   MyPostsViewPage
 } from "./pages";
@@ -75,8 +76,16 @@ const App = () => {
           <Route
             path="/personals"
             element={
-              <GuardedRoute auth={(type) >= 1}>
+              <GuardedRoute auth={type >= 1}>
                 <PersonalsPage />
+              </GuardedRoute>
+            }
+          />
+          <Route
+            path="/passwordChange"
+            element={
+              <GuardedRoute auth={type >= 1}>
+                <PasswordChangePage />
               </GuardedRoute>
             }
           />

@@ -7,3 +7,4 @@ export {default as AddPostPage} from "./AddPostPage"
 export {default as MyPostsViewPage} from "./MyPostsViewPage"
 export {default as PostViewPage} from "./PostViewPage"
 export { default as PersonalsPage } from "./PersonalsPage";
+export { default as PasswordChangePage } from "./PasswordChangePage";

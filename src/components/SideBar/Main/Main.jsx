@@ -53,7 +53,7 @@ const Main = ({ blogTabOpen, user, isSnippet, setOpenMenu }) => {
                 {!isSnippet && <h2>Change personals</h2>}
               </ListButton>
 
-              <ListButton to="/changePassword" onClick={ () => setOpenMenu(false) }>
+              <ListButton to="/passwordChange" onClick={ () => setOpenMenu(false) }>
                 <Icon>lock</Icon>
                 {!isSnippet && <h2>Change password</h2>}
               </ListButton>

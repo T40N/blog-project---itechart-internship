@@ -48,7 +48,10 @@ const theme = {
       l:'700'
     }
   },
-
+  breakpoints: {
+    small: '512px',
+    medium: '1024px',
+  }
 };
 
 const Theme = ({ children }) => {

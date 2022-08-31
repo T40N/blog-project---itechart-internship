@@ -9,6 +9,7 @@ const Avatar = styled.div`
   background-position: center;
   border-radius: 50%;
   width: 6.25rem;
+  cursor: pointer;
 
 
   &::before {
@@ -20,8 +21,7 @@ const Avatar = styled.div`
     aspect-ratio: 1/1;
     top: -50%;
     left: -50%;
-    margin-left: 2.5rem;
-    margin-top: 2.5rem;
+    translate: 2.5rem 2.5rem;
     box-sizing: border-box;
   }
 

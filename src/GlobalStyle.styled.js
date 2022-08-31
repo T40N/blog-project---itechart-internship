@@ -1,12 +1,15 @@
 import { createGlobalStyle } from "styled-components";
-import './index.css';
-
+import "./index.css";
 
 const GlobalStyle = createGlobalStyle`
+
 #root {
 	display: grid;
 	grid-template: auto / minmax(min-content,max-content) auto;
 }
+*::-webkit-scrollbar {
+    display: none;
+  }
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -56,23 +59,14 @@ a {
 	text-decoration: none;
 }
 html {
+	@media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
+		font-size: 14px;
+	}
 
-@media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
-
-	font-size: 14px;
-
+	@media (max-width: ${({ theme }) => theme.breakpoints.small}) {
+		font-size: 12px;
+	}
 }
-
-
-
-@media (max-width: ${({ theme }) => theme.breakpoints.small}) {
-
-	font-size: 12px;
-
-}
-
-}
-
 `;
 
 export default GlobalStyle;

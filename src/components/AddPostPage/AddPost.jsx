@@ -6,7 +6,8 @@ import {
   ContentBox,
   TextButton, StyledTextArea, StyledInput
 } from "../AddPostPage/styled";
-import { newPost } from "../../store/actions/postsActions";
+import Input from "../shared/Input.styled";
+import { newPost, postsGet } from "../../store/actions/postsActions";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Icon } from "../shared";

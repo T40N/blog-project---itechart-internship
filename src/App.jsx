@@ -2,7 +2,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SideBar from "./components/SideBar";
 import ErrorHandler from "./components/ErrorHandler";
 import LoaderSpinner from "./components/LoaderSpinner/LoaderSpinner";
-import { RegisterPage, LoginPage, AuthorViewPage, ReadPostViewPage, AddPostPage, PostsViewPage, MyPostsViewPage } from "./pages";
+import {
+  RegisterPage,
+  LoginPage,
+  ReadPostViewPage,
+  AuthorViewPage,
+  AddPostPage,
+  PostsViewPage,
+  PersonalsPage,
+  PostViewPage,
+  MyPostsViewPage
+} from "./pages";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { useEffect } from "react";
 import { getUser } from "./store/actions/userActions";
@@ -31,6 +41,8 @@ const App = () => {
     });
   }, []);
 
+  console.log(type);
+
   return (
     <>
       {handlers.isLoading && <LoaderSpinner />}
@@ -41,10 +53,9 @@ const App = () => {
 
         <Route exact path="/" element={<PostsViewPage />} />
             <Route path="/addPost" element={<AddPostPage />} />
-            <Route path="/blogs/:id" element={ <ReadPostViewPage />} />
+            <Route path="/blogs/:id" element={ <PostViewPage />} />
             <Route path="/author/:id" element={<AuthorViewPage />} />
             <Route path="/myPosts" element={<MyPostsViewPage />} />
-
           <Route
             path="/login"
             element={
@@ -58,6 +69,14 @@ const App = () => {
             element={
               <GuardedRoute auth={type === 0}>
                 <RegisterPage />
+              </GuardedRoute>
+            }
+          />
+          <Route
+            path="/personals"
+            element={
+              <GuardedRoute auth={(type) >= 1}>
+                <PersonalsPage />
               </GuardedRoute>
             }
           />

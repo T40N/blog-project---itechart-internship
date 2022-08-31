@@ -46,6 +46,7 @@ const arrayOfThunks = [
   logOut,
   userEdit,
   searchPosts,
+  deleteUser,
 ];
 
 const initialState = {

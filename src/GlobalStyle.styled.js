@@ -2,6 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import "./index.css";
 
 const GlobalStyle = createGlobalStyle`
+
 #root {
 	display: grid;
 	grid-template: auto / minmax(min-content,max-content) auto;
@@ -56,6 +57,16 @@ table {
 }
 a {
 	text-decoration: none;
+}
+
+html {
+	@media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
+		font-size: 14px;
+	}
+
+	@media (max-width: ${({ theme }) => theme.breakpoints.small}) {
+		font-size: 12px;
+	}
 }
 `;
 

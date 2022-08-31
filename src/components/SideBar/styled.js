@@ -4,6 +4,7 @@ import { Icon } from "../shared";
 
 export const Container = styled.aside`
   position: sticky;
+  z-index: 5;
   top: 0;
   left: 0;
   width: fit-content;
@@ -14,19 +15,19 @@ export const Container = styled.aside`
   color: ${({ theme }) => theme.colors.mono400};
   box-shadow: ${({ theme }) => theme.shadows.shadowLight};
 
-  @media (max-width: 1024px) and (min-width: 390px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.medium }) and (min-width: ${({ theme }) => theme.breakpoints.small }) {
     display: none;
   }
 
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.medium }) {
     display: ${({ openMenu }) => openMenu ? 'grid' : 'none'};
+    position: fixed;
     width: 100vw;
-    position: absolute;
   }
 `;
 
-export const MobileSnippet = styled.div`
+export const MobileSnippet = styled.aside`
   display: none;
   top: 0;
   left: 0;
@@ -38,7 +39,7 @@ export const MobileSnippet = styled.div`
   color: ${({ theme }) => theme.colors.mono400};
   box-shadow: ${({ theme }) => theme.shadows.shadowLight};
 
-  @media (max-width: 1024px) and (min-width: 390px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.medium }) and (min-width: ${({ theme }) => theme.breakpoints.small }) {
     display: ${({ openMenu }) => openMenu ? 'none' : 'grid'};
   }
 `;
@@ -72,18 +73,18 @@ export const ListButton = styled(NavLink)`
 `;
 
 export const Hamburger = styled(Icon)`
-  z-index: 2;
+  z-index: 10;
   display: none;
   top: 0;
   right: 0;
   position: fixed;
   background-color: ${({ theme }) => theme.colors.mono300};
-  border-radius: 0 0 0 50%;
-  padding: 0.5rem;
+  border-radius: 100% 0% 0% 100% / 0% 0% 100% 100%;
+  padding: .5rem .5rem 1rem 1rem;
   user-select: none;
   cursor: pointer;
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.medium }) {
     display: block;
   }
 `;

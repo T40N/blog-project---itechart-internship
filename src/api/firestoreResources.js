@@ -195,12 +195,6 @@ export const deleteComment = async ({ pID, cID }) => {
   }
 };
 
-// ???
-export const addReply = async ({ pID, uID, content }) => {
-  try {
-  } catch (err) {}
-};
-
 const mapPosts = (posts) => {
   return posts.docs.map((post) => {
     return { ...post.data(), id: post.id };

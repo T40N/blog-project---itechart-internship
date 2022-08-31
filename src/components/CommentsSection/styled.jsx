@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { ListButtonLinkless, Input, Avatar } from '../shared';
+import { ListButtonLinkless, Input } from '../shared';
 import { Container as HeaderContainer } from "../shared/Header/styled";
 
 const sharedStyles = css`
@@ -48,50 +48,6 @@ export const CommentsContainer = styled.div`
     gap: 1rem;
 `;
 
-export const Comment = styled.div`
-    ${sharedStyles};
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    
-    p {
-        padding-left: 1rem;
-    }
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.small }) {
-        align-items: center;
-        gap: .5rem;
-
-        p {
-            padding-left: 0;
-        }
-    }   
-`;
-
-export const CommentAvatar = styled(Avatar)`
-    transform: scale(0.45);
-`;
-
-export const CommentLabel = styled.div`
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-
-    h2 {
-        font-size: ${({ theme }) => theme.font.sizes.l};
-    }
-
-    h3 {
-        font-size: ${({ theme }) => theme.font.sizes.s};
-    }
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.small }) {
-        justify-content: center;
-        flex-direction: column;
-    } 
-`;
-
 export const Form = styled.form`
 display: flex; 
 width: 100%;
@@ -103,13 +59,3 @@ justify-content: space-around;
 }
 `;
 
-export const CommentAuthor = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.small }) {
-      align-items: center;
-      flex-direction: column;
-  } 
-`;

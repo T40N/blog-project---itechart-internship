@@ -4,16 +4,17 @@ import { ListButton } from "../styled";
 import { useDispatch } from "react-redux";
 import { logOut } from "../../../store/actions/userActions";
 
-const Footer = ({ user, isSnippet }) => {
+const Footer = ({ user, isSnippet, setOpenMenu }) => {
   const dispatch = useDispatch()
 
   const onLogoutHandler = () => {
+    setOpenMenu(false);
     dispatch(logOut());
   }
 
   return (
     <Container>
-      <ListButton to="/issues">
+      <ListButton to="/issues" onClick={ () => setOpenMenu(false) }>
         <Icon>help</Icon>
         { !isSnippet && <h2>Issues</h2> }
       </ListButton>

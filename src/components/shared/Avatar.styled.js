@@ -9,6 +9,7 @@ const Avatar = styled.div`
   background-position: center;
   border-radius: 50%;
   width: 6.25rem;
+  cursor: pointer;
 
 
   &::before {

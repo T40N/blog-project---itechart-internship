@@ -31,13 +31,11 @@ const PostView = () => {
     return (
         <Container>
             {postInfo &&
-                <>
                     <Post>
                         <h2>{postInfo.post.title}</h2>
                         <h3>by {postInfo.user.name} {postInfo.user.surname}</h3>
                         <p>{postInfo.post.content}</p>
                     </Post>
-                </>
             }
         </Container>
     );

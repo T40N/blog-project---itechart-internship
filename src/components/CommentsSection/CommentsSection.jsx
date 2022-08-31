@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { getComments, getPost, getUserInfo, insertComment } from "../../api/firestoreResources";
-import { Container, Post, SectionHeader, AddComment, CommentInput, AddCommentButton, CommentsContainer, Comment, CommentAvatar, CommentLabel, Form, CommentAuthor } from "./styled";
+import { getComments, insertComment } from "../../api/firestoreResources";
+import { SectionHeader, AddComment, CommentInput, AddCommentButton, CommentsContainer, Form } from "./styled";
 import { Content } from "../shared/Header/styled";
 import { Icon } from "../shared";
 import { useSelector } from "react-redux";
 import { pending, reset } from "../../store/slices/handlerSlice";
-import { formatDate } from "../../helpers";
+import Comment from "../Comment";
 
 const CommentsSection = () => {
     const [comments, setComments] = useState(null);
@@ -19,7 +19,8 @@ const CommentsSection = () => {
     useEffect(() => {
         dispatch(pending());
         getComments(id).then(comments => {
-            setComments(comments);
+            console.log(comments.length);
+            comments.length && setComments(comments);
             dispatch(reset());
         });
     }, []);
@@ -30,29 +31,14 @@ const CommentsSection = () => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
+        dispatch(pending());
         insertComment({ pID: id, uID: user.uID, content: commentContent, name: user.name, surname: user.surname, profile_picture: user.profilePicture }).then(res => {
             getComments(id).then(comments => {
                 setComments(comments);
+                dispatch(reset());
             })
         });
-        ;
-    }
-
-    const renderComments = () => {
-        return comments.map(comment =>
-        (
-            <Comment key={comment.id}>
-                <CommentLabel>
-                    <CommentAvatar link={comment.profile_picture} />
-                    <CommentAuthor>
-                        <h2>{comment.name} {comment.surname}</h2>
-                        <h3>{formatDate(comment.date.toDate())}</h3>
-                    </CommentAuthor>
-                </CommentLabel>
-                <p>{comment.content}</p>
-            </Comment>
-        )
-        );
+        e.target.reset();
     }
 
     return (
@@ -76,7 +62,7 @@ const CommentsSection = () => {
 
             {comments &&
                 <CommentsContainer>
-                    {renderComments()}
+                    {comments.map(details => <Comment key={details.id} comment={details}></Comment>)}
                 </CommentsContainer>
             }
 

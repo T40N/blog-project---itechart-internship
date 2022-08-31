@@ -10,6 +10,7 @@ import {
   AddPostPage,
   PostsViewPage,
   PersonalsPage,
+  PostViewPage
 } from "./pages";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { useEffect } from "react";
@@ -44,10 +45,10 @@ const App = () => {
       <BrowserRouter>
         <SideBar user={{ type, profile_picture: profilePicture }} />
         <Routes>
-          <Route exact path="/" element={<PostsViewPage />} />
-          <Route path="/addPost" element={<AddPostPage />} />
-          <Route path="/blogs/:id" element={<ReadPostViewPage />} />
-          <Route path="/:author" element={<AuthorViewPage />} />
+        <Route exact path="/" element={<PostsViewPage />} />
+            <Route path="/addPost" element={<AddPostPage />} />
+            <Route path="/blogs/:id" element={ <PostViewPage />} />
+            <Route path="/:author" element={<AuthorViewPage />} />
           <Route
             path="/login"
             element={

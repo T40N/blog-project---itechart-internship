@@ -1,20 +1,30 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Avatar from "../shared/Avatar.styled";
 
 export const Container = styled.div`
   width: 100%;
   height: 30%;
   display: grid;
-  grid-template-columns: 18% 82%;
+  grid-template-columns: max-content auto;
   grid-template-areas: "author snippet";
   background-color: ${({ theme }) => theme.colors.mono200};
   border-radius: ${({ theme }) => theme.borderRadius.l};
   box-shadow: ${({ theme }) => theme.shadows.shadowLight};
-  gap: 1rem;
 
-  /* @media (max-width: 1024px){
-      grid-template-columns: 30% 70%;
-  } */
+  @media (max-width:  ${({ theme }) => theme.breakpoints.medium}){
+    &{
+      grid-template-columns: min-content auto;
+    }
+  }
+
+  @media (max-width:  ${({ theme }) => theme.breakpoints.small}){
+    &{
+      display: flex;
+      flex-direction: column;
+      height: 32%;
+    }
+  }
 `;
 
 export const TitleBox = styled.div`
@@ -24,21 +34,11 @@ export const TitleBox = styled.div`
   align-items: baseline;
   grid-area: title;
 
-  /* @media (max-width: 1024px){
-    flex-direction: column;
-  } */
-
   h2 {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-block: 1rem;
     margin-right: 0.5rem;
     color: ${({ theme }) => theme.colors.mono500};
     font-size: ${({ theme }) => theme.font.sizes.l};
-
-    /* @media (max-width: 1024px){
-      font-size: ${({ theme }) => theme.font.sizes.s};
-    } */
-
   }
 
   p {
@@ -46,32 +46,82 @@ export const TitleBox = styled.div`
     font-style: italic;
     color: ${({ theme }) => theme.colors.mono400};
   }
+
+  @media (max-width:  ${({ theme }) => theme.breakpoints.medium}){
+    &{
+      flex-direction: column;
+      gap: .5rem;
+
+      h2{
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  @media (max-width:  ${({ theme }) => theme.breakpoints.medium}){
+    &{
+
+      gap: 0;
+      align-items: flex-start;
+
+      h2{
+        word-wrap: normal;
+        margin: 0;
+      }
+
+      p{
+        display: none;
+      }
+    }
+  }
+  
 `;
 
 export const Snippet = styled.div`
-  padding-left: 3rem;
+  padding-left: 8%;
   grid-area: snippet;
   display: grid;
-  grid-template-columns: 75% 25%;
-  grid-template-rows: min-content auto 3rem;
+  justify-items: start;
+  grid-template-columns: auto max-content;
+  grid-template-rows: min-content auto max-content;
   border-left: 2px solid ${({ theme }) => theme.colors.mono300};
   grid-template-areas:
     "title  ."
     "snippet ."
     ". readMore";
 
-    /* @media (max-width: 1024px){
-      grid-template-columns: auto;
-      grid-template-areas: 
-      "title"
-      "snippet"
-      "readMore";
-    } */
-
   p {
     grid-area: snippet;
     color: ${({ theme }) => theme.colors.mono400};
     font-size: ${({ theme }) => theme.font.sizes.xs};
+  }
+
+  @media (max-width: 1140px){
+    &{
+      grid-template-columns: auto min-content;
+    }
+  }
+
+  @media (max-width:  ${({ theme }) => theme.breakpoints.medium}){
+
+    &{
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding-left: 5%;
+
+      p{
+        padding-right: 1rem;
+      }
+    }
+  }
+
+  @media (max-width:  ${({ theme }) => theme.breakpoints.medium}){
+    &{
+      display: flex;
+      flex-direction: column;
+      border: transparent;
+    }
   }
 `;
 
@@ -80,10 +130,11 @@ export const LinkStyled = styled(Link)`
   text-decoration: none;
   color: ${({ theme }) => theme.colors.mono500};
   font-size: ${({ theme }) => theme.font.sizes.xs};
-
   justify-self: end;
   align-self: end;
   margin: 1.5rem;
+  margin-top: 0;
+  padding-right: 1rem;
   display: flex;
 
   span {
@@ -93,10 +144,32 @@ export const LinkStyled = styled(Link)`
     
   }
 
-  &.active {
-    color: ${({ theme }) => theme.colors.mono400};
+  &.hover {
+    color: ${({ theme }) => theme.colors.mono500};
+  }
+
+  @media (max-width:  ${({ theme }) => theme.breakpoints.medium}){
+    &{
+      align-items: flex-end;
+    }
   }
 `;
+
+export const GridAvatar = styled(Avatar)`
+
+    @media (max-width:  ${({ theme }) => theme.breakpoints.medium}){
+    &{
+      grid-area: avatar;
+      
+    }
+
+    @media (max-width:  ${({ theme }) => theme.breakpoints.small}){
+      &{
+        transform: scale(0.8);
+      }
+    }
+  }
+`
 
 export const AuthorLink = styled(Link)`
   display: flex;
@@ -110,6 +183,44 @@ export const AuthorLink = styled(Link)`
   font-size: ${({ theme }) => theme.font.sizes.m};
   gap: 1rem;
   text-decoration: none;
+
+  h2{
+    padding-inline: 1rem;
+  }
+
+  p{
+    display: none;
+  }
+
+  @media (max-width:  ${({ theme }) => theme.breakpoints.medium}){
+    &{
+      transform: scale(0.7);
+    }
+  }
+
+  @media (max-width:  ${({ theme }) => theme.breakpoints.medium}){
+    &{
+      display: grid;
+      grid-template-columns: min-content auto;
+      grid-template-rows: 50% 50%;
+      grid-template-areas: "avatar name"
+      "avatar date";
+      gap: 0;
+
+      p{
+        display: block;
+        font-size: ${({ theme }) => theme.font.sizes.xs};
+        font-style: italic;
+        color: ${({ theme }) => theme.colors.mono400};
+        grid-area: date;
+      }
+
+      h2{
+        grid-area: name;
+      }
+    }
+  }
+  
 `
 
 

@@ -19,7 +19,13 @@ const theme = {
     l: "40px",
   },
 
-  border: "solid 5px #E8E8E8",
+
+  breakpoints: {
+    small: '512px',
+    medium: '1024px',
+  },
+
+  border: 'solid 5px #E8E8E8',
 
   borderBottom: "solid 2px #E8E8E8",
 
@@ -42,11 +48,6 @@ const theme = {
       m: "500",
       l: "700",
     },
-  },
-  breakpoints: {
-    small: "512px",
-
-    medium: "1024px",
   },
 };
 

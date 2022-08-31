@@ -49,9 +49,9 @@ export default function PostsView() {
         <Selection>
           { index !== 1 && <div id={index-1} onClick={(e) => setIndex(+e.target.id)}>previous</div>}
           <div id='1' onClick={(e) => setIndex(+e.target.id)}>1</div>
-          <div>·</div>
+          <span>·</span>
           { (index !== 1 && index !== lastIndex) && <div id={index} onClick={(e) => setIndex(+e.target.id)}>{index}</div>}
-          { (index !== 1 && index !== lastIndex) && <div>·</div>}
+          { (index !== 1 && index !== lastIndex) && <span>·</span>}
           <div id={lastIndex} onClick={(e) => setIndex(+e.target.id)} >{lastIndex}</div>
           { index !== lastIndex && <div id={index+1} onClick={(e) => setIndex(+e.target.id)}>next</div>}
         </Selection>

@@ -155,7 +155,7 @@ export const editPost = async ({ pID, ...props }) => {
   }
 };
 
-export const insertComment = async ({ pID, uID, content }) => {
+export const insertComment = async ({ pID, uID, content, name, surname, profile_picture }) => {
   try {
     const postRef = collection(db, "posts", pID, "comments");
 
@@ -163,6 +163,9 @@ export const insertComment = async ({ pID, uID, content }) => {
       u_id: uID,
       content,
       date: serverTimestamp(),
+      name,
+      surname,
+      profile_picture
     });
   } catch (err) {
     throw err;
@@ -174,9 +177,9 @@ export const getComments = async (pID) => {
     const commentsRef = collection(db, "posts", pID, "comments");
     const firestoreQuery = query(commentsRef, orderBy("date", "desc"));
 
-    return (await getDocs(firestoreQuery)).docs.map((comment) =>
-      comment.data()
-    );
+    return (await getDocs(firestoreQuery)).docs.map((comment) => {
+      return { ...comment.data(), id: comment.id }
+    });
   } catch (err) {
     throw err;
   }
@@ -190,12 +193,6 @@ export const deleteComment = async ({ pID, cID }) => {
   } catch (err) {
     throw err;
   }
-};
-
-// ???
-export const addReply = async ({ pID, uID, content }) => {
-  try {
-  } catch (err) {}
 };
 
 const mapPosts = (posts) => {

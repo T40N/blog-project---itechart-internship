@@ -10,6 +10,9 @@ import {
   AddPostPage,
   PostsViewPage,
   PersonalsPage,
+  PasswordChangePage,
+  PostViewPage,
+  MyPostsViewPage
 } from "./pages";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { useEffect } from "react";
@@ -25,7 +28,11 @@ const App = () => {
   console.log(profilePicture);
   const dispatch = useDispatch();
   useEffect(() => {
+
+    
+
     dispatch(postsGet());
+
     isUserLoggedIn().then((res) => {
       if (res) {
         dispatch(getUser(res));
@@ -44,10 +51,12 @@ const App = () => {
       <BrowserRouter>
         <SideBar user={{ type, profile_picture: profilePicture }} />
         <Routes>
-          <Route exact path="/" element={<PostsViewPage />} />
-          <Route path="/addPost" element={<AddPostPage />} />
-          <Route path="/blogs/:id" element={<ReadPostViewPage />} />
-          <Route path="/:author" element={<AuthorViewPage />} />
+
+        <Route exact path="/" element={<PostsViewPage />} />
+            <Route path="/addPost" element={<AddPostPage />} />
+            <Route path="/blogs/:id" element={ <PostViewPage />} />
+            <Route path="/author/:id" element={<AuthorViewPage />} />
+            <Route path="/myPosts" element={<MyPostsViewPage />} />
           <Route
             path="/login"
             element={
@@ -67,8 +76,16 @@ const App = () => {
           <Route
             path="/personals"
             element={
-              <GuardedRoute auth={(type) >= 1}>
+              <GuardedRoute auth={type >= 1}>
                 <PersonalsPage />
+              </GuardedRoute>
+            }
+          />
+          <Route
+            path="/passwordChange"
+            element={
+              <GuardedRoute auth={type >= 1}>
+                <PasswordChangePage />
               </GuardedRoute>
             }
           />

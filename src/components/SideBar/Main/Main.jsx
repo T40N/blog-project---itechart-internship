@@ -10,7 +10,6 @@ const Main = ({ blogTabOpen, user, isSnippet, setOpenMenu }) => {
 
   const onDeleteButtonClickHandler = () => {
     setDeleteModalShow(true);
-    setOpenMenu(false);
   };
 
   const onCloseHandler = () => {

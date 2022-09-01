@@ -77,7 +77,7 @@ export const TitleBox = styled.div`
 `;
 
 export const Snippet = styled.div`
-  padding-left: 8%;
+  padding-left: 5%;
   grid-area: snippet;
   display: grid;
   justify-items: start;
@@ -93,7 +93,12 @@ export const Snippet = styled.div`
     grid-area: snippet;
     color: ${({ theme }) => theme.colors.mono400};
     font-size: ${({ theme }) => theme.font.sizes.xs};
-    /* word-break: break-all; */
+  }
+
+  @media (max-width: 1200px){
+    &{
+      grid-template-columns: auto min-content;
+    }
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
@@ -109,7 +114,7 @@ export const Snippet = styled.div`
     }
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.small}) {
     & {
       display: flex;
       flex-direction: column;

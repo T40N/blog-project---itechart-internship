@@ -42,8 +42,6 @@ const App = () => {
     });
   }, []);
 
-  console.log(type);
-
   return (
     <>
       {handlers.isLoading && <LoaderSpinner />}

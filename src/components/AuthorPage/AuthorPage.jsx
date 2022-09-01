@@ -12,7 +12,8 @@ import {
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux/es/exports";
 import { getUserInfo } from "../../api/firestoreResources";
-import { formatDate } from "../../helpers";
+import { formatDate, userType } from "../../helpers";
+
 
 export default function AuthorPage() {
   const { id } = useParams();
@@ -25,17 +26,12 @@ export default function AuthorPage() {
     getUserInfo(id)
       .then((info) => {
         setAuthor(info);
-        console.log(posts);
         setAuthorPosts(posts.filter((post) => post.userId === id));
-        console.log(author);
       })
       .catch(() => {
         setErr(true);
       });
   }, [posts]);
-
-  console.log(authorPosts);
-
 
   return (
     <ViewContainer>
@@ -52,7 +48,7 @@ export default function AuthorPage() {
                 Joined at {formatDate(author.date_of_register.toDate())}
               </p>
               <div></div>
-              <h3 id="type">{author.type}</h3>
+              <h3 id="type">{userType(author.type)}</h3>
               <p id="postNumber">Posts: {authorPosts.length}</p>
             </BaseInfo>
             <Bio>

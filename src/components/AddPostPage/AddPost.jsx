@@ -4,19 +4,19 @@ import {
   Container,
   TitleBox,
   ContentBox,
-  TextButton, StyledTextArea, StyledInput
+  TextButton,
+  StyledTextArea,
+  StyledInput,
 } from "../AddPostPage/styled";
 import Input from "../shared/Input.styled";
 import { newPost, postsGet } from "../../store/actions/postsActions";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Icon } from "../shared";
-import { postsGet } from "../../store/actions/postsActions";
 
 export default function AddPost() {
+  const [wordCount, setWordCount] = useState(0);
 
-  const [wordCount, setWordCount] = useState(0)
-  
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -26,23 +26,23 @@ export default function AddPost() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (title === ""){
-      alert('please add title')
-    }else{ if(content.length < 2000) {
-      alert("please add content");
-      return
+    if (title === "") {
+      alert("please add title");
     } else {
-      dispatch(newPost({ uID: user.uID, title, content })).then((res) => {
-        dispatch(postsGet()).then((res) => {
-          navigate("/");
+      if (content.length < 2000) {
+        alert("please add content");
+        return;
+      } else {
+        dispatch(newPost({ uID: user.uID, title, content })).then((res) => {
+          dispatch(postsGet()).then((res) => {
+            navigate("/");
+          });
         });
-      });
-      setContent("");
-      setTitle("");
+        setContent("");
+        setTitle("");
+      }
     }
-  }
   };
-
 
   return (
     <Container>
@@ -69,8 +69,8 @@ export default function AddPost() {
           value={content}
           onChange={(e) => {
             setContent(e.target.value);
-            setWordCount(e.target.value.split(' ').length)
-            console.log(content.length)
+            setWordCount(e.target.value.split(" ").length);
+            console.log(content.length);
           }}
           cols="30"
           rows="22"

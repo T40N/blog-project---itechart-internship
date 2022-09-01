@@ -28,6 +28,7 @@ const Register = () => {
     surname: false,
     email: false,
     password: false,
+    register: false,
   });
 
   const onChangeHandler = (e) => {
@@ -89,7 +90,15 @@ const Register = () => {
       password,
     };
 
-    dispatch(register(user)).then(navigate("/"));
+    dispatch(register(user))
+      .unwrap()
+      .then(navigate("/"))
+      .catch((err) => {
+        setErr({
+          ...err,
+          register: true,
+        });
+      });
 
     setRegisterState({
       name: "",
@@ -101,6 +110,9 @@ const Register = () => {
 
   return (
     <Form onSubmit={onSubmitHandler}>
+      <ErrorMsg error={err.register}>
+        Account with this email allready exists.
+      </ErrorMsg>
       <InputContainer>
         <Label htmlFor="name">Name</Label>
         <Input

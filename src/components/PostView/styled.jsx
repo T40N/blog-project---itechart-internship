@@ -55,6 +55,6 @@ export const Post = styled.div`
 
   p {
     line-height: ${({ theme }) => theme.font.sizes.l};
-    word-break: break-all;
+    /* word-break: break-all; */
   }
 `;

@@ -103,6 +103,7 @@ export const Bio = styled.div`
 `
 export const TitleIcon = styled(Icon)`
     grid-area: go;
+    cursor: pointer;
 `
 
 export const TitleContainer = styled.div`

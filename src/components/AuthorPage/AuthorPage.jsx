@@ -13,9 +13,11 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux/es/exports";
 import { getUserInfo } from "../../api/firestoreResources";
 import { formatDate } from "../../helpers";
-
+import { MyPostIcon } from "../MyPostsPage/styled";
+import {useNavigate} from "react-router-dom"
 export default function AuthorPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [author, setAuthor] = useState(null);
   const [err, setErr] = useState(false);
@@ -25,16 +27,12 @@ export default function AuthorPage() {
     getUserInfo(id)
       .then((info) => {
         setAuthor(info);
-        console.log(posts);
         setAuthorPosts(posts.filter((post) => post.userId === id));
-        console.log(author);
       })
       .catch(() => {
         setErr(true);
       });
   }, [posts]);
-
-  console.log(authorPosts);
 
 
   return (
@@ -65,7 +63,9 @@ export default function AuthorPage() {
                 <TitleContainer key={post.id}>
                   <h2>{post.title}</h2>
                   <p>{post.dateOfCreation}</p>
-                  <TitleIcon>arrow_forward</TitleIcon>
+                  <TitleIcon onClick={() => navigate(`/blogs/${post.id}`)}>
+                  arrow_forward
+                </TitleIcon>
                 </TitleContainer>
               );
             })}

@@ -28,6 +28,7 @@ const Personals = () => {
   const [avatarLabel, setAvatarLabel] = useState("Change avatar");
 
   const onChangeAvatarHandler = (e) => {
+    console.log(e.target.files[0]);
     setUserData({
       ...userData,
       avatar: e.target.files[0],
@@ -50,10 +51,12 @@ const Personals = () => {
     let name = userData.name;
     let surname = userData.surname;
     let bio = userData.bio;
-
-    if (avatar === "") {
-      avatar = user.profilePicture;
+    
+    if (!avatar) {
+      avatar = undefined;
     }
+    
+    console.log(avatar);
 
     if (name === "") {
       name = user.name;
@@ -77,7 +80,7 @@ const Personals = () => {
       avatar: "",
       name: "",
       surname: "",
-      bio: user.bio,
+      ...userData,
     });
   };
 

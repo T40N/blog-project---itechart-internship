@@ -21,7 +21,6 @@ export default function AddPost() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const user = useSelector((state) => state.user);
-  console.log(user);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -70,7 +69,6 @@ export default function AddPost() {
           onChange={(e) => {
             setContent(e.target.value);
             setWordCount(e.target.value.split(" ").length);
-            console.log(content.length);
           }}
           cols="30"
           rows="22"

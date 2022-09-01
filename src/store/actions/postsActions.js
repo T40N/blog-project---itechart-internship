@@ -45,10 +45,8 @@ export const newPost = createAsyncThunk(
   async ({ uID, title, content }) => {
     try {
       await insertPost({ uID, title, content });
-      console.log("thunk");
       return {};
     } catch (err) {
-      console.log(err);
     }
   }
 );

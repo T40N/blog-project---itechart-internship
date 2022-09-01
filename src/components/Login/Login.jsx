@@ -76,7 +76,6 @@ const Login = () => {
         navigate("/");
       })
       .catch(() => {
-        console.log("error");
         dispatch(reset());
         setErr({
           ...err,

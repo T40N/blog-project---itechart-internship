@@ -59,7 +59,7 @@ export const TitleBox = styled.div`
     }
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.smal}) {
     & {
       gap: 0;
       align-items: flex-start;

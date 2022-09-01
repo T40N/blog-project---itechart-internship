@@ -22,7 +22,7 @@ export const TitleContainer = styled.div`
   box-shadow: ${({ theme }) => theme.shadows.shadowLight};
   display: grid;
   margin-inline: 2rem;
-  grid-template-columns: min-content auto max-content;
+  grid-template-columns: max-content auto max-content;
   grid-template-areas: "title date go";
   align-items: center;
 

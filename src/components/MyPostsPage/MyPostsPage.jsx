@@ -34,9 +34,7 @@ export default function MyPostsPage() {
       dispatch(postsGet());
     });
   };
-
-  console.log(userPosts);
-
+  
   return (
     <PostsContainer>
       {userPosts ? (

@@ -64,7 +64,6 @@ const PasswordChange = () => {
 
       return;
     }
-    console.log(user.email);
 
     dispatch(pending());
     dispatch(logIn({ email: user.email, password: passwordState.oldPassword }))

@@ -19,7 +19,6 @@ const Options = (blogs) => {
 
 export default function PostsView() {
   const blogs = useSelector((state) => state.posts);
-  console.log(blogs)
   const dispatch = useDispatch();
   const [index, setIndex] = useState(1);
 
@@ -39,21 +38,27 @@ export default function PostsView() {
     <Post blog={blog} key={blog.id} />
   ));
 
+  console.log(blogs);
+  console.log('hejo')
+
 
   return (
     <Theme>
       <MainPage>
         <PostsContainer>
           {blogs && snippets}
+          { blogs.length === 0 && <h3>Posts not found</h3>}
         </PostsContainer>
         <Selection>
-          { index !== 1 && <div id={index-1} onClick={(e) => setIndex(+e.target.id)}>previous</div>}
+          { blogs.length > 0 && <>
+          { blogs && index !== 1 && <div id={index-1} onClick={(e) => setIndex(+e.target.id)}>previous</div>}
           <div id='1' onClick={(e) => setIndex(+e.target.id)}>1</div>
           <span>·</span>
-          { (index !== 1 && index !== lastIndex) && <div id={index} onClick={(e) => setIndex(+e.target.id)}>{index}</div>}
-          { (index !== 1 && index !== lastIndex) && <span>·</span>}
+          { (blogs && index !== 1 && index !== lastIndex) && <div id={index} onClick={(e) => setIndex(+e.target.id)}>{index}</div>}
+          { (blogs && index !== 1 && index !== lastIndex) && <span>·</span>}
           <div id={lastIndex} onClick={(e) => setIndex(+e.target.id)} >{lastIndex}</div>
-          { index !== lastIndex && <div id={index+1} onClick={(e) => setIndex(+e.target.id)}>next</div>}
+          { blogs && index !== lastIndex && <div id={index+1} onClick={(e) => setIndex(+e.target.id)}>next</div>}
+          </>}
         </Selection>
        </MainPage>
     </Theme>

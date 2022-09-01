@@ -9,6 +9,11 @@ export const PostsContainer = styled.div`
   justify-content: center;
   align-content: space-around;
   gap: 1.6rem;
+
+  h3{
+    justify-self: center;
+    align-self: center;
+  }
 `;
 
 export const MainPage = styled.div`

@@ -15,7 +15,6 @@ const postsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(postsGet.fulfilled, (state, action) => {
-        console.log(action.payload);
         return action.payload;
       })
       .addCase(postDelete.fulfilled, (state, action) => {

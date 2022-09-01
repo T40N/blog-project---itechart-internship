@@ -10,7 +10,7 @@ const Header = ({ blogTabOpen, setBlogTabOpen, setOpenMenu, isSnippet }) => {
 
   const viewProfile = () => {
     setOpenMenu(false);
-    navigate((user.uID) ? `/${user.uID}` : `login`);
+    navigate((user.uID) ? `/author/${user.uID}` : `login`);
   }
 
   return (

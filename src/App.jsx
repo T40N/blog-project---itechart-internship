@@ -25,7 +25,6 @@ import { postsGet } from "./store/actions/postsActions";
 const App = () => {
   const handlers = useSelector((state) => state.handlers);
   const { type, profilePicture } = useSelector((state) => state.user);
-  console.log(profilePicture);
   const dispatch = useDispatch();
   useEffect(() => {
 
@@ -41,8 +40,6 @@ const App = () => {
       }
     });
   }, []);
-
-  console.log(type);
 
   return (
     <>

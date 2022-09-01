@@ -8,7 +8,7 @@ const Comment = ({ comment }) => {
     return (
         <Container>
             <CommentLabel>
-                <CommentAvatar link={comment.profile_picture} onClick={ () => navigate(`/${comment.u_id}`)} />
+                <CommentAvatar link={comment.profile_picture} onClick={ () => navigate(`/author/${comment.u_id}`)} />
                 <CommentAuthor>
                     <h2>{comment.name} {comment.surname}</h2>
                     <h3>{formatDate(comment.date.toDate())}</h3>

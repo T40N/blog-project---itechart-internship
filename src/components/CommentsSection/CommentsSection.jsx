@@ -26,7 +26,6 @@ const CommentsSection = () => {
   useEffect(() => {
     dispatch(pending());
     getComments(id).then((comments) => {
-      console.log(comments.length);
       comments.length && setComments(comments);
       dispatch(reset());
     });

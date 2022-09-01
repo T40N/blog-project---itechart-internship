@@ -39,7 +39,6 @@ export const loginAttempt = async ({ email, password }) => {
     const { user } = await signInWithEmailAndPassword(auth, email, password);
     return user.uid;
   } catch (err) {
-    console.log("hehe");
     throw err;
   }
 };

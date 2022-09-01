@@ -6,20 +6,20 @@ export const Container = styled.div`
   width: 100%;
   height: 30%;
   display: grid;
-  grid-template-columns: max-content auto;
+  grid-template-columns: 20% auto;
   grid-template-areas: "author snippet";
   background-color: ${({ theme }) => theme.colors.mono200};
   border-radius: ${({ theme }) => theme.borderRadius.l};
   box-shadow: ${({ theme }) => theme.shadows.shadowLight};
 
-  @media (max-width:  ${({ theme }) => theme.breakpoints.medium}){
-    &{
+  @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
+    & {
       grid-template-columns: min-content auto;
     }
   }
 
-  @media (max-width:  ${({ theme }) => theme.breakpoints.small}){
-    &{
+  @media (max-width: ${({ theme }) => theme.breakpoints.small}) {
+    & {
       display: flex;
       flex-direction: column;
       height: 32%;
@@ -47,34 +47,33 @@ export const TitleBox = styled.div`
     color: ${({ theme }) => theme.colors.mono400};
   }
 
-  @media (max-width:  ${({ theme }) => theme.breakpoints.medium}){
-    &{
+  @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
+    & {
       flex-direction: column;
-      gap: .5rem;
+      gap: 1rem;
 
-      h2{
+      h2 {
         margin-bottom: 0;
+        padding-top: 0.5rem;
       }
     }
   }
 
-  @media (max-width:  ${({ theme }) => theme.breakpoints.medium}){
-    &{
-
+  @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
+    & {
       gap: 0;
       align-items: flex-start;
 
-      h2{
+      h2 {
         word-wrap: normal;
         margin: 0;
       }
 
-      p{
+      p {
         display: none;
       }
     }
   }
-  
 `;
 
 export const Snippet = styled.div`
@@ -96,28 +95,27 @@ export const Snippet = styled.div`
     font-size: ${({ theme }) => theme.font.sizes.xs};
   }
 
-  @media (max-width: 1140px){
-    &{
+  @media (max-width: 1140px) {
+    & {
       grid-template-columns: auto min-content;
     }
   }
 
-  @media (max-width:  ${({ theme }) => theme.breakpoints.medium}){
-
-    &{
+  @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
+    & {
       display: flex;
       flex-direction: column;
       gap: 1rem;
       padding-left: 5%;
 
-      p{
+      p {
         padding-right: 1rem;
       }
     }
   }
 
-  @media (max-width:  ${({ theme }) => theme.breakpoints.medium}){
-    &{
+  @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
+    & {
       display: flex;
       flex-direction: column;
       border: transparent;
@@ -141,35 +139,32 @@ export const LinkStyled = styled(Link)`
     font-family: ${({ theme }) => theme.font.families.icon};
     font-size: ${({ theme }) => theme.font.sizes.xs};
     color: ${({ theme }) => theme.colors.mono500};
-    
   }
 
   &.hover {
     color: ${({ theme }) => theme.colors.mono500};
   }
 
-  @media (max-width:  ${({ theme }) => theme.breakpoints.medium}){
-    &{
+  @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
+    & {
       align-items: flex-end;
     }
   }
 `;
 
 export const GridAvatar = styled(Avatar)`
-
-    @media (max-width:  ${({ theme }) => theme.breakpoints.medium}){
-    &{
+  @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
+    & {
       grid-area: avatar;
-      
     }
 
-    @media (max-width:  ${({ theme }) => theme.breakpoints.small}){
-      &{
+    @media (max-width: ${({ theme }) => theme.breakpoints.small}) {
+      & {
         transform: scale(0.8);
       }
     }
   }
-`
+`;
 
 export const AuthorLink = styled(Link)`
   display: flex;
@@ -184,30 +179,31 @@ export const AuthorLink = styled(Link)`
   gap: 1rem;
   text-decoration: none;
 
-  h2{
+  h2 {
     padding-inline: 1rem;
   }
 
-  p{
+  p {
     display: none;
   }
 
-  @media (max-width:  ${({ theme }) => theme.breakpoints.medium}){
-    &{
+  @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
+    & {
       transform: scale(0.7);
     }
   }
 
-  @media (max-width:  ${({ theme }) => theme.breakpoints.medium}){
-    &{
+  @media (max-width: ${({ theme }) => theme.breakpoints.small}) {
+    & {
       display: grid;
       grid-template-columns: min-content auto;
       grid-template-rows: 50% 50%;
-      grid-template-areas: "avatar name"
-      "avatar date";
+      grid-template-areas:
+        "avatar name"
+        "avatar date";
       gap: 0;
 
-      p{
+      p {
         display: block;
         font-size: ${({ theme }) => theme.font.sizes.xs};
         font-style: italic;
@@ -215,12 +211,9 @@ export const AuthorLink = styled(Link)`
         grid-area: date;
       }
 
-      h2{
+      h2 {
         grid-area: name;
       }
     }
   }
-  
-`
-
-
+`;

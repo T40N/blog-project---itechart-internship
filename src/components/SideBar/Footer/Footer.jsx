@@ -1,5 +1,5 @@
 import { Icon, ListButtonLinkless } from "../../shared";
-import { Container } from "./styled";
+import { Container, LinkIssues } from "./styled";
 import { ListButton } from "../styled";
 import { useDispatch } from "react-redux";
 import { logOut } from "../../../store/actions/userActions";
@@ -18,10 +18,13 @@ const Footer = ({ user, isSnippet, setOpenMenu }) => {
 
   return (
     <Container>
-      <ListButton to="/issues" onClick={ () => setOpenMenu(false) }>
+      <LinkIssues
+        href="https://pl.reactjs.org/"
+        onClick={() => setOpenMenu(false)}
+      >
         <Icon>help</Icon>
         {!isSnippet && <h2>Issues</h2>}
-      </ListButton>
+      </LinkIssues>
 
       {user.type > 0 && (
         <ListButtonLinkless onClick={onLogoutHandler}>

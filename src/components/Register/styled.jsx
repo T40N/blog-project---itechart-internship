@@ -52,6 +52,7 @@ export const ErrorMsg = styled.p`
 `;
 
 export const LoginLink = styled(Link)`
+  margin-top: 1.2rem;
   text-decoration: none;
   font-size: ${({ theme }) => theme.font.sizes.s};
   width: 40%;

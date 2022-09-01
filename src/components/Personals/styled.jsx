@@ -80,7 +80,7 @@ export const Bio = styled.textarea`
   padding-top: 1.2rem;
   grid-column: 2 / span 2;
   text-align: center;
-  height: 10.5rem;
+  height: 8rem;
   border: none;
   font-family: ${({ theme }) => theme.font.families.primary};
   background-color: transparent;

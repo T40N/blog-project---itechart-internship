@@ -32,7 +32,7 @@ export const SnipetInfoContainer = styled.div`
     width: 100%;
     white-space: nowrap;
     text-overflow: ellipsis;
-    overflow: hidden;
+    /* overflow: hidden; */
   }
 
   p {
@@ -54,18 +54,18 @@ export const Switch = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 
-    ${({ active }) => active ? '.25rem' : '0'}
-    solid 
-    ${({ active, theme }) => active ? theme.colors.mono500 : theme.colors.mono400};
+  border-bottom: ${({ active }) => (active ? ".25rem" : "0")} solid
+    ${({ active, theme }) =>
+      active ? theme.colors.mono500 : theme.colors.mono400};
   cursor: pointer;
   user-select: none;
 
   h1 {
     font-size: ${({ theme }) => theme.font.sizes.s};
-    font-weight: ${({ active }) => active && 'bolder'};
+    font-weight: ${({ active }) => active && "bolder"};
     text-transform: uppercase;
-    color: ${({ active, theme }) => active ? theme.colors.mono500 : theme.colors.mono400};
+    color: ${({ active, theme }) =>
+      active ? theme.colors.mono500 : theme.colors.mono400};
   }
 
   &:hover {
@@ -80,4 +80,4 @@ export const SnippetContainer = styled.header`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`
+`;

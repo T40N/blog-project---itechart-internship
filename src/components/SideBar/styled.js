@@ -14,14 +14,16 @@ export const Container = styled.aside`
   background-color: ${({ theme }) => theme.colors.mono200};
   color: ${({ theme }) => theme.colors.mono400};
   box-shadow: ${({ theme }) => theme.shadows.shadowLight};
+  min-width: 20rem;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.medium }) and (min-width: ${({ theme }) => theme.breakpoints.small }) {
+  @media (max-width: ${({ theme }) =>
+      theme.breakpoints.medium}) and (min-width: ${({ theme }) =>
+      theme.breakpoints.small}) {
     display: none;
   }
 
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.medium }) {
-    display: ${({ openMenu }) => openMenu ? 'grid' : 'none'};
+  @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
+    display: ${({ openMenu }) => (openMenu ? "grid" : "none")};
     position: fixed;
     width: 100vw;
   }
@@ -39,37 +41,40 @@ export const MobileSnippet = styled.aside`
   color: ${({ theme }) => theme.colors.mono400};
   box-shadow: ${({ theme }) => theme.shadows.shadowLight};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.medium }) and (min-width: ${({ theme }) => theme.breakpoints.small }) {
-    display: ${({ openMenu }) => openMenu ? 'none' : 'grid'};
+  @media (max-width: ${({ theme }) =>
+      theme.breakpoints.medium}) and (min-width: ${({ theme }) =>
+      theme.breakpoints.small}) {
+    display: ${({ openMenu }) => (openMenu ? "none" : "grid")};
   }
 `;
 
 export const ListButton = styled(NavLink)`
-    border: 0;
-    outline: 0;
-    background-color: transparent;
-    border-radius: ${({ theme }) => theme.borderRadius.xs};
-    width: 100%;
-    padding: 1rem;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 1rem;
-    color: ${({ theme }) => theme.colors.mono400};
-    cursor: pointer;
-    user-select: none;
-    transition: background-color ease-in-out .3s, color ease-in-out .3s;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  border-radius: ${({ theme }) => theme.borderRadius.xs};
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  color: ${({ theme }) => theme.colors.mono400};
+  cursor: pointer;
+  user-select: none;
+  transition: background-color ease-in-out 0.3s, color ease-in-out 0.3s;
 
-    h2 {
-        font-size: ${({ theme }) => theme.font.sizes.s};
-        font-weight: inherit;
-    }
+  h2 {
+    font-size: ${({ theme }) => theme.font.sizes.s};
+    font-weight: inherit;
+  }
 
-    &:hover, &.active {
-        background-color: ${({ theme }) => theme.colors.mono100};
-        color: ${({ theme }) => theme.colors.mono500};
-        font-weight: bolder;
-    }
+  &:hover,
+  &.active {
+    background-color: ${({ theme }) => theme.colors.mono100};
+    color: ${({ theme }) => theme.colors.mono500};
+    font-weight: bolder;
+  }
 `;
 
 export const Hamburger = styled(Icon)`
@@ -80,11 +85,11 @@ export const Hamburger = styled(Icon)`
   position: fixed;
   background-color: ${({ theme }) => theme.colors.mono300};
   border-radius: 100% 0% 0% 100% / 0% 0% 100% 100%;
-  padding: .5rem .5rem 1rem 1rem;
+  padding: 0.5rem 0.5rem 1rem 1rem;
   user-select: none;
   cursor: pointer;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.medium }) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
     display: block;
   }
 `;

@@ -93,12 +93,7 @@ export const Snippet = styled.div`
     grid-area: snippet;
     color: ${({ theme }) => theme.colors.mono400};
     font-size: ${({ theme }) => theme.font.sizes.xs};
-  }
-
-  @media (max-width: 1140px) {
-    & {
-      grid-template-columns: auto min-content;
-    }
+    /* word-break: break-all; */
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
@@ -109,7 +104,7 @@ export const Snippet = styled.div`
       padding-left: 5%;
 
       p {
-        padding-right: 1rem;
+        padding-right: 2rem;
       }
     }
   }

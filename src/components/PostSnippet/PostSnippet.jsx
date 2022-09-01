@@ -9,7 +9,7 @@ import {
 import { getUserInfo } from "../../api/firestoreResources";
 import { useEffect, useState } from "react";
 
-function shorten(str, maxLen, separator = ".") {
+function shorten(str, maxLen, separator = " ") {
   if (str.length <= maxLen) return str;
   return str.substr(0, str.lastIndexOf(separator, maxLen));
 }
@@ -50,7 +50,7 @@ export default function Post({ blog }) {
           <h2>{blog.title}</h2>
           <p>{blog.dateOfCreation}</p>
         </TitleBox>
-        <p>{shorten(blog.content, 200) + "."}</p>
+        <p>{shorten(blog.content, 400) + "..."}</p>
         <LinkStyled to={`/blogs/${blog.id}`}>
           <p>Read more </p>
           <span>arrow_forward</span>

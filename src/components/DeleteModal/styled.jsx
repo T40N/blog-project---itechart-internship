@@ -15,6 +15,7 @@ export const Content = styled.div`
   height: 40%;
   width: 50%;
   display: flex;
+  gap: 1rem;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -23,6 +24,11 @@ export const Content = styled.div`
   box-shadow: ${({ theme }) => theme.shadows.shadowLight};
   color: ${({ theme }) => theme.colors.mono500};
   font-size: ${({ theme }) => theme.font.sizes.m};
+  text-align: center;
+
+  h1{
+    padding-inline: 1rem;
+  }
 `;
 
 export const ButtonContainer = styled.div`
@@ -31,4 +37,15 @@ export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  gap: 1rem;
+
+  Button{
+    width: min-content;
+    min-width: 30%;
+    padding: 0.5rem;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.medium}){
+    flex-direction: column;
+  }
 `;

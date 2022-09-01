@@ -38,7 +38,9 @@ export const InfoLabel = styled.label`
   grid-column: 2;
   align-self: center;
   justify-self: center;
-  width: min-content;
+  /* width: min-content; */
+  width: max-content;
+
 `;
 
 export const InfoChange = styled.input`
@@ -69,6 +71,7 @@ export const AvatarInputLabel = styled.label`
   color: ${({ theme }) => theme.colors.mono400};
   background-color: transparent;
   font-size: ${({ theme }) => theme.font.sizes.m};
+  word-break: break-all;
 
   &:hover,
   &:focus {

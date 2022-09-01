@@ -13,8 +13,9 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux/es/exports";
 import { getUserInfo } from "../../api/firestoreResources";
 import { formatDate } from "../../helpers";
-import { MyPostIcon } from "../MyPostsPage/styled";
 import {useNavigate} from "react-router-dom"
+import { formatDate, userType } from "../../helpers";
+
 export default function AuthorPage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -34,7 +35,6 @@ export default function AuthorPage() {
       });
   }, [posts]);
 
-
   return (
     <ViewContainer>
       {err && !author && <h1>Author no longer exists</h1>}
@@ -50,7 +50,7 @@ export default function AuthorPage() {
                 Joined at {formatDate(author.date_of_register.toDate())}
               </p>
               <div></div>
-              <h3 id="type">{author.type}</h3>
+              <h3 id="type">{userType(author.type)}</h3>
               <p id="postNumber">Posts: {authorPosts.length}</p>
             </BaseInfo>
             <Bio>

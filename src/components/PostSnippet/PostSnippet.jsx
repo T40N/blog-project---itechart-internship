@@ -50,7 +50,7 @@ export default function Post({ blog }) {
           <h2>{blog.title}</h2>
           <p>{blog.dateOfCreation}</p>
         </TitleBox>
-        <p>{shorten(blog.content, 400) + "..."}</p>
+        <p>{shorten(blog.content, 270) + "..."}</p>
         <LinkStyled to={`/blogs/${blog.id}`}>
           <p>Read more </p>
           <span>arrow_forward</span>

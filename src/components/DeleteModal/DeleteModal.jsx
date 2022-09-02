@@ -11,6 +11,7 @@ const DeleteModal = ({ onClose }) => {
 
   const onDeleteHandler = () => {
     dispatch(deleteUser(user.uID)).then(() => {
+      console.log(user);
       onClose();
       navigate("/");
     });
@@ -25,12 +26,8 @@ const DeleteModal = ({ onClose }) => {
       <Content>
         <h1>Are you sure you whant to delete your account?</h1>
         <ButtonContainer>
-          <Button onClick={onDeleteHandler}>
-            Delete
-          </Button>
-          <Button onClick={onCancelHandler}>
-            Cancel
-          </Button>
+          <Button onClick={onDeleteHandler}>Delete</Button>
+          <Button onClick={onCancelHandler}>Cancel</Button>
         </ButtonContainer>
       </Content>
     </Container>

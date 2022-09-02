@@ -9,7 +9,7 @@ const SearchBar = () => {
   const dispatch = useDispatch();
 
   const onChangeHandler = (e) => {
-    const value = e.target.value.trim();
+    const value = e.target.value;
 
     setSearchValue(value);
   };
@@ -17,7 +17,7 @@ const SearchBar = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    dispatch(searchPosts(searchValue));
+    dispatch(searchPosts(searchValue.trim()));
   };
 
   return (

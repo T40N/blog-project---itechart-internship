@@ -51,11 +51,11 @@ const Personals = () => {
     let name = userData.name;
     let surname = userData.surname;
     let bio = userData.bio;
-    
+
     if (!avatar) {
       avatar = undefined;
     }
-    
+
     console.log(avatar);
 
     if (name === "") {
@@ -77,10 +77,10 @@ const Personals = () => {
     dispatch(userEdit(userObj));
 
     setUserData({
+      ...userData,
       avatar: "",
       name: "",
       surname: "",
-      ...userData,
     });
   };
 

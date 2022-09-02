@@ -8,6 +8,7 @@ import {
   PostsContainer,
   TitleContainer,
   TitleIcon,
+  NoPostsInfo,
 } from "./styled";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux/es/exports";
@@ -57,6 +58,7 @@ export default function AuthorPage() {
             </Bio>
           </AuthorContainer>
           <PostsContainer>
+            {authorPosts.length === 0 && <NoPostsInfo><h1>No posts yet</h1></NoPostsInfo>}
             {authorPosts.map((post) => {
               return (
                 <TitleContainer key={post.id}>

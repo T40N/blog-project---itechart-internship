@@ -99,6 +99,7 @@ export const Bio = styled.div`
     p{
         color:  ${({ theme }) => theme.colors.mono500};
         font-size: ${({ theme }) => theme.font.sizes.m};
+        word-break: break-word;
     }
 `
 export const TitleIcon = styled(Icon)`
@@ -167,4 +168,17 @@ export const ViewContainer = styled.div`
             row-gap: 2rem;
         }
     }
-`
+`;
+
+export const NoPostsInfo = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: ${({ theme }) => theme.colors.mono400 };
+
+    h1 {
+        
+    }
+`;

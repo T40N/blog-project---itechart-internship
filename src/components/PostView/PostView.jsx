@@ -5,27 +5,13 @@ import {
   getComments,
   getPost,
   getUserInfo,
-  insertComment,
 } from "../../api/firestoreResources";
 import {
   Container,
   Post,
-  SectionHeader,
-  AddComment,
-  CommentInput,
-  AddCommentButton,
-  CommentsSection,
-  Comment,
-  CommentAvatar,
-  CommentLabel,
-  Form,
-  CommentAuthor,
 } from "./styled";
-import { Content } from "../shared/Header/styled";
-import { Icon } from "../shared";
 import { useSelector } from "react-redux";
 import { pending, reset } from "../../store/slices/handlerSlice";
-import { formatDate } from "../../helpers";
 
 const PostView = () => {
   const [postInfo, setPostInfo] = useState(null);

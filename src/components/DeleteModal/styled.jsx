@@ -32,7 +32,7 @@ export const Content = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-  height: 50%;
+  height: 30%;
   width: 100%;
   display: flex;
   align-items: center;

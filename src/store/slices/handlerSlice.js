@@ -5,7 +5,7 @@ import {
   postsGet,
   searchPosts,
 } from "../actions/postsActions";
-import { getUser, logOut, userEdit, deleteUser } from "../actions/userActions";
+import { getUser, logOut, userEdit, deleteUser, register } from "../actions/userActions";
 
 const extraReducersBuilder = (asyncThunk, builder) => {
   for (const key in asyncThunk) {
@@ -47,6 +47,7 @@ const arrayOfThunks = [
   userEdit,
   searchPosts,
   deleteUser,
+  register
 ];
 
 const initialState = {
